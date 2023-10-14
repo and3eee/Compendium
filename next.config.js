@@ -10,4 +10,5 @@ module.exports = withBundleAnalyzer({
   experimental: {
     serverActions: true,
   },
+  output: 'standalone',
 });

@@ -20,15 +20,7 @@ export default async function HomePage() {
     <>
       <ColorSchemeToggle />
 
-        <Group>
-          <SignInButton />
-          <SignOutButton/>
-          <AuthCheck>
-
-            <CampaignList/>
-          </AuthCheck>
-        </Group>
-
+      
     </>
   );
 }
