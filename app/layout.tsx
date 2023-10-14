@@ -42,10 +42,11 @@ export default async function RootLayout({ children }: { children: any }) {
           <link rel="shortcut icon" href="/favicon.svg" />
         </head>
         <body>
-          <MantineProvider>
+          <MantineProvider  defaultColorScheme="dark">
             <Container fluid p={8}>
               <Suspense fallback={<Loader color="orange" type="dots" size="lg" />}>
                 <NavBar campaigns={campaigns} user={user} />
+                
               </Suspense>
               <Suspense fallback={<Center><Loader color="orange" type="dots" size="lg" /></Center>}>
                 <Container p={4} fluid>{children}</Container>

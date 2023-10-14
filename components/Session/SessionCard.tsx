@@ -54,7 +54,7 @@ export default function SessionCard(props: { session: any; admin: boolean; host?
   };
   if( props.admin || props.session.state === SessionState.PLANNED)
   return (
-    <Card radius="md" shadow="xs" padding="1rem" w="33%">
+    <Card radius="md" shadow="xs" padding="1rem"  maw="45rem" miw="30rem" h="30rem" >
       <Card.Section inheritPadding py="8">
         <Group gap={'md'} py="sm" grow justify="center">
           <Stack>{props.session.private && <Badge>Private</Badge>}{props.session.state && <Badge>{props.session.state}</Badge>}</Stack>

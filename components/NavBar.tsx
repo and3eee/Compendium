@@ -1,7 +1,7 @@
 'use client';
 
 import { prisma } from '@/lib/prisma';
-import { Burger, Card, Container, Drawer, Flex, Group, Paper, Text, Title } from '@mantine/core';
+import { Burger, Card, Container, Drawer, Flex, Group, Paper, Stack, Text, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Campaign, User } from '@prisma/client';
 import CampaignCard from './Campaign/CampaignCard';
@@ -9,7 +9,9 @@ import UserSection from './User/UserSection';
 import { useSession } from 'next-auth/react';
 import UserCard from './User/UserCard';
 import AuthCheck from './Auth/AuthCheck';
-import {  IconBooks, IconBrandStorybook } from '@tabler/icons-react';
+import { IconBooks, IconBrandStorybook } from '@tabler/icons-react';
+import GMCheck from './GM/GMCheck';
+import CreateCampaignCard from './Campaign/CreateCampaign';
 
 export default function NavBar(props: { campaigns: Campaign[]; user: any }) {
   const [opened, { open, close }] = useDisclosure();
@@ -19,14 +21,23 @@ export default function NavBar(props: { campaigns: Campaign[]; user: any }) {
   return (
     <div>
       <Drawer opened={opened} onClose={close} title="Campaigns">
-        {props.campaigns.map((camp) => (
-          <CampaignCard key={camp.id} campaign={camp} />
-        ))}
+        <Stack gap="md">
+          {props.campaigns.map((camp) => (
+            <CampaignCard key={camp.id} campaign={camp} />
+          ))}
+          {props.user.role != 'user' && <CreateCampaignCard />}
+        </Stack>
       </Drawer>
-      <Card radius="xl" bg={gradient}  w="100%"  p="8">
+      <Card radius="xl" bg={gradient} w="100%" p="8">
         <Group justify="space-between">
           <Flex align={'center'} justify={'center'} gap="xs">
-            <Burger px={8} color="white" opened={opened} onClick={open} aria-label="Toggle navigation" />
+            <Burger
+              px={8}
+              color="white"
+              opened={opened}
+              onClick={open}
+              aria-label="Toggle navigation"
+            />
             <IconBooks stroke={1} color="white" size="3rem" />
             <Text size="2rem" fw={350} lts="2px" ff="inherit" c="white">
               Compendium

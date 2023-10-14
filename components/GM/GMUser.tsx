@@ -13,7 +13,7 @@ export default function GMUser(props: { user: User; gm: GMProfile }) {
             <>
               <Text size="xs">Hosted by</Text>
               <Title order={5}>
-                {props.user.fName} {props.user.lName}
+                {props.user.fName}
               </Title>
             </>
           )}

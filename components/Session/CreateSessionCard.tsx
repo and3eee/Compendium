@@ -69,6 +69,7 @@ export default function CreateSessionCard(props: { date: Date; campaign: Campaig
             duration: form.values.duration,
             campaignID: props.campaign.id,
           });
+       
           router.refresh();
         }
       }
@@ -76,7 +77,7 @@ export default function CreateSessionCard(props: { date: Date; campaign: Campaig
   };
 
   return (
-    <Card radius="md" shadow="xs" padding="1rem" w="33%" h="25em">
+    <Card radius="md" shadow="xs" padding="1rem"maw="45rem" miw="30rem" h="30rem">
       <Card.Section inheritPadding py="1rem">
         <Center>
           <Title order={4}>New Session</Title>

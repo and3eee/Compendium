@@ -4,10 +4,11 @@ import { Box, Button, Card, NativeSelect, Stack, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useSession } from 'next-auth/react';
 import { CreateGMProfileFromForm } from './GMProfileControl';
+import { useRouter } from 'next/navigation';
 
 export default function CreateGMProfile() {
   const { data: session, status } = useSession();
-
+  const router = useRouter()
   const form = useForm({
     initialValues: {
       email: session?.user?.email!,
@@ -18,6 +19,7 @@ export default function CreateGMProfile() {
   const create = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const resp = await CreateGMProfileFromForm(form.values);
+    router.refresh()
   };
 
   return (

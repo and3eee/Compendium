@@ -75,6 +75,8 @@ export default function CreateSessionCard(props: { session:GameSession }) {
 
 
           });
+          console.log(resp)
+          if(resp)
           router.refresh();
         }
       }

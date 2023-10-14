@@ -43,7 +43,7 @@ export default function UserEdit(props: { user: any }) {
       form.values.name ?? undefined,
       form.values.bio
     );
-    router.push("/account");
+    router.refresh();
   };
   if(props.user)
   return (
