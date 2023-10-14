@@ -1,7 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
-import { Class } from '@prisma/client';
+import { Class } from '@/prisma/generated/client';
 
 export async function CreateCharacterFromUser(
   campaignID: number,

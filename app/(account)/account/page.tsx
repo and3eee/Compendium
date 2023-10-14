@@ -4,9 +4,10 @@ import { Container, Stack } from '@mantine/core';
 import { prisma } from '@/lib/prisma';
 import UserSection from '@/components/User/UserSection';
 import GMProfile from '@/components/GM/GMProfile';
-import { ROLE } from '@prisma/client';
+
 import AuthCheck from '@/components/Auth/AuthCheck';
 import PlayerProfileSection from '@/components/Player/PlayerProfileSection';
+import { ROLE } from '@/prisma/generated/client';
 
 export default async function AccountPage() {
   const session = await getServerSession(authOptions);

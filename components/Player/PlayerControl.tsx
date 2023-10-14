@@ -2,7 +2,7 @@
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { prisma } from "@/lib/prisma";
-import { HostType } from "@prisma/client";
+import { HostType } from "@/prisma/generated/client";
 import { getServerSession } from "next-auth"
 
 export async function CreatePlayerProfileFromForm(input:{email:string}){

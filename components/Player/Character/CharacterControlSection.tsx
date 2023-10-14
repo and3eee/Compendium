@@ -1,7 +1,7 @@
 'use server';
 
 import { Group } from '@mantine/core';
-import { Campaign, PlayerCharacter } from '@prisma/client';
+import { Campaign, PlayerCharacter } from '@/prisma/generated/client';
 import CharacterControlCard from './CharacterControlCard';
 import { GetPCClassMap } from './CharacterControl';
 import { prisma } from '@/lib/prisma';

@@ -1,5 +1,5 @@
 import { Button, Card, Stack, Text, Title } from '@mantine/core';
-import { Campaign } from '@prisma/client';
+import { Campaign } from '@/prisma/generated/client';
 import { useRouter } from 'next/navigation';
 
 `use client`;

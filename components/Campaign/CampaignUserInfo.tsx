@@ -11,7 +11,7 @@ import {
   Text,
   Tooltip,
 } from '@mantine/core';
-import { Campaign, GMProfile } from '@prisma/client';
+import { Campaign, GMProfile } from '@/prisma/generated/client';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { RegisterUserFromEmail } from './CampaignControl';

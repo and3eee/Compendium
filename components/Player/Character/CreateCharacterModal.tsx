@@ -2,7 +2,7 @@
 
 import { Button, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Campaign } from '@prisma/client';
+import { Campaign } from '@/prisma/generated/client';
 import CreateSection from './CreateSection';
 
 export default function CreateCharacterModal(props: {

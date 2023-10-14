@@ -1,6 +1,6 @@
 `use server`
 
-import { Campaign } from '@prisma/client';
+import { Campaign } from '@/prisma/generated/client';
 import CampaignInfoSection from './CampaignInfoSection';
 import SessionCalendar from '../Session/SessionCalendar';
 import { Container, Stack } from '@mantine/core';

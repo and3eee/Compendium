@@ -20,7 +20,7 @@ import {
   Grid,
   Badge,
 } from '@mantine/core';
-import { Campaign, PlayerCharacter } from '@prisma/client';
+import { Campaign, PlayerCharacter } from '@/prisma/generated/client';
 import { useState } from 'react';
 import ClassPicker from './ClassPicker';
 import { useSession } from 'next-auth/react';

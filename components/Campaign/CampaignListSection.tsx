@@ -1,6 +1,6 @@
 "use client"
 
-import { Campaign } from "@prisma/client"
+import { Campaign } from "@/prisma/generated/client"
 import CampaignList from "./CampaignList"
 import { Stack } from "@mantine/core"
 import CampaignCard from "./CampaignCard"

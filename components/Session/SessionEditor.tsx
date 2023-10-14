@@ -24,7 +24,7 @@ import { DateTimePicker, TimeInput } from '@mantine/dates';
 import { IconClock } from '@tabler/icons-react';
 import { useRef } from 'react';
 import { GetUserGMProfile, GetUserProfile } from '../GM/GMProfileControl';
-import { Campaign, GameSession, SessionState } from '@prisma/client';
+import { Campaign, GameSession, SessionState } from '@/prisma/generated/client';
 import { useRouter } from 'next/navigation';
 
 export default function CreateSessionCard(props: { session:GameSession }) {

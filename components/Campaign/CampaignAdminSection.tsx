@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Container, Divider, Grid } from '@mantine/core';
-import { Campaign, GMProfile } from '@prisma/client';
+import { Campaign, GMProfile } from '@/prisma/generated/client';
 import { useSession } from 'next-auth/react';
 import { RegisterGMFromEmail } from './CampaignControl';
 import { useRouter } from 'next/navigation';

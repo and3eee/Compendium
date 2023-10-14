@@ -1,4 +1,4 @@
-import { Campaign } from "@prisma/client";
+import { Campaign } from "@/prisma/generated/client";
 
 `use client`;
 

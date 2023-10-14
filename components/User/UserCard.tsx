@@ -2,7 +2,7 @@
 
 import {useMantineColorScheme, Avatar, Burger, Button, Card, Container, Group, Menu, Stack, Text, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { User } from '@prisma/client';
+import { User } from '@/prisma/generated/client';
 import {
   IconArrowsLeftRight,
   IconLogout,

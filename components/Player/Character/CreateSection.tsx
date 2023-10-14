@@ -17,7 +17,7 @@ import {
   Title,
   Card,
 } from '@mantine/core';
-import { Campaign } from '@prisma/client';
+import { Campaign } from '@/prisma/generated/client';
 import { useState } from 'react';
 import ClassPicker from './ClassPicker';
 import { useSession } from 'next-auth/react';

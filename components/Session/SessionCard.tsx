@@ -20,7 +20,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { TimeInput } from '@mantine/dates';
-import { GameSession, PlayerCharacter, SessionState, User } from '@prisma/client';
+import { GameSession, PlayerCharacter, SessionState, User } from '@/prisma/generated/client';
 import GMUser from '../GM/GMUser';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';

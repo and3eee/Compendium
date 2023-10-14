@@ -1,7 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
-import { Campaign, SessionState } from '@prisma/client';
+import { Campaign, SessionState } from '@/prisma/generated/client';
 
 export async function GetSession(date: Date) {
   return await prisma.gameSession.findFirst({ where: { date: date } });

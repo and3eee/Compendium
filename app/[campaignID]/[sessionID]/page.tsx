@@ -7,7 +7,7 @@ import SessionEditor from '@/components/Session/SessionEditor';
 import SessionSection from '@/components/Session/SessionSection';
 import { prisma } from '@/lib/prisma';
 import { Container, Flex, Group, Stack } from '@mantine/core';
-import { GMProfile } from '@prisma/client';
+import { GMProfile } from '@/prisma/generated/client';
 
 import { getServerSession } from 'next-auth';
 

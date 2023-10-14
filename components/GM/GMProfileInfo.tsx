@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Divider, Group, Text } from '@mantine/core';
-import { GMProfile } from '@prisma/client';
+import { GMProfile } from '@/prisma/generated/client';
 
 export default function GMProfileInfo(props: { profile: GMProfile }) {
   return (

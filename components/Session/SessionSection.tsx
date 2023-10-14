@@ -1,5 +1,5 @@
 'use client';
-import { Campaign, GameSession } from '@prisma/client';
+import { Campaign, GameSession } from '@/prisma/generated/client';
 import SessionList from './SessionList';
 import SessionCalendar from './SessionCalendar';
 import SessionCard from './SessionCard';

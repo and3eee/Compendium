@@ -1,0 +1,217 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// NextAuth Schema
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  refresh_token_expires_in Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id              String         @id @default(cuid())
+  name            String?
+  age             Int?
+  fName           String?
+  lName           String?
+  bio             String?        @db.Text
+  email           String?        @unique
+  emailVerified   DateTime?
+  image           String?
+  accounts        Account[]
+  sessions        Session[]
+  role            ROLE           @default(USER)
+  gmProfile       GMProfile?
+  playerProfile   PlayerProfile?
+  gMProfileId     String?
+  playerProfileId String?
+  InfoSession     InfoSession?   @relation(fields: [infoSessionId], references: [id])
+  infoSessionId   String?
+
+  @@map("users")
+}
+
+model GMProfile {
+  id          String        @id @default(cuid())
+  User        User          @relation(fields: [userId], references: [id])
+  userId      String        @unique
+  type        HostType
+  GameSession GameSession[]
+  Campaign    Campaign[]
+  Quest       Quest[]
+  InfoSession InfoSession[]
+}
+
+model PlayerProfile {
+  id              String            @id @default(cuid())
+  PlayerCharacter PlayerCharacter[]
+  User            User              @relation(fields: [userId], references: [id])
+  userId          String            @unique
+  Campaign        Campaign?         @relation(fields: [campaignId], references: [id])
+  campaignId      Int?
+}
+
+model PlayerCharacter {
+  id              String        @id @default(cuid())
+  name            String
+  owner           PlayerProfile @relation(fields: [playerProfileId], references: [id])
+  playerProfileId String
+  GameSession     GameSession[]
+  Campaign        Campaign      @relation(fields: [campaignId], references: [id])
+  campaignId      Int
+  experience      Int           @default(0)
+  level           Int           @default(5)
+  gold            Int           @default(200)
+  character       ClassedEntity @relation(fields: [classedEntityId], references: [id])
+  classedEntityId String        @unique
+  backStory       String?
+  personality     String?
+  race            String
+  active          Boolean       @default(true)
+}
+
+model ClassedEntity {
+  id              String           @id @default(cuid())
+  classes         ClassConfigs[]
+  PlayerCharacter PlayerCharacter?
+}
+
+model ClassConfigs {
+  id              String        @id @default(cuid())
+  ClassedEntity   ClassedEntity @relation(fields: [classedEntityId], references: [id])
+  ClassChoice     Class         @relation(fields: [classId], references: [id])
+  classId         String
+  Level           Int           @default(5)
+  classedEntityId String
+}
+
+model Class {
+  id           String         @id @default(cuid())
+  name         String
+  ClassConfigs ClassConfigs[]
+}
+
+model GameSession {
+  id              String            @id @default(cuid())
+  date            DateTime
+  duration        Int
+  host            GMProfile         @relation(fields: [gMProfileId], references: [id])
+  gMProfileId     String
+  players         PlayerCharacter[]
+  description     String?
+  notes           String?
+  state           SessionState      @default(PLANNED)
+  Campaign        Campaign          @relation(fields: [campaignId], references: [id])
+  campaignId      Int
+  private         Boolean           @default(false)
+  followUpSession GameSession?      @relation("SessionHistory", fields: [gameSessionId], references: [id])
+  previousSession GameSession?      @relation("SessionHistory")
+  gameSessionId   String?           @unique
+  quest           Quest?            @relation(fields: [questId], references: [id])
+  story           Story?            @relation(fields: [storyId], references: [id])
+  questId         Int?
+  storyId         Int?
+  maxPlayers      Int               @default(4)
+  platform        String?
+  prework         String?
+}
+
+model InfoSession {
+  id          String    @id @default(cuid())
+  date        DateTime
+  duration    Int
+  host        GMProfile @relation(fields: [gMProfileId], references: [id])
+  gMProfileId String
+  players     User[]
+  description String?
+  private     Boolean   @default(false)
+  Campaign    Campaign? @relation(fields: [campaignId], references: [id])
+  campaignId  Int?
+}
+
+model Campaign {
+  id           Int               @id @default(autoincrement())
+  description  String?
+  name         String            @unique
+  gms          GMProfile[]
+  players      PlayerCharacter[]
+  sessions     GameSession[]
+  infoSessions InfoSession[]
+  members      PlayerProfile[]
+}
+
+enum ROLE {
+  USER
+  GM
+  ADMIN
+}
+
+enum SessionState {
+  PLANNED
+  ACTIVE
+  COMPLETE
+}
+
+enum HostType {
+  REMOTE
+  HYBRID
+  INPERSON
+}
+
+model Story {
+  id          Int           @id @default(autoincrement())
+  name        String
+  description String?
+  GameSession GameSession[]
+}
+
+model Quest {
+  id          Int           @id @default(autoincrement())
+  name        String
+  description String
+  isPrivate   Boolean
+  dmNotes     String
+  recLevel    Int?
+  author      GMProfile     @relation(fields: [gMProfileId], references: [id])
+  followUp    Quest?        @relation("QuestConnections", fields: [questID], references: [id])
+  previous    Quest?        @relation("QuestConnections")
+  questID     Int?          @unique
+  gMProfileId String
+  GameSession GameSession[]
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import { Tooltip, Avatar, HoverCard, Text } from '@mantine/core';
-import { PlayerCharacter } from '@prisma/client';
+import { PlayerCharacter } from '@/prisma/generated/client';
 import CharacterCard from './CharacterCard';
 
 export default function CharacterAvatar(props: { pc: any }) {

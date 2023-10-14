@@ -1,7 +1,7 @@
 'use client';
 
 import { DatePicker, DatePickerProps } from '@mantine/dates';
-import { Campaign, GameSession, SessionState, User } from '@prisma/client';
+import { Campaign, GameSession, SessionState, User } from '@/prisma/generated/client';
 import { Suspense, useEffect, useState } from 'react';
 
 import { GetSession, GetSessions } from './SessionControl';

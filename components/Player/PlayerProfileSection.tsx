@@ -14,7 +14,7 @@ import {
   Table,
   Title,
 } from '@mantine/core';
-import { PlayerProfile } from '@prisma/client';
+import { PlayerProfile } from '@/prisma/generated/client';
 import CharacterCard from './Character/CharacterCard';
 
 export default function PlayerProfileSection(props: { profile: any }) {

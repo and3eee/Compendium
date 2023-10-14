@@ -1,7 +1,7 @@
 'use client';
 
 import { Grid } from '@mantine/core';
-import { GameSession } from '@prisma/client';
+import { GameSession } from '@/prisma/generated/client';
 import CharacterControlCard from '../Player/Character/CharacterControlCard';
 
 export default function SessionCharacterControl(props: { session: any }) {

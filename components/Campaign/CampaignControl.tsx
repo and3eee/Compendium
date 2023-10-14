@@ -1,7 +1,7 @@
 'use server';
 import { prisma } from "@/lib/prisma";
 import { em } from "@mantine/core";
-import { GMProfile, PlayerProfile } from "@prisma/client";
+import { GMProfile, PlayerProfile } from "@/prisma/generated/client";
 
 import { connect } from "http2";
 

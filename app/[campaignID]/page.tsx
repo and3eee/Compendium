@@ -7,7 +7,7 @@ import { Stack } from '@mantine/core';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import CampaignPage from '@/components/Campaign/CampaignPage';
-import { GMProfile } from '@prisma/client';
+import { GMProfile } from '@/prisma/generated/client';
 import { IconUnderline } from '@tabler/icons-react';
 import { isArgumentsObject } from 'util/types';
 import { Metadata } from 'next';
