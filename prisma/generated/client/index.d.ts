@@ -145,7 +145,7 @@ export const SessionState: typeof $Enums.SessionState
 export class PrismaClient<
   T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
   U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
-  ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
@@ -446,8 +446,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.1.1
-   * Query Engine version: 6a3747c37ff169c90047725a05a6ef02e32ac97e
+   * Prisma Client JS version: 5.4.2
+   * Query Engine version: ac9d7041ed77bcc8a8dbd2ab6616b39013829574
    */
   export type PrismaVersion = {
     client: string
@@ -883,11 +883,11 @@ export namespace Prisma {
   }
 
 
-  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.Args}, $Utils.Record<string, any>> {
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>> {
     returns: Prisma.TypeMap<this['params']['extArgs']>
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
       modelProps: 'account' | 'session' | 'user' | 'gMProfile' | 'playerProfile' | 'playerCharacter' | 'classedEntity' | 'classConfigs' | 'class' | 'gameSession' | 'infoSession' | 'campaign' | 'story' | 'quest'
       txIsolationLevel: Prisma.TransactionIsolationLevel
@@ -1844,18 +1844,19 @@ export namespace Prisma {
   export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
-
   export interface PrismaClientOptions {
     /**
      * Overwrites the datasource url from your schema.prisma file
      */
     datasources?: Datasources
-
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasourceUrl?: string
     /**
      * @default "colorless"
      */
     errorFormat?: ErrorFormat
-
     /**
      * @example
      * ```
@@ -1864,15 +1865,15 @@ export namespace Prisma {
      * 
      * // Emit as events
      * log: [
-     *  { emit: 'stdout', level: 'query' },
-     *  { emit: 'stdout', level: 'info' },
-     *  { emit: 'stdout', level: 'warn' }
-     *  { emit: 'stdout', level: 'error' }
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
      * ]
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
-    log?: Array<LogLevel | LogDefinition>
+    log?: (LogLevel | LogDefinition)[]
   }
 
   /* Types for Logging */
@@ -1969,7 +1970,7 @@ export namespace Prisma {
     sessions: number
   }
 
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   }
@@ -1979,7 +1980,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the UserCountOutputType
      */
@@ -1990,7 +1991,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccountWhereInput
   }
 
@@ -1998,7 +1999,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionWhereInput
   }
 
@@ -2015,7 +2016,7 @@ export namespace Prisma {
     InfoSession: number
   }
 
-  export type GMProfileCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     GameSession?: boolean | GMProfileCountOutputTypeCountGameSessionArgs
     Campaign?: boolean | GMProfileCountOutputTypeCountCampaignArgs
     Quest?: boolean | GMProfileCountOutputTypeCountQuestArgs
@@ -2027,7 +2028,7 @@ export namespace Prisma {
   /**
    * GMProfileCountOutputType without action
    */
-  export type GMProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfileCountOutputType
      */
@@ -2038,7 +2039,7 @@ export namespace Prisma {
   /**
    * GMProfileCountOutputType without action
    */
-  export type GMProfileCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GameSessionWhereInput
   }
 
@@ -2046,7 +2047,7 @@ export namespace Prisma {
   /**
    * GMProfileCountOutputType without action
    */
-  export type GMProfileCountOutputTypeCountCampaignArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCountOutputTypeCountCampaignArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CampaignWhereInput
   }
 
@@ -2054,7 +2055,7 @@ export namespace Prisma {
   /**
    * GMProfileCountOutputType without action
    */
-  export type GMProfileCountOutputTypeCountQuestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCountOutputTypeCountQuestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuestWhereInput
   }
 
@@ -2062,7 +2063,7 @@ export namespace Prisma {
   /**
    * GMProfileCountOutputType without action
    */
-  export type GMProfileCountOutputTypeCountInfoSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCountOutputTypeCountInfoSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InfoSessionWhereInput
   }
 
@@ -2076,7 +2077,7 @@ export namespace Prisma {
     PlayerCharacter: number
   }
 
-  export type PlayerProfileCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PlayerCharacter?: boolean | PlayerProfileCountOutputTypeCountPlayerCharacterArgs
   }
 
@@ -2085,7 +2086,7 @@ export namespace Prisma {
   /**
    * PlayerProfileCountOutputType without action
    */
-  export type PlayerProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfileCountOutputType
      */
@@ -2096,7 +2097,7 @@ export namespace Prisma {
   /**
    * PlayerProfileCountOutputType without action
    */
-  export type PlayerProfileCountOutputTypeCountPlayerCharacterArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileCountOutputTypeCountPlayerCharacterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlayerCharacterWhereInput
   }
 
@@ -2110,7 +2111,7 @@ export namespace Prisma {
     GameSession: number
   }
 
-  export type PlayerCharacterCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     GameSession?: boolean | PlayerCharacterCountOutputTypeCountGameSessionArgs
   }
 
@@ -2119,7 +2120,7 @@ export namespace Prisma {
   /**
    * PlayerCharacterCountOutputType without action
    */
-  export type PlayerCharacterCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacterCountOutputType
      */
@@ -2130,7 +2131,7 @@ export namespace Prisma {
   /**
    * PlayerCharacterCountOutputType without action
    */
-  export type PlayerCharacterCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GameSessionWhereInput
   }
 
@@ -2144,7 +2145,7 @@ export namespace Prisma {
     classes: number
   }
 
-  export type ClassedEntityCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     classes?: boolean | ClassedEntityCountOutputTypeCountClassesArgs
   }
 
@@ -2153,7 +2154,7 @@ export namespace Prisma {
   /**
    * ClassedEntityCountOutputType without action
    */
-  export type ClassedEntityCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntityCountOutputType
      */
@@ -2164,7 +2165,7 @@ export namespace Prisma {
   /**
    * ClassedEntityCountOutputType without action
    */
-  export type ClassedEntityCountOutputTypeCountClassesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityCountOutputTypeCountClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassConfigsWhereInput
   }
 
@@ -2178,7 +2179,7 @@ export namespace Prisma {
     ClassConfigs: number
   }
 
-  export type ClassCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ClassConfigs?: boolean | ClassCountOutputTypeCountClassConfigsArgs
   }
 
@@ -2187,7 +2188,7 @@ export namespace Prisma {
   /**
    * ClassCountOutputType without action
    */
-  export type ClassCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassCountOutputType
      */
@@ -2198,7 +2199,7 @@ export namespace Prisma {
   /**
    * ClassCountOutputType without action
    */
-  export type ClassCountOutputTypeCountClassConfigsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassCountOutputTypeCountClassConfigsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassConfigsWhereInput
   }
 
@@ -2212,7 +2213,7 @@ export namespace Prisma {
     players: number
   }
 
-  export type GameSessionCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     players?: boolean | GameSessionCountOutputTypeCountPlayersArgs
   }
 
@@ -2221,7 +2222,7 @@ export namespace Prisma {
   /**
    * GameSessionCountOutputType without action
    */
-  export type GameSessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSessionCountOutputType
      */
@@ -2232,7 +2233,7 @@ export namespace Prisma {
   /**
    * GameSessionCountOutputType without action
    */
-  export type GameSessionCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlayerCharacterWhereInput
   }
 
@@ -2246,7 +2247,7 @@ export namespace Prisma {
     players: number
   }
 
-  export type InfoSessionCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     players?: boolean | InfoSessionCountOutputTypeCountPlayersArgs
   }
 
@@ -2255,7 +2256,7 @@ export namespace Prisma {
   /**
    * InfoSessionCountOutputType without action
    */
-  export type InfoSessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSessionCountOutputType
      */
@@ -2266,7 +2267,7 @@ export namespace Prisma {
   /**
    * InfoSessionCountOutputType without action
    */
-  export type InfoSessionCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
   }
 
@@ -2284,7 +2285,7 @@ export namespace Prisma {
     members: number
   }
 
-  export type CampaignCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gms?: boolean | CampaignCountOutputTypeCountGmsArgs
     players?: boolean | CampaignCountOutputTypeCountPlayersArgs
     sessions?: boolean | CampaignCountOutputTypeCountSessionsArgs
@@ -2297,7 +2298,7 @@ export namespace Prisma {
   /**
    * CampaignCountOutputType without action
    */
-  export type CampaignCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the CampaignCountOutputType
      */
@@ -2308,7 +2309,7 @@ export namespace Prisma {
   /**
    * CampaignCountOutputType without action
    */
-  export type CampaignCountOutputTypeCountGmsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCountOutputTypeCountGmsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GMProfileWhereInput
   }
 
@@ -2316,7 +2317,7 @@ export namespace Prisma {
   /**
    * CampaignCountOutputType without action
    */
-  export type CampaignCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlayerCharacterWhereInput
   }
 
@@ -2324,7 +2325,7 @@ export namespace Prisma {
   /**
    * CampaignCountOutputType without action
    */
-  export type CampaignCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GameSessionWhereInput
   }
 
@@ -2332,7 +2333,7 @@ export namespace Prisma {
   /**
    * CampaignCountOutputType without action
    */
-  export type CampaignCountOutputTypeCountInfoSessionsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCountOutputTypeCountInfoSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InfoSessionWhereInput
   }
 
@@ -2340,7 +2341,7 @@ export namespace Prisma {
   /**
    * CampaignCountOutputType without action
    */
-  export type CampaignCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlayerProfileWhereInput
   }
 
@@ -2354,7 +2355,7 @@ export namespace Prisma {
     GameSession: number
   }
 
-  export type StoryCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     GameSession?: boolean | StoryCountOutputTypeCountGameSessionArgs
   }
 
@@ -2363,7 +2364,7 @@ export namespace Prisma {
   /**
    * StoryCountOutputType without action
    */
-  export type StoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the StoryCountOutputType
      */
@@ -2374,7 +2375,7 @@ export namespace Prisma {
   /**
    * StoryCountOutputType without action
    */
-  export type StoryCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GameSessionWhereInput
   }
 
@@ -2388,7 +2389,7 @@ export namespace Prisma {
     GameSession: number
   }
 
-  export type QuestCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     GameSession?: boolean | QuestCountOutputTypeCountGameSessionArgs
   }
 
@@ -2397,7 +2398,7 @@ export namespace Prisma {
   /**
    * QuestCountOutputType without action
    */
-  export type QuestCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the QuestCountOutputType
      */
@@ -2408,7 +2409,7 @@ export namespace Prisma {
   /**
    * QuestCountOutputType without action
    */
-  export type QuestCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestCountOutputTypeCountGameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GameSessionWhereInput
   }
 
@@ -2549,7 +2550,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type AccountAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Account to aggregate.
      */
@@ -2621,7 +2622,7 @@ export namespace Prisma {
 
 
 
-  export type AccountGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccountWhereInput
     orderBy?: AccountOrderByWithAggregationInput | AccountOrderByWithAggregationInput[]
     by: AccountScalarFieldEnum[] | AccountScalarFieldEnum
@@ -2670,7 +2671,7 @@ export namespace Prisma {
     >
 
 
-  export type AccountSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     type?: boolean
@@ -2703,17 +2704,17 @@ export namespace Prisma {
     session_state?: boolean
   }
 
-  export type AccountInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
-  export type $AccountPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $AccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Account"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
       type: string
@@ -2734,12 +2735,12 @@ export namespace Prisma {
 
   type AccountGetPayload<S extends boolean | null | undefined | AccountDefaultArgs> = $Result.GetResult<Prisma.$AccountPayload, S>
 
-  type AccountCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type AccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<AccountFindManyArgs, 'select' | 'include'> & {
       select?: AccountCountAggregateInputType | true
     }
 
-  export interface AccountDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface AccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Account'], meta: { name: 'Account' } }
     /**
      * Find zero or one Account that matches the filter.
@@ -3089,7 +3090,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -3143,7 +3144,7 @@ export namespace Prisma {
   /**
    * Account findUnique
    */
-  export type AccountFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3162,7 +3163,7 @@ export namespace Prisma {
   /**
    * Account findUniqueOrThrow
    */
-  export type AccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3181,7 +3182,7 @@ export namespace Prisma {
   /**
    * Account findFirst
    */
-  export type AccountFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3230,7 +3231,7 @@ export namespace Prisma {
   /**
    * Account findFirstOrThrow
    */
-  export type AccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3279,7 +3280,7 @@ export namespace Prisma {
   /**
    * Account findMany
    */
-  export type AccountFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3323,7 +3324,7 @@ export namespace Prisma {
   /**
    * Account create
    */
-  export type AccountCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3342,7 +3343,7 @@ export namespace Prisma {
   /**
    * Account createMany
    */
-  export type AccountCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Accounts.
      */
@@ -3354,7 +3355,7 @@ export namespace Prisma {
   /**
    * Account update
    */
-  export type AccountUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3377,7 +3378,7 @@ export namespace Prisma {
   /**
    * Account updateMany
    */
-  export type AccountUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Accounts.
      */
@@ -3392,7 +3393,7 @@ export namespace Prisma {
   /**
    * Account upsert
    */
-  export type AccountUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3419,7 +3420,7 @@ export namespace Prisma {
   /**
    * Account delete
    */
-  export type AccountDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3438,7 +3439,7 @@ export namespace Prisma {
   /**
    * Account deleteMany
    */
-  export type AccountDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Accounts to delete
      */
@@ -3449,7 +3450,7 @@ export namespace Prisma {
   /**
    * Account without action
    */
-  export type AccountDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type AccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -3517,7 +3518,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type SessionAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Session to aggregate.
      */
@@ -3577,7 +3578,7 @@ export namespace Prisma {
 
 
 
-  export type SessionGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionWhereInput
     orderBy?: SessionOrderByWithAggregationInput | SessionOrderByWithAggregationInput[]
     by: SessionScalarFieldEnum[] | SessionScalarFieldEnum
@@ -3613,7 +3614,7 @@ export namespace Prisma {
     >
 
 
-  export type SessionSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionToken?: boolean
     userId?: boolean
@@ -3628,17 +3629,17 @@ export namespace Prisma {
     expires?: boolean
   }
 
-  export type SessionInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
-  export type $SessionPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $SessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Session"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       sessionToken: string
       userId: string
@@ -3650,12 +3651,12 @@ export namespace Prisma {
 
   type SessionGetPayload<S extends boolean | null | undefined | SessionDefaultArgs> = $Result.GetResult<Prisma.$SessionPayload, S>
 
-  type SessionCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type SessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<SessionFindManyArgs, 'select' | 'include'> & {
       select?: SessionCountAggregateInputType | true
     }
 
-  export interface SessionDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface SessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Session'], meta: { name: 'Session' } }
     /**
      * Find zero or one Session that matches the filter.
@@ -4005,7 +4006,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SessionClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__SessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -4050,7 +4051,7 @@ export namespace Prisma {
   /**
    * Session findUnique
    */
-  export type SessionFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4069,7 +4070,7 @@ export namespace Prisma {
   /**
    * Session findUniqueOrThrow
    */
-  export type SessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4088,7 +4089,7 @@ export namespace Prisma {
   /**
    * Session findFirst
    */
-  export type SessionFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4137,7 +4138,7 @@ export namespace Prisma {
   /**
    * Session findFirstOrThrow
    */
-  export type SessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4186,7 +4187,7 @@ export namespace Prisma {
   /**
    * Session findMany
    */
-  export type SessionFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4230,7 +4231,7 @@ export namespace Prisma {
   /**
    * Session create
    */
-  export type SessionCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4249,7 +4250,7 @@ export namespace Prisma {
   /**
    * Session createMany
    */
-  export type SessionCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Sessions.
      */
@@ -4261,7 +4262,7 @@ export namespace Prisma {
   /**
    * Session update
    */
-  export type SessionUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4284,7 +4285,7 @@ export namespace Prisma {
   /**
    * Session updateMany
    */
-  export type SessionUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Sessions.
      */
@@ -4299,7 +4300,7 @@ export namespace Prisma {
   /**
    * Session upsert
    */
-  export type SessionUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4326,7 +4327,7 @@ export namespace Prisma {
   /**
    * Session delete
    */
-  export type SessionDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4345,7 +4346,7 @@ export namespace Prisma {
   /**
    * Session deleteMany
    */
-  export type SessionDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Sessions to delete
      */
@@ -4356,7 +4357,7 @@ export namespace Prisma {
   /**
    * Session without action
    */
-  export type SessionDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type SessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -4496,7 +4497,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type UserAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which User to aggregate.
      */
@@ -4568,7 +4569,7 @@ export namespace Prisma {
 
 
 
-  export type UserGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
     orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
     by: UserScalarFieldEnum[] | UserScalarFieldEnum
@@ -4617,7 +4618,7 @@ export namespace Prisma {
     >
 
 
-  export type UserSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     age?: boolean
@@ -4655,7 +4656,7 @@ export namespace Prisma {
     infoSessionId?: boolean
   }
 
-  export type UserInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     gmProfile?: boolean | User$gmProfileArgs<ExtArgs>
@@ -4665,7 +4666,7 @@ export namespace Prisma {
   }
 
 
-  export type $UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
@@ -4674,7 +4675,7 @@ export namespace Prisma {
       playerProfile: Prisma.$PlayerProfilePayload<ExtArgs> | null
       InfoSession: Prisma.$InfoSessionPayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string | null
       age: number | null
@@ -4695,12 +4696,12 @@ export namespace Prisma {
 
   type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
-  type UserCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<UserFindManyArgs, 'select' | 'include'> & {
       select?: UserCountAggregateInputType | true
     }
 
-  export interface UserDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
      * Find zero or one User that matches the filter.
@@ -5050,7 +5051,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -5112,7 +5113,7 @@ export namespace Prisma {
   /**
    * User findUnique
    */
-  export type UserFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5131,7 +5132,7 @@ export namespace Prisma {
   /**
    * User findUniqueOrThrow
    */
-  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5150,7 +5151,7 @@ export namespace Prisma {
   /**
    * User findFirst
    */
-  export type UserFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5199,7 +5200,7 @@ export namespace Prisma {
   /**
    * User findFirstOrThrow
    */
-  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5248,7 +5249,7 @@ export namespace Prisma {
   /**
    * User findMany
    */
-  export type UserFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5292,7 +5293,7 @@ export namespace Prisma {
   /**
    * User create
    */
-  export type UserCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5311,7 +5312,7 @@ export namespace Prisma {
   /**
    * User createMany
    */
-  export type UserCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Users.
      */
@@ -5323,7 +5324,7 @@ export namespace Prisma {
   /**
    * User update
    */
-  export type UserUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5346,7 +5347,7 @@ export namespace Prisma {
   /**
    * User updateMany
    */
-  export type UserUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Users.
      */
@@ -5361,7 +5362,7 @@ export namespace Prisma {
   /**
    * User upsert
    */
-  export type UserUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5388,7 +5389,7 @@ export namespace Prisma {
   /**
    * User delete
    */
-  export type UserDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5407,7 +5408,7 @@ export namespace Prisma {
   /**
    * User deleteMany
    */
-  export type UserDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Users to delete
      */
@@ -5418,7 +5419,7 @@ export namespace Prisma {
   /**
    * User.accounts
    */
-  export type User$accountsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Account
      */
@@ -5439,7 +5440,7 @@ export namespace Prisma {
   /**
    * User.sessions
    */
-  export type User$sessionsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Session
      */
@@ -5460,7 +5461,7 @@ export namespace Prisma {
   /**
    * User.gmProfile
    */
-  export type User$gmProfileArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type User$gmProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -5476,7 +5477,7 @@ export namespace Prisma {
   /**
    * User.playerProfile
    */
-  export type User$playerProfileArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type User$playerProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -5492,7 +5493,7 @@ export namespace Prisma {
   /**
    * User.InfoSession
    */
-  export type User$InfoSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type User$InfoSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -5508,7 +5509,7 @@ export namespace Prisma {
   /**
    * User without action
    */
-  export type UserDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5570,7 +5571,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type GMProfileAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which GMProfile to aggregate.
      */
@@ -5630,7 +5631,7 @@ export namespace Prisma {
 
 
 
-  export type GMProfileGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GMProfileWhereInput
     orderBy?: GMProfileOrderByWithAggregationInput | GMProfileOrderByWithAggregationInput[]
     by: GMProfileScalarFieldEnum[] | GMProfileScalarFieldEnum
@@ -5665,7 +5666,7 @@ export namespace Prisma {
     >
 
 
-  export type GMProfileSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type GMProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     type?: boolean
@@ -5683,7 +5684,7 @@ export namespace Prisma {
     type?: boolean
   }
 
-  export type GMProfileInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
     GameSession?: boolean | GMProfile$GameSessionArgs<ExtArgs>
     Campaign?: boolean | GMProfile$CampaignArgs<ExtArgs>
@@ -5693,7 +5694,7 @@ export namespace Prisma {
   }
 
 
-  export type $GMProfilePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $GMProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GMProfile"
     objects: {
       User: Prisma.$UserPayload<ExtArgs>
@@ -5702,7 +5703,7 @@ export namespace Prisma {
       Quest: Prisma.$QuestPayload<ExtArgs>[]
       InfoSession: Prisma.$InfoSessionPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
       type: $Enums.HostType
@@ -5713,12 +5714,12 @@ export namespace Prisma {
 
   type GMProfileGetPayload<S extends boolean | null | undefined | GMProfileDefaultArgs> = $Result.GetResult<Prisma.$GMProfilePayload, S>
 
-  type GMProfileCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type GMProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<GMProfileFindManyArgs, 'select' | 'include'> & {
       select?: GMProfileCountAggregateInputType | true
     }
 
-  export interface GMProfileDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface GMProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GMProfile'], meta: { name: 'GMProfile' } }
     /**
      * Find zero or one GMProfile that matches the filter.
@@ -6068,7 +6069,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__GMProfileClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__GMProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -6120,7 +6121,7 @@ export namespace Prisma {
   /**
    * GMProfile findUnique
    */
-  export type GMProfileFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6139,7 +6140,7 @@ export namespace Prisma {
   /**
    * GMProfile findUniqueOrThrow
    */
-  export type GMProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6158,7 +6159,7 @@ export namespace Prisma {
   /**
    * GMProfile findFirst
    */
-  export type GMProfileFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6207,7 +6208,7 @@ export namespace Prisma {
   /**
    * GMProfile findFirstOrThrow
    */
-  export type GMProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6256,7 +6257,7 @@ export namespace Prisma {
   /**
    * GMProfile findMany
    */
-  export type GMProfileFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6300,7 +6301,7 @@ export namespace Prisma {
   /**
    * GMProfile create
    */
-  export type GMProfileCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6319,7 +6320,7 @@ export namespace Prisma {
   /**
    * GMProfile createMany
    */
-  export type GMProfileCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many GMProfiles.
      */
@@ -6331,7 +6332,7 @@ export namespace Prisma {
   /**
    * GMProfile update
    */
-  export type GMProfileUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6354,7 +6355,7 @@ export namespace Prisma {
   /**
    * GMProfile updateMany
    */
-  export type GMProfileUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update GMProfiles.
      */
@@ -6369,7 +6370,7 @@ export namespace Prisma {
   /**
    * GMProfile upsert
    */
-  export type GMProfileUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6396,7 +6397,7 @@ export namespace Prisma {
   /**
    * GMProfile delete
    */
-  export type GMProfileDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6415,7 +6416,7 @@ export namespace Prisma {
   /**
    * GMProfile deleteMany
    */
-  export type GMProfileDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which GMProfiles to delete
      */
@@ -6426,7 +6427,7 @@ export namespace Prisma {
   /**
    * GMProfile.GameSession
    */
-  export type GMProfile$GameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfile$GameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -6447,7 +6448,7 @@ export namespace Prisma {
   /**
    * GMProfile.Campaign
    */
-  export type GMProfile$CampaignArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfile$CampaignArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -6468,7 +6469,7 @@ export namespace Prisma {
   /**
    * GMProfile.Quest
    */
-  export type GMProfile$QuestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfile$QuestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -6489,7 +6490,7 @@ export namespace Prisma {
   /**
    * GMProfile.InfoSession
    */
-  export type GMProfile$InfoSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfile$InfoSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -6510,7 +6511,7 @@ export namespace Prisma {
   /**
    * GMProfile without action
    */
-  export type GMProfileDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GMProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -6590,7 +6591,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type PlayerProfileAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which PlayerProfile to aggregate.
      */
@@ -6662,7 +6663,7 @@ export namespace Prisma {
 
 
 
-  export type PlayerProfileGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlayerProfileWhereInput
     orderBy?: PlayerProfileOrderByWithAggregationInput | PlayerProfileOrderByWithAggregationInput[]
     by: PlayerProfileScalarFieldEnum[] | PlayerProfileScalarFieldEnum
@@ -6701,7 +6702,7 @@ export namespace Prisma {
     >
 
 
-  export type PlayerProfileSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PlayerProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
     campaignId?: boolean
@@ -6717,7 +6718,7 @@ export namespace Prisma {
     campaignId?: boolean
   }
 
-  export type PlayerProfileInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PlayerCharacter?: boolean | PlayerProfile$PlayerCharacterArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
     Campaign?: boolean | PlayerProfile$CampaignArgs<ExtArgs>
@@ -6725,14 +6726,14 @@ export namespace Prisma {
   }
 
 
-  export type $PlayerProfilePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $PlayerProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PlayerProfile"
     objects: {
       PlayerCharacter: Prisma.$PlayerCharacterPayload<ExtArgs>[]
       User: Prisma.$UserPayload<ExtArgs>
       Campaign: Prisma.$CampaignPayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
       campaignId: number | null
@@ -6743,12 +6744,12 @@ export namespace Prisma {
 
   type PlayerProfileGetPayload<S extends boolean | null | undefined | PlayerProfileDefaultArgs> = $Result.GetResult<Prisma.$PlayerProfilePayload, S>
 
-  type PlayerProfileCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type PlayerProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<PlayerProfileFindManyArgs, 'select' | 'include'> & {
       select?: PlayerProfileCountAggregateInputType | true
     }
 
-  export interface PlayerProfileDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface PlayerProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerProfile'], meta: { name: 'PlayerProfile' } }
     /**
      * Find zero or one PlayerProfile that matches the filter.
@@ -7098,7 +7099,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PlayerProfileClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PlayerProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     PlayerCharacter<T extends PlayerProfile$PlayerCharacterArgs<ExtArgs> = {}>(args?: Subset<T, PlayerProfile$PlayerCharacterArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerCharacterPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -7146,7 +7147,7 @@ export namespace Prisma {
   /**
    * PlayerProfile findUnique
    */
-  export type PlayerProfileFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7165,7 +7166,7 @@ export namespace Prisma {
   /**
    * PlayerProfile findUniqueOrThrow
    */
-  export type PlayerProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7184,7 +7185,7 @@ export namespace Prisma {
   /**
    * PlayerProfile findFirst
    */
-  export type PlayerProfileFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7233,7 +7234,7 @@ export namespace Prisma {
   /**
    * PlayerProfile findFirstOrThrow
    */
-  export type PlayerProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7282,7 +7283,7 @@ export namespace Prisma {
   /**
    * PlayerProfile findMany
    */
-  export type PlayerProfileFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7326,7 +7327,7 @@ export namespace Prisma {
   /**
    * PlayerProfile create
    */
-  export type PlayerProfileCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7345,7 +7346,7 @@ export namespace Prisma {
   /**
    * PlayerProfile createMany
    */
-  export type PlayerProfileCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many PlayerProfiles.
      */
@@ -7357,7 +7358,7 @@ export namespace Prisma {
   /**
    * PlayerProfile update
    */
-  export type PlayerProfileUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7380,7 +7381,7 @@ export namespace Prisma {
   /**
    * PlayerProfile updateMany
    */
-  export type PlayerProfileUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update PlayerProfiles.
      */
@@ -7395,7 +7396,7 @@ export namespace Prisma {
   /**
    * PlayerProfile upsert
    */
-  export type PlayerProfileUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7422,7 +7423,7 @@ export namespace Prisma {
   /**
    * PlayerProfile delete
    */
-  export type PlayerProfileDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7441,7 +7442,7 @@ export namespace Prisma {
   /**
    * PlayerProfile deleteMany
    */
-  export type PlayerProfileDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which PlayerProfiles to delete
      */
@@ -7452,7 +7453,7 @@ export namespace Prisma {
   /**
    * PlayerProfile.PlayerCharacter
    */
-  export type PlayerProfile$PlayerCharacterArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfile$PlayerCharacterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -7473,7 +7474,7 @@ export namespace Prisma {
   /**
    * PlayerProfile.Campaign
    */
-  export type PlayerProfile$CampaignArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfile$CampaignArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -7489,7 +7490,7 @@ export namespace Prisma {
   /**
    * PlayerProfile without action
    */
-  export type PlayerProfileDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -7635,7 +7636,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type PlayerCharacterAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which PlayerCharacter to aggregate.
      */
@@ -7707,7 +7708,7 @@ export namespace Prisma {
 
 
 
-  export type PlayerCharacterGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PlayerCharacterWhereInput
     orderBy?: PlayerCharacterOrderByWithAggregationInput | PlayerCharacterOrderByWithAggregationInput[]
     by: PlayerCharacterScalarFieldEnum[] | PlayerCharacterScalarFieldEnum
@@ -7755,7 +7756,7 @@ export namespace Prisma {
     >
 
 
-  export type PlayerCharacterSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PlayerCharacterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     playerProfileId?: boolean
@@ -7790,7 +7791,7 @@ export namespace Prisma {
     active?: boolean
   }
 
-  export type PlayerCharacterInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | PlayerProfileDefaultArgs<ExtArgs>
     GameSession?: boolean | PlayerCharacter$GameSessionArgs<ExtArgs>
     Campaign?: boolean | CampaignDefaultArgs<ExtArgs>
@@ -7799,7 +7800,7 @@ export namespace Prisma {
   }
 
 
-  export type $PlayerCharacterPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $PlayerCharacterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PlayerCharacter"
     objects: {
       owner: Prisma.$PlayerProfilePayload<ExtArgs>
@@ -7807,7 +7808,7 @@ export namespace Prisma {
       Campaign: Prisma.$CampaignPayload<ExtArgs>
       character: Prisma.$ClassedEntityPayload<ExtArgs>
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       playerProfileId: string
@@ -7827,12 +7828,12 @@ export namespace Prisma {
 
   type PlayerCharacterGetPayload<S extends boolean | null | undefined | PlayerCharacterDefaultArgs> = $Result.GetResult<Prisma.$PlayerCharacterPayload, S>
 
-  type PlayerCharacterCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type PlayerCharacterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<PlayerCharacterFindManyArgs, 'select' | 'include'> & {
       select?: PlayerCharacterCountAggregateInputType | true
     }
 
-  export interface PlayerCharacterDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface PlayerCharacterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerCharacter'], meta: { name: 'PlayerCharacter' } }
     /**
      * Find zero or one PlayerCharacter that matches the filter.
@@ -8182,7 +8183,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PlayerCharacterClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PlayerCharacterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     owner<T extends PlayerProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlayerProfileDefaultArgs<ExtArgs>>): Prisma__PlayerProfileClient<$Result.GetResult<Prisma.$PlayerProfilePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -8241,7 +8242,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter findUnique
    */
-  export type PlayerCharacterFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8260,7 +8261,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter findUniqueOrThrow
    */
-  export type PlayerCharacterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8279,7 +8280,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter findFirst
    */
-  export type PlayerCharacterFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8328,7 +8329,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter findFirstOrThrow
    */
-  export type PlayerCharacterFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8377,7 +8378,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter findMany
    */
-  export type PlayerCharacterFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8421,7 +8422,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter create
    */
-  export type PlayerCharacterCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8440,7 +8441,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter createMany
    */
-  export type PlayerCharacterCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many PlayerCharacters.
      */
@@ -8452,7 +8453,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter update
    */
-  export type PlayerCharacterUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8475,7 +8476,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter updateMany
    */
-  export type PlayerCharacterUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update PlayerCharacters.
      */
@@ -8490,7 +8491,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter upsert
    */
-  export type PlayerCharacterUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8517,7 +8518,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter delete
    */
-  export type PlayerCharacterDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8536,7 +8537,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter deleteMany
    */
-  export type PlayerCharacterDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which PlayerCharacters to delete
      */
@@ -8547,7 +8548,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter.GameSession
    */
-  export type PlayerCharacter$GameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacter$GameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -8568,7 +8569,7 @@ export namespace Prisma {
   /**
    * PlayerCharacter without action
    */
-  export type PlayerCharacterDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type PlayerCharacterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -8618,7 +8619,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ClassedEntityAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which ClassedEntity to aggregate.
      */
@@ -8678,7 +8679,7 @@ export namespace Prisma {
 
 
 
-  export type ClassedEntityGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassedEntityWhereInput
     orderBy?: ClassedEntityOrderByWithAggregationInput | ClassedEntityOrderByWithAggregationInput[]
     by: ClassedEntityScalarFieldEnum[] | ClassedEntityScalarFieldEnum
@@ -8711,7 +8712,7 @@ export namespace Prisma {
     >
 
 
-  export type ClassedEntitySelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassedEntitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classes?: boolean | ClassedEntity$classesArgs<ExtArgs>
     PlayerCharacter?: boolean | ClassedEntity$PlayerCharacterArgs<ExtArgs>
@@ -8722,20 +8723,20 @@ export namespace Prisma {
     id?: boolean
   }
 
-  export type ClassedEntityInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     classes?: boolean | ClassedEntity$classesArgs<ExtArgs>
     PlayerCharacter?: boolean | ClassedEntity$PlayerCharacterArgs<ExtArgs>
     _count?: boolean | ClassedEntityCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
-  export type $ClassedEntityPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $ClassedEntityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ClassedEntity"
     objects: {
       classes: Prisma.$ClassConfigsPayload<ExtArgs>[]
       PlayerCharacter: Prisma.$PlayerCharacterPayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
     }, ExtArgs["result"]["classedEntity"]>
     composites: {}
@@ -8744,12 +8745,12 @@ export namespace Prisma {
 
   type ClassedEntityGetPayload<S extends boolean | null | undefined | ClassedEntityDefaultArgs> = $Result.GetResult<Prisma.$ClassedEntityPayload, S>
 
-  type ClassedEntityCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type ClassedEntityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<ClassedEntityFindManyArgs, 'select' | 'include'> & {
       select?: ClassedEntityCountAggregateInputType | true
     }
 
-  export interface ClassedEntityDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface ClassedEntityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClassedEntity'], meta: { name: 'ClassedEntity' } }
     /**
      * Find zero or one ClassedEntity that matches the filter.
@@ -9099,7 +9100,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ClassedEntityClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ClassedEntityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     classes<T extends ClassedEntity$classesArgs<ExtArgs> = {}>(args?: Subset<T, ClassedEntity$classesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassConfigsPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -9143,7 +9144,7 @@ export namespace Prisma {
   /**
    * ClassedEntity findUnique
    */
-  export type ClassedEntityFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9162,7 +9163,7 @@ export namespace Prisma {
   /**
    * ClassedEntity findUniqueOrThrow
    */
-  export type ClassedEntityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9181,7 +9182,7 @@ export namespace Prisma {
   /**
    * ClassedEntity findFirst
    */
-  export type ClassedEntityFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9230,7 +9231,7 @@ export namespace Prisma {
   /**
    * ClassedEntity findFirstOrThrow
    */
-  export type ClassedEntityFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9279,7 +9280,7 @@ export namespace Prisma {
   /**
    * ClassedEntity findMany
    */
-  export type ClassedEntityFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9323,7 +9324,7 @@ export namespace Prisma {
   /**
    * ClassedEntity create
    */
-  export type ClassedEntityCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9342,7 +9343,7 @@ export namespace Prisma {
   /**
    * ClassedEntity createMany
    */
-  export type ClassedEntityCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many ClassedEntities.
      */
@@ -9354,7 +9355,7 @@ export namespace Prisma {
   /**
    * ClassedEntity update
    */
-  export type ClassedEntityUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9377,7 +9378,7 @@ export namespace Prisma {
   /**
    * ClassedEntity updateMany
    */
-  export type ClassedEntityUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update ClassedEntities.
      */
@@ -9392,7 +9393,7 @@ export namespace Prisma {
   /**
    * ClassedEntity upsert
    */
-  export type ClassedEntityUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9419,7 +9420,7 @@ export namespace Prisma {
   /**
    * ClassedEntity delete
    */
-  export type ClassedEntityDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9438,7 +9439,7 @@ export namespace Prisma {
   /**
    * ClassedEntity deleteMany
    */
-  export type ClassedEntityDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which ClassedEntities to delete
      */
@@ -9449,7 +9450,7 @@ export namespace Prisma {
   /**
    * ClassedEntity.classes
    */
-  export type ClassedEntity$classesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntity$classesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -9470,7 +9471,7 @@ export namespace Prisma {
   /**
    * ClassedEntity.PlayerCharacter
    */
-  export type ClassedEntity$PlayerCharacterArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntity$PlayerCharacterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -9486,7 +9487,7 @@ export namespace Prisma {
   /**
    * ClassedEntity without action
    */
-  export type ClassedEntityDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassedEntityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassedEntity
      */
@@ -9572,7 +9573,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ClassConfigsAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which ClassConfigs to aggregate.
      */
@@ -9644,7 +9645,7 @@ export namespace Prisma {
 
 
 
-  export type ClassConfigsGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassConfigsWhereInput
     orderBy?: ClassConfigsOrderByWithAggregationInput | ClassConfigsOrderByWithAggregationInput[]
     by: ClassConfigsScalarFieldEnum[] | ClassConfigsScalarFieldEnum
@@ -9684,7 +9685,7 @@ export namespace Prisma {
     >
 
 
-  export type ClassConfigsSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassConfigsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classId?: boolean
     Level?: boolean
@@ -9700,19 +9701,19 @@ export namespace Prisma {
     classedEntityId?: boolean
   }
 
-  export type ClassConfigsInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ClassedEntity?: boolean | ClassedEntityDefaultArgs<ExtArgs>
     ClassChoice?: boolean | ClassDefaultArgs<ExtArgs>
   }
 
 
-  export type $ClassConfigsPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $ClassConfigsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ClassConfigs"
     objects: {
       ClassedEntity: Prisma.$ClassedEntityPayload<ExtArgs>
       ClassChoice: Prisma.$ClassPayload<ExtArgs>
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       classId: string
       Level: number
@@ -9724,12 +9725,12 @@ export namespace Prisma {
 
   type ClassConfigsGetPayload<S extends boolean | null | undefined | ClassConfigsDefaultArgs> = $Result.GetResult<Prisma.$ClassConfigsPayload, S>
 
-  type ClassConfigsCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type ClassConfigsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<ClassConfigsFindManyArgs, 'select' | 'include'> & {
       select?: ClassConfigsCountAggregateInputType | true
     }
 
-  export interface ClassConfigsDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface ClassConfigsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClassConfigs'], meta: { name: 'ClassConfigs' } }
     /**
      * Find zero or one ClassConfigs that matches the filter.
@@ -10079,7 +10080,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ClassConfigsClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ClassConfigsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     ClassedEntity<T extends ClassedEntityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassedEntityDefaultArgs<ExtArgs>>): Prisma__ClassedEntityClient<$Result.GetResult<Prisma.$ClassedEntityPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -10126,7 +10127,7 @@ export namespace Prisma {
   /**
    * ClassConfigs findUnique
    */
-  export type ClassConfigsFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10145,7 +10146,7 @@ export namespace Prisma {
   /**
    * ClassConfigs findUniqueOrThrow
    */
-  export type ClassConfigsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10164,7 +10165,7 @@ export namespace Prisma {
   /**
    * ClassConfigs findFirst
    */
-  export type ClassConfigsFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10213,7 +10214,7 @@ export namespace Prisma {
   /**
    * ClassConfigs findFirstOrThrow
    */
-  export type ClassConfigsFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10262,7 +10263,7 @@ export namespace Prisma {
   /**
    * ClassConfigs findMany
    */
-  export type ClassConfigsFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10306,7 +10307,7 @@ export namespace Prisma {
   /**
    * ClassConfigs create
    */
-  export type ClassConfigsCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10325,7 +10326,7 @@ export namespace Prisma {
   /**
    * ClassConfigs createMany
    */
-  export type ClassConfigsCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many ClassConfigs.
      */
@@ -10337,7 +10338,7 @@ export namespace Prisma {
   /**
    * ClassConfigs update
    */
-  export type ClassConfigsUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10360,7 +10361,7 @@ export namespace Prisma {
   /**
    * ClassConfigs updateMany
    */
-  export type ClassConfigsUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update ClassConfigs.
      */
@@ -10375,7 +10376,7 @@ export namespace Prisma {
   /**
    * ClassConfigs upsert
    */
-  export type ClassConfigsUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10402,7 +10403,7 @@ export namespace Prisma {
   /**
    * ClassConfigs delete
    */
-  export type ClassConfigsDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10421,7 +10422,7 @@ export namespace Prisma {
   /**
    * ClassConfigs deleteMany
    */
-  export type ClassConfigsDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which ClassConfigs to delete
      */
@@ -10432,7 +10433,7 @@ export namespace Prisma {
   /**
    * ClassConfigs without action
    */
-  export type ClassConfigsDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassConfigsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -10488,7 +10489,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ClassAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Class to aggregate.
      */
@@ -10548,7 +10549,7 @@ export namespace Prisma {
 
 
 
-  export type ClassGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassWhereInput
     orderBy?: ClassOrderByWithAggregationInput | ClassOrderByWithAggregationInput[]
     by: ClassScalarFieldEnum[] | ClassScalarFieldEnum
@@ -10582,7 +10583,7 @@ export namespace Prisma {
     >
 
 
-  export type ClassSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     ClassConfigs?: boolean | Class$ClassConfigsArgs<ExtArgs>
@@ -10594,18 +10595,18 @@ export namespace Prisma {
     name?: boolean
   }
 
-  export type ClassInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ClassConfigs?: boolean | Class$ClassConfigsArgs<ExtArgs>
     _count?: boolean | ClassCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
-  export type $ClassPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $ClassPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Class"
     objects: {
       ClassConfigs: Prisma.$ClassConfigsPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
     }, ExtArgs["result"]["class"]>
@@ -10615,12 +10616,12 @@ export namespace Prisma {
 
   type ClassGetPayload<S extends boolean | null | undefined | ClassDefaultArgs> = $Result.GetResult<Prisma.$ClassPayload, S>
 
-  type ClassCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type ClassCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<ClassFindManyArgs, 'select' | 'include'> & {
       select?: ClassCountAggregateInputType | true
     }
 
-  export interface ClassDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface ClassDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Class'], meta: { name: 'Class' } }
     /**
      * Find zero or one Class that matches the filter.
@@ -10970,7 +10971,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ClassClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ClassClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     ClassConfigs<T extends Class$ClassConfigsArgs<ExtArgs> = {}>(args?: Subset<T, Class$ClassConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassConfigsPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -11013,7 +11014,7 @@ export namespace Prisma {
   /**
    * Class findUnique
    */
-  export type ClassFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11032,7 +11033,7 @@ export namespace Prisma {
   /**
    * Class findUniqueOrThrow
    */
-  export type ClassFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11051,7 +11052,7 @@ export namespace Prisma {
   /**
    * Class findFirst
    */
-  export type ClassFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11100,7 +11101,7 @@ export namespace Prisma {
   /**
    * Class findFirstOrThrow
    */
-  export type ClassFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11149,7 +11150,7 @@ export namespace Prisma {
   /**
    * Class findMany
    */
-  export type ClassFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11193,7 +11194,7 @@ export namespace Prisma {
   /**
    * Class create
    */
-  export type ClassCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11212,7 +11213,7 @@ export namespace Prisma {
   /**
    * Class createMany
    */
-  export type ClassCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Classes.
      */
@@ -11224,7 +11225,7 @@ export namespace Prisma {
   /**
    * Class update
    */
-  export type ClassUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11247,7 +11248,7 @@ export namespace Prisma {
   /**
    * Class updateMany
    */
-  export type ClassUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Classes.
      */
@@ -11262,7 +11263,7 @@ export namespace Prisma {
   /**
    * Class upsert
    */
-  export type ClassUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11289,7 +11290,7 @@ export namespace Prisma {
   /**
    * Class delete
    */
-  export type ClassDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11308,7 +11309,7 @@ export namespace Prisma {
   /**
    * Class deleteMany
    */
-  export type ClassDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Classes to delete
      */
@@ -11319,7 +11320,7 @@ export namespace Prisma {
   /**
    * Class.ClassConfigs
    */
-  export type Class$ClassConfigsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Class$ClassConfigsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ClassConfigs
      */
@@ -11340,7 +11341,7 @@ export namespace Prisma {
   /**
    * Class without action
    */
-  export type ClassDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ClassDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Class
      */
@@ -11508,7 +11509,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type GameSessionAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which GameSession to aggregate.
      */
@@ -11580,7 +11581,7 @@ export namespace Prisma {
 
 
 
-  export type GameSessionGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GameSessionWhereInput
     orderBy?: GameSessionOrderByWithAggregationInput | GameSessionOrderByWithAggregationInput[]
     by: GameSessionScalarFieldEnum[] | GameSessionScalarFieldEnum
@@ -11631,7 +11632,7 @@ export namespace Prisma {
     >
 
 
-  export type GameSessionSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type GameSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     date?: boolean
     duration?: boolean
@@ -11675,7 +11676,7 @@ export namespace Prisma {
     prework?: boolean
   }
 
-  export type GameSessionInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     host?: boolean | GMProfileDefaultArgs<ExtArgs>
     players?: boolean | GameSession$playersArgs<ExtArgs>
     Campaign?: boolean | CampaignDefaultArgs<ExtArgs>
@@ -11687,7 +11688,7 @@ export namespace Prisma {
   }
 
 
-  export type $GameSessionPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $GameSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GameSession"
     objects: {
       host: Prisma.$GMProfilePayload<ExtArgs>
@@ -11698,7 +11699,7 @@ export namespace Prisma {
       quest: Prisma.$QuestPayload<ExtArgs> | null
       story: Prisma.$StoryPayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       date: Date
       duration: number
@@ -11721,12 +11722,12 @@ export namespace Prisma {
 
   type GameSessionGetPayload<S extends boolean | null | undefined | GameSessionDefaultArgs> = $Result.GetResult<Prisma.$GameSessionPayload, S>
 
-  type GameSessionCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type GameSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<GameSessionFindManyArgs, 'select' | 'include'> & {
       select?: GameSessionCountAggregateInputType | true
     }
 
-  export interface GameSessionDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface GameSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GameSession'], meta: { name: 'GameSession' } }
     /**
      * Find zero or one GameSession that matches the filter.
@@ -12076,7 +12077,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__GameSessionClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__GameSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     host<T extends GMProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GMProfileDefaultArgs<ExtArgs>>): Prisma__GMProfileClient<$Result.GetResult<Prisma.$GMProfilePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -12144,7 +12145,7 @@ export namespace Prisma {
   /**
    * GameSession findUnique
    */
-  export type GameSessionFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12163,7 +12164,7 @@ export namespace Prisma {
   /**
    * GameSession findUniqueOrThrow
    */
-  export type GameSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12182,7 +12183,7 @@ export namespace Prisma {
   /**
    * GameSession findFirst
    */
-  export type GameSessionFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12231,7 +12232,7 @@ export namespace Prisma {
   /**
    * GameSession findFirstOrThrow
    */
-  export type GameSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12280,7 +12281,7 @@ export namespace Prisma {
   /**
    * GameSession findMany
    */
-  export type GameSessionFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12324,7 +12325,7 @@ export namespace Prisma {
   /**
    * GameSession create
    */
-  export type GameSessionCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12343,7 +12344,7 @@ export namespace Prisma {
   /**
    * GameSession createMany
    */
-  export type GameSessionCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many GameSessions.
      */
@@ -12355,7 +12356,7 @@ export namespace Prisma {
   /**
    * GameSession update
    */
-  export type GameSessionUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12378,7 +12379,7 @@ export namespace Prisma {
   /**
    * GameSession updateMany
    */
-  export type GameSessionUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update GameSessions.
      */
@@ -12393,7 +12394,7 @@ export namespace Prisma {
   /**
    * GameSession upsert
    */
-  export type GameSessionUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12420,7 +12421,7 @@ export namespace Prisma {
   /**
    * GameSession delete
    */
-  export type GameSessionDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12439,7 +12440,7 @@ export namespace Prisma {
   /**
    * GameSession deleteMany
    */
-  export type GameSessionDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which GameSessions to delete
      */
@@ -12450,7 +12451,7 @@ export namespace Prisma {
   /**
    * GameSession.players
    */
-  export type GameSession$playersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSession$playersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -12471,7 +12472,7 @@ export namespace Prisma {
   /**
    * GameSession.followUpSession
    */
-  export type GameSession$followUpSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSession$followUpSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12487,7 +12488,7 @@ export namespace Prisma {
   /**
    * GameSession.previousSession
    */
-  export type GameSession$previousSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSession$previousSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12503,7 +12504,7 @@ export namespace Prisma {
   /**
    * GameSession.quest
    */
-  export type GameSession$questArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSession$questArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -12519,7 +12520,7 @@ export namespace Prisma {
   /**
    * GameSession.story
    */
-  export type GameSession$storyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSession$storyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -12535,7 +12536,7 @@ export namespace Prisma {
   /**
    * GameSession without action
    */
-  export type GameSessionDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type GameSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -12643,7 +12644,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type InfoSessionAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which InfoSession to aggregate.
      */
@@ -12715,7 +12716,7 @@ export namespace Prisma {
 
 
 
-  export type InfoSessionGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InfoSessionWhereInput
     orderBy?: InfoSessionOrderByWithAggregationInput | InfoSessionOrderByWithAggregationInput[]
     by: InfoSessionScalarFieldEnum[] | InfoSessionScalarFieldEnum
@@ -12758,7 +12759,7 @@ export namespace Prisma {
     >
 
 
-  export type InfoSessionSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type InfoSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     date?: boolean
     duration?: boolean
@@ -12782,7 +12783,7 @@ export namespace Prisma {
     campaignId?: boolean
   }
 
-  export type InfoSessionInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     host?: boolean | GMProfileDefaultArgs<ExtArgs>
     players?: boolean | InfoSession$playersArgs<ExtArgs>
     Campaign?: boolean | InfoSession$CampaignArgs<ExtArgs>
@@ -12790,14 +12791,14 @@ export namespace Prisma {
   }
 
 
-  export type $InfoSessionPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $InfoSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "InfoSession"
     objects: {
       host: Prisma.$GMProfilePayload<ExtArgs>
       players: Prisma.$UserPayload<ExtArgs>[]
       Campaign: Prisma.$CampaignPayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: string
       date: Date
       duration: number
@@ -12812,12 +12813,12 @@ export namespace Prisma {
 
   type InfoSessionGetPayload<S extends boolean | null | undefined | InfoSessionDefaultArgs> = $Result.GetResult<Prisma.$InfoSessionPayload, S>
 
-  type InfoSessionCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type InfoSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<InfoSessionFindManyArgs, 'select' | 'include'> & {
       select?: InfoSessionCountAggregateInputType | true
     }
 
-  export interface InfoSessionDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface InfoSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InfoSession'], meta: { name: 'InfoSession' } }
     /**
      * Find zero or one InfoSession that matches the filter.
@@ -13167,7 +13168,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__InfoSessionClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__InfoSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     host<T extends GMProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GMProfileDefaultArgs<ExtArgs>>): Prisma__GMProfileClient<$Result.GetResult<Prisma.$GMProfilePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -13219,7 +13220,7 @@ export namespace Prisma {
   /**
    * InfoSession findUnique
    */
-  export type InfoSessionFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13238,7 +13239,7 @@ export namespace Prisma {
   /**
    * InfoSession findUniqueOrThrow
    */
-  export type InfoSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13257,7 +13258,7 @@ export namespace Prisma {
   /**
    * InfoSession findFirst
    */
-  export type InfoSessionFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13306,7 +13307,7 @@ export namespace Prisma {
   /**
    * InfoSession findFirstOrThrow
    */
-  export type InfoSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13355,7 +13356,7 @@ export namespace Prisma {
   /**
    * InfoSession findMany
    */
-  export type InfoSessionFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13399,7 +13400,7 @@ export namespace Prisma {
   /**
    * InfoSession create
    */
-  export type InfoSessionCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13418,7 +13419,7 @@ export namespace Prisma {
   /**
    * InfoSession createMany
    */
-  export type InfoSessionCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many InfoSessions.
      */
@@ -13430,7 +13431,7 @@ export namespace Prisma {
   /**
    * InfoSession update
    */
-  export type InfoSessionUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13453,7 +13454,7 @@ export namespace Prisma {
   /**
    * InfoSession updateMany
    */
-  export type InfoSessionUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update InfoSessions.
      */
@@ -13468,7 +13469,7 @@ export namespace Prisma {
   /**
    * InfoSession upsert
    */
-  export type InfoSessionUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13495,7 +13496,7 @@ export namespace Prisma {
   /**
    * InfoSession delete
    */
-  export type InfoSessionDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13514,7 +13515,7 @@ export namespace Prisma {
   /**
    * InfoSession deleteMany
    */
-  export type InfoSessionDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which InfoSessions to delete
      */
@@ -13525,7 +13526,7 @@ export namespace Prisma {
   /**
    * InfoSession.players
    */
-  export type InfoSession$playersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSession$playersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -13546,7 +13547,7 @@ export namespace Prisma {
   /**
    * InfoSession.Campaign
    */
-  export type InfoSession$CampaignArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSession$CampaignArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -13562,7 +13563,7 @@ export namespace Prisma {
   /**
    * InfoSession without action
    */
-  export type InfoSessionDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type InfoSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -13642,7 +13643,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type CampaignAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Campaign to aggregate.
      */
@@ -13714,7 +13715,7 @@ export namespace Prisma {
 
 
 
-  export type CampaignGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CampaignWhereInput
     orderBy?: CampaignOrderByWithAggregationInput | CampaignOrderByWithAggregationInput[]
     by: CampaignScalarFieldEnum[] | CampaignScalarFieldEnum
@@ -13753,7 +13754,7 @@ export namespace Prisma {
     >
 
 
-  export type CampaignSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type CampaignSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
     name?: boolean
@@ -13771,7 +13772,7 @@ export namespace Prisma {
     name?: boolean
   }
 
-  export type CampaignInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gms?: boolean | Campaign$gmsArgs<ExtArgs>
     players?: boolean | Campaign$playersArgs<ExtArgs>
     sessions?: boolean | Campaign$sessionsArgs<ExtArgs>
@@ -13781,7 +13782,7 @@ export namespace Prisma {
   }
 
 
-  export type $CampaignPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $CampaignPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Campaign"
     objects: {
       gms: Prisma.$GMProfilePayload<ExtArgs>[]
@@ -13790,7 +13791,7 @@ export namespace Prisma {
       infoSessions: Prisma.$InfoSessionPayload<ExtArgs>[]
       members: Prisma.$PlayerProfilePayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: number
       description: string | null
       name: string
@@ -13801,12 +13802,12 @@ export namespace Prisma {
 
   type CampaignGetPayload<S extends boolean | null | undefined | CampaignDefaultArgs> = $Result.GetResult<Prisma.$CampaignPayload, S>
 
-  type CampaignCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type CampaignCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<CampaignFindManyArgs, 'select' | 'include'> & {
       select?: CampaignCountAggregateInputType | true
     }
 
-  export interface CampaignDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface CampaignDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Campaign'], meta: { name: 'Campaign' } }
     /**
      * Find zero or one Campaign that matches the filter.
@@ -14156,7 +14157,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     gms<T extends Campaign$gmsArgs<ExtArgs> = {}>(args?: Subset<T, Campaign$gmsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GMProfilePayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -14208,7 +14209,7 @@ export namespace Prisma {
   /**
    * Campaign findUnique
    */
-  export type CampaignFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14227,7 +14228,7 @@ export namespace Prisma {
   /**
    * Campaign findUniqueOrThrow
    */
-  export type CampaignFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14246,7 +14247,7 @@ export namespace Prisma {
   /**
    * Campaign findFirst
    */
-  export type CampaignFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14295,7 +14296,7 @@ export namespace Prisma {
   /**
    * Campaign findFirstOrThrow
    */
-  export type CampaignFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14344,7 +14345,7 @@ export namespace Prisma {
   /**
    * Campaign findMany
    */
-  export type CampaignFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14388,7 +14389,7 @@ export namespace Prisma {
   /**
    * Campaign create
    */
-  export type CampaignCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14407,7 +14408,7 @@ export namespace Prisma {
   /**
    * Campaign createMany
    */
-  export type CampaignCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Campaigns.
      */
@@ -14419,7 +14420,7 @@ export namespace Prisma {
   /**
    * Campaign update
    */
-  export type CampaignUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14442,7 +14443,7 @@ export namespace Prisma {
   /**
    * Campaign updateMany
    */
-  export type CampaignUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Campaigns.
      */
@@ -14457,7 +14458,7 @@ export namespace Prisma {
   /**
    * Campaign upsert
    */
-  export type CampaignUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14484,7 +14485,7 @@ export namespace Prisma {
   /**
    * Campaign delete
    */
-  export type CampaignDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14503,7 +14504,7 @@ export namespace Prisma {
   /**
    * Campaign deleteMany
    */
-  export type CampaignDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Campaigns to delete
      */
@@ -14514,7 +14515,7 @@ export namespace Prisma {
   /**
    * Campaign.gms
    */
-  export type Campaign$gmsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Campaign$gmsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GMProfile
      */
@@ -14535,7 +14536,7 @@ export namespace Prisma {
   /**
    * Campaign.players
    */
-  export type Campaign$playersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Campaign$playersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerCharacter
      */
@@ -14556,7 +14557,7 @@ export namespace Prisma {
   /**
    * Campaign.sessions
    */
-  export type Campaign$sessionsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Campaign$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -14577,7 +14578,7 @@ export namespace Prisma {
   /**
    * Campaign.infoSessions
    */
-  export type Campaign$infoSessionsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Campaign$infoSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InfoSession
      */
@@ -14598,7 +14599,7 @@ export namespace Prisma {
   /**
    * Campaign.members
    */
-  export type Campaign$membersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Campaign$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PlayerProfile
      */
@@ -14619,7 +14620,7 @@ export namespace Prisma {
   /**
    * Campaign without action
    */
-  export type CampaignDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CampaignDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Campaign
      */
@@ -14699,7 +14700,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type StoryAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Story to aggregate.
      */
@@ -14771,7 +14772,7 @@ export namespace Prisma {
 
 
 
-  export type StoryGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StoryWhereInput
     orderBy?: StoryOrderByWithAggregationInput | StoryOrderByWithAggregationInput[]
     by: StoryScalarFieldEnum[] | StoryScalarFieldEnum
@@ -14810,7 +14811,7 @@ export namespace Prisma {
     >
 
 
-  export type StorySelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type StorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
@@ -14824,18 +14825,18 @@ export namespace Prisma {
     description?: boolean
   }
 
-  export type StoryInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     GameSession?: boolean | Story$GameSessionArgs<ExtArgs>
     _count?: boolean | StoryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
-  export type $StoryPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $StoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Story"
     objects: {
       GameSession: Prisma.$GameSessionPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       description: string | null
@@ -14846,12 +14847,12 @@ export namespace Prisma {
 
   type StoryGetPayload<S extends boolean | null | undefined | StoryDefaultArgs> = $Result.GetResult<Prisma.$StoryPayload, S>
 
-  type StoryCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type StoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<StoryFindManyArgs, 'select' | 'include'> & {
       select?: StoryCountAggregateInputType | true
     }
 
-  export interface StoryDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface StoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Story'], meta: { name: 'Story' } }
     /**
      * Find zero or one Story that matches the filter.
@@ -15201,7 +15202,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__StoryClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__StoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     GameSession<T extends Story$GameSessionArgs<ExtArgs> = {}>(args?: Subset<T, Story$GameSessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -15245,7 +15246,7 @@ export namespace Prisma {
   /**
    * Story findUnique
    */
-  export type StoryFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15264,7 +15265,7 @@ export namespace Prisma {
   /**
    * Story findUniqueOrThrow
    */
-  export type StoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15283,7 +15284,7 @@ export namespace Prisma {
   /**
    * Story findFirst
    */
-  export type StoryFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15332,7 +15333,7 @@ export namespace Prisma {
   /**
    * Story findFirstOrThrow
    */
-  export type StoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15381,7 +15382,7 @@ export namespace Prisma {
   /**
    * Story findMany
    */
-  export type StoryFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15425,7 +15426,7 @@ export namespace Prisma {
   /**
    * Story create
    */
-  export type StoryCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15444,7 +15445,7 @@ export namespace Prisma {
   /**
    * Story createMany
    */
-  export type StoryCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Stories.
      */
@@ -15456,7 +15457,7 @@ export namespace Prisma {
   /**
    * Story update
    */
-  export type StoryUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15479,7 +15480,7 @@ export namespace Prisma {
   /**
    * Story updateMany
    */
-  export type StoryUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Stories.
      */
@@ -15494,7 +15495,7 @@ export namespace Prisma {
   /**
    * Story upsert
    */
-  export type StoryUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15521,7 +15522,7 @@ export namespace Prisma {
   /**
    * Story delete
    */
-  export type StoryDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15540,7 +15541,7 @@ export namespace Prisma {
   /**
    * Story deleteMany
    */
-  export type StoryDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Stories to delete
      */
@@ -15551,7 +15552,7 @@ export namespace Prisma {
   /**
    * Story.GameSession
    */
-  export type Story$GameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Story$GameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -15572,7 +15573,7 @@ export namespace Prisma {
   /**
    * Story without action
    */
-  export type StoryDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type StoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Story
      */
@@ -15690,7 +15691,7 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type QuestAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Quest to aggregate.
      */
@@ -15762,7 +15763,7 @@ export namespace Prisma {
 
 
 
-  export type QuestGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuestWhereInput
     orderBy?: QuestOrderByWithAggregationInput | QuestOrderByWithAggregationInput[]
     by: QuestScalarFieldEnum[] | QuestScalarFieldEnum
@@ -15806,7 +15807,7 @@ export namespace Prisma {
     >
 
 
-  export type QuestSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type QuestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
@@ -15833,7 +15834,7 @@ export namespace Prisma {
     gMProfileId?: boolean
   }
 
-  export type QuestInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | GMProfileDefaultArgs<ExtArgs>
     followUp?: boolean | Quest$followUpArgs<ExtArgs>
     previous?: boolean | Quest$previousArgs<ExtArgs>
@@ -15842,7 +15843,7 @@ export namespace Prisma {
   }
 
 
-  export type $QuestPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type $QuestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Quest"
     objects: {
       author: Prisma.$GMProfilePayload<ExtArgs>
@@ -15850,7 +15851,7 @@ export namespace Prisma {
       previous: Prisma.$QuestPayload<ExtArgs> | null
       GameSession: Prisma.$GameSessionPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetResult<{
+    scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       description: string
@@ -15866,12 +15867,12 @@ export namespace Prisma {
 
   type QuestGetPayload<S extends boolean | null | undefined | QuestDefaultArgs> = $Result.GetResult<Prisma.$QuestPayload, S>
 
-  type QuestCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+  type QuestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
     Omit<QuestFindManyArgs, 'select' | 'include'> & {
       select?: QuestCountAggregateInputType | true
     }
 
-  export interface QuestDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+  export interface QuestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Quest'], meta: { name: 'Quest' } }
     /**
      * Find zero or one Quest that matches the filter.
@@ -16221,7 +16222,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__QuestClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__QuestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     author<T extends GMProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GMProfileDefaultArgs<ExtArgs>>): Prisma__GMProfileClient<$Result.GetResult<Prisma.$GMProfilePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -16276,7 +16277,7 @@ export namespace Prisma {
   /**
    * Quest findUnique
    */
-  export type QuestFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16295,7 +16296,7 @@ export namespace Prisma {
   /**
    * Quest findUniqueOrThrow
    */
-  export type QuestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16314,7 +16315,7 @@ export namespace Prisma {
   /**
    * Quest findFirst
    */
-  export type QuestFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16363,7 +16364,7 @@ export namespace Prisma {
   /**
    * Quest findFirstOrThrow
    */
-  export type QuestFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16412,7 +16413,7 @@ export namespace Prisma {
   /**
    * Quest findMany
    */
-  export type QuestFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16456,7 +16457,7 @@ export namespace Prisma {
   /**
    * Quest create
    */
-  export type QuestCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16475,7 +16476,7 @@ export namespace Prisma {
   /**
    * Quest createMany
    */
-  export type QuestCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Quests.
      */
@@ -16487,7 +16488,7 @@ export namespace Prisma {
   /**
    * Quest update
    */
-  export type QuestUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16510,7 +16511,7 @@ export namespace Prisma {
   /**
    * Quest updateMany
    */
-  export type QuestUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Quests.
      */
@@ -16525,7 +16526,7 @@ export namespace Prisma {
   /**
    * Quest upsert
    */
-  export type QuestUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16552,7 +16553,7 @@ export namespace Prisma {
   /**
    * Quest delete
    */
-  export type QuestDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16571,7 +16572,7 @@ export namespace Prisma {
   /**
    * Quest deleteMany
    */
-  export type QuestDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Quests to delete
      */
@@ -16582,7 +16583,7 @@ export namespace Prisma {
   /**
    * Quest.followUp
    */
-  export type Quest$followUpArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Quest$followUpArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16598,7 +16599,7 @@ export namespace Prisma {
   /**
    * Quest.previous
    */
-  export type Quest$previousArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Quest$previousArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -16614,7 +16615,7 @@ export namespace Prisma {
   /**
    * Quest.GameSession
    */
-  export type Quest$GameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Quest$GameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the GameSession
      */
@@ -16635,7 +16636,7 @@ export namespace Prisma {
   /**
    * Quest without action
    */
-  export type QuestDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type QuestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Quest
      */
@@ -24900,61 +24901,105 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
+     * @deprecated Use UserCountOutputTypeDefaultArgs instead
+     */
+    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GMProfileCountOutputTypeDefaultArgs instead
+     */
+    export type GMProfileCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GMProfileCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlayerProfileCountOutputTypeDefaultArgs instead
+     */
+    export type PlayerProfileCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerProfileCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlayerCharacterCountOutputTypeDefaultArgs instead
+     */
+    export type PlayerCharacterCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerCharacterCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ClassedEntityCountOutputTypeDefaultArgs instead
+     */
+    export type ClassedEntityCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClassedEntityCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ClassCountOutputTypeDefaultArgs instead
+     */
+    export type ClassCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClassCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GameSessionCountOutputTypeDefaultArgs instead
+     */
+    export type GameSessionCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GameSessionCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use InfoSessionCountOutputTypeDefaultArgs instead
+     */
+    export type InfoSessionCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InfoSessionCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CampaignCountOutputTypeDefaultArgs instead
+     */
+    export type CampaignCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CampaignCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use StoryCountOutputTypeDefaultArgs instead
+     */
+    export type StoryCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = StoryCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use QuestCountOutputTypeDefaultArgs instead
+     */
+    export type QuestCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = QuestCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use AccountDefaultArgs instead
      */
-    export type AccountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = AccountDefaultArgs<ExtArgs>
+    export type AccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AccountDefaultArgs<ExtArgs>
     /**
      * @deprecated Use SessionDefaultArgs instead
      */
-    export type SessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = SessionDefaultArgs<ExtArgs>
+    export type SessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SessionDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
-    export type UserArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
     /**
      * @deprecated Use GMProfileDefaultArgs instead
      */
-    export type GMProfileArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = GMProfileDefaultArgs<ExtArgs>
+    export type GMProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GMProfileDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PlayerProfileDefaultArgs instead
      */
-    export type PlayerProfileArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = PlayerProfileDefaultArgs<ExtArgs>
+    export type PlayerProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerProfileDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PlayerCharacterDefaultArgs instead
      */
-    export type PlayerCharacterArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = PlayerCharacterDefaultArgs<ExtArgs>
+    export type PlayerCharacterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerCharacterDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ClassedEntityDefaultArgs instead
      */
-    export type ClassedEntityArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ClassedEntityDefaultArgs<ExtArgs>
+    export type ClassedEntityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClassedEntityDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ClassConfigsDefaultArgs instead
      */
-    export type ClassConfigsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ClassConfigsDefaultArgs<ExtArgs>
+    export type ClassConfigsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClassConfigsDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ClassDefaultArgs instead
      */
-    export type ClassArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ClassDefaultArgs<ExtArgs>
+    export type ClassArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClassDefaultArgs<ExtArgs>
     /**
      * @deprecated Use GameSessionDefaultArgs instead
      */
-    export type GameSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = GameSessionDefaultArgs<ExtArgs>
+    export type GameSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GameSessionDefaultArgs<ExtArgs>
     /**
      * @deprecated Use InfoSessionDefaultArgs instead
      */
-    export type InfoSessionArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = InfoSessionDefaultArgs<ExtArgs>
+    export type InfoSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InfoSessionDefaultArgs<ExtArgs>
     /**
      * @deprecated Use CampaignDefaultArgs instead
      */
-    export type CampaignArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = CampaignDefaultArgs<ExtArgs>
+    export type CampaignArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CampaignDefaultArgs<ExtArgs>
     /**
      * @deprecated Use StoryDefaultArgs instead
      */
-    export type StoryArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = StoryDefaultArgs<ExtArgs>
+    export type StoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = StoryDefaultArgs<ExtArgs>
     /**
      * @deprecated Use QuestDefaultArgs instead
      */
-    export type QuestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = QuestDefaultArgs<ExtArgs>
+    export type QuestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = QuestDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
