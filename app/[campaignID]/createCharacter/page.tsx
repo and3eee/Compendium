@@ -2,6 +2,7 @@
 
 import CreateSection from '@/components/Player/Character/CreateSection';
 import { prisma } from '@/lib/prisma';
+
 import { Container } from '@mantine/core';
 
 export default async function ({ params }: { params: { campaignID: number } }) {

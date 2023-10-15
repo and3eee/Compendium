@@ -1,4 +1,3 @@
-'use server';
 import AuthCheck from '@/components/Auth/AuthCheck';
 import SessionCalendar from '@/components/Session/SessionCalendar';
 
@@ -12,12 +11,15 @@ import { IconUnderline } from '@tabler/icons-react';
 import { isArgumentsObject } from 'util/types';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export default async function CampaignHomePage({ params }: { params: { campaignID: number } }) {
   const id = await params.campaignID;
+
   const session = await getServerSession(authOptions);
   const user = await prisma.user.findFirst({ where: { email: session?.user?.email } });
   const campaign = await prisma.campaign.findFirst({
-    where: { id: 1 },
+    where: { id: Number(id) },
     include: {
       sessions: { include: { players: { include: { owner: { include: { User: true } } } } } },
       gms: { include: { User: true } },

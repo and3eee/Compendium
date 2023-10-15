@@ -8,7 +8,7 @@ import GMProfile from '@/components/GM/GMProfile';
 import AuthCheck from '@/components/Auth/AuthCheck';
 import PlayerProfileSection from '@/components/Player/PlayerProfileSection';
 import { ROLE } from '@/prisma/generated/client';
-
+export const dynamic = 'force-dynamic';
 export default async function AccountPage() {
   const session = await getServerSession(authOptions);
   const user = await prisma.user.findFirst({

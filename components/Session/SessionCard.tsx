@@ -25,6 +25,7 @@ export default function SessionCard(props: { session: any; admin: boolean; host?
   const router = useRouter();
   const { data: session } = useSession();
   const { players } = props.session;
+  console.log(props.session.id);
 
   const playerSection = () => {
     if (players.length > 0) {
@@ -46,7 +47,7 @@ export default function SessionCard(props: { session: any; admin: boolean; host?
   };
   if (props.admin || props.session.state === SessionState.PLANNED) {
     return (
-      <Card radius="md" shadow="xs" padding="1rem" maw="45rem" miw="30rem" h="30rem">
+      <Card radius="md" shadow="xs" padding="1rem" maw="45rem" miw="35rem" h="30rem">
         <Card.Section inheritPadding py="8">
           <Group gap="md" py="sm" grow justify="center">
             <Stack>
@@ -119,9 +120,13 @@ export default function SessionCard(props: { session: any; admin: boolean; host?
                 Join Session
               </Button>
               {props.admin && (
-                <Link href={`${props.session.campaignId}/${props.session.id}`}>
-                  <Button>Go to Session Page</Button>
-                </Link>
+                <Button
+                  onClick={() => {
+                    router.replace(`${props.session.campaignId}/${props.session.id}`);
+                  }}
+                >
+                  Go to Session Page
+                </Button>
               )}
             </Group>
           </Grid.Col>

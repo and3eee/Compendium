@@ -13,7 +13,7 @@ export default function CampaignAdminSection(props: { campaign: any }) {
   const isGM: boolean =
     props.campaign?.gms.find((gm: any) => gm.User!.email == session?.user?.email) != null;
   return (
-    <Container>
+    <Container fluid>
       <Divider label="Game Master Section" />
       <Grid justify="center">
         {!isGM && (
