@@ -43,7 +43,12 @@ export default function CampaignUserInfo(props: { campaign: any }) {
           <Text c="dimmed">GMs</Text>
           <Avatar.Group>
             {props.campaign.gms.map((gm: any) => (
-              <Tooltip key={gm.id} label={gm.User.fName + ' ' + gm.User.lName ?? gm.User.name}>
+              <Tooltip
+                key={gm.id}
+                label={
+                  gm.User.fName !== 'null' ? gm.User.fName + ' ' + gm.User.lName : gm.User.name
+                }
+              >
                 <Avatar src={gm.User.image} />
               </Tooltip>
             ))}
@@ -69,7 +74,9 @@ export default function CampaignUserInfo(props: { campaign: any }) {
               {props.campaign.members.map((pc: any) => (
                 <Tooltip
                   key={pc.User.id}
-                  label={pc.User.fName + ' ' + pc.User.lName ?? pc.User.name}
+                  label={
+                    pc.User.fName !== 'null' ? pc.User.fName + ' ' + pc.User.lName : pc.User.name
+                  }
                 >
                   <Avatar src={pc.User.image} />
                 </Tooltip>
