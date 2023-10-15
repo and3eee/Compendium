@@ -11,10 +11,18 @@ export default async function CharacterControlSection(props: {
   maxClasses: number;
   pc: PlayerCharacter;
 }) {
+  const fullChar = await prisma.playerCharacter.findFirst({
+    where: { id: props.pc.id },
+    include: { character: { include: { classes: { include: { ClassChoice: true } } } } },
+  });
 
-
-
-    const fullChar = await prisma.playerCharacter.findFirst({where:{id:props.pc.id},include:{character:{include:{classes:{include:{ClassChoice:true}}}}}})
-
-  return <Group><CharacterControlCard campaign={props.campaign} maxClasses={props.maxClasses} pc={fullChar!}/></Group>;
+  return (
+    <Group>
+      <CharacterControlCard
+        campaign={props.campaign}
+        maxClasses={props.maxClasses}
+        pc={fullChar!}
+      />
+    </Group>
+  );
 }

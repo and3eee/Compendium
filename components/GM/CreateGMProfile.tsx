@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 export default function CreateGMProfile() {
   const { data: session, status } = useSession();
-  const router = useRouter()
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       email: session?.user?.email!,
@@ -19,12 +19,12 @@ export default function CreateGMProfile() {
   const create = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const resp = await CreateGMProfileFromForm(form.values);
-    router.refresh()
+    router.refresh();
   };
 
   return (
     <form onSubmit={create}>
-      <Card w="50rem" shadow="sm" padding="lg" radius="sm" >
+      <Card w="50rem" shadow="sm" padding="lg" radius="sm">
         <Title order={2}>Create GM Profile</Title>
         <Stack>
           <NativeSelect

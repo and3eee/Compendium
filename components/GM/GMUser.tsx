@@ -3,7 +3,6 @@
 import { GMProfile, User } from '@/prisma/generated/client';
 import { Avatar, Badge, Card, Container, Flex, Group, Text, Title } from '@mantine/core';
 
-
 export default function GMUser(props: { user: User; gm: GMProfile }) {
   return (
     <Card withBorder w="15rem">
@@ -13,9 +12,7 @@ export default function GMUser(props: { user: User; gm: GMProfile }) {
           {props.user.fName && (
             <>
               <Text size="xs">Hosted by</Text>
-              <Title order={5}>
-                {props.user.fName}
-              </Title>
+              <Title order={5}>{props.user.fName}</Title>
             </>
           )}
           <Badge>{props.gm.type ?? 'Unset'}</Badge>

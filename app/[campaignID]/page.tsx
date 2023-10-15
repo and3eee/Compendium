@@ -22,7 +22,7 @@ export default async function CampaignHomePage({ params }: { params: { campaignI
       sessions: { include: { players: { include: { owner: { include: { User: true } } } } } },
       gms: { include: { User: true } },
       players: { include: { owner: { include: { User: true } } } },
-      members:{include:{User:true}},
+      members: { include: { User: true } },
     },
   });
 

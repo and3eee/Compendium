@@ -3,6 +3,7 @@
 A simple web UI for scheduling and managing TTRPG leagues.
 
 ### Todo Features
+
 [ ] Item entities
 
 [ ] Item shop
@@ -10,4 +11,3 @@ A simple web UI for scheduling and managing TTRPG leagues.
 [ ] Mob support
 
 [ ] Full character support
-

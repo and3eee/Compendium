@@ -40,7 +40,6 @@ export async function CreateSimpleCharacter(
   const keys: string[] = await Array.from(classes.keys());
   const ids: string[] = [];
 
-
   const user = await prisma.user.findFirst({ where: { email: playerID } });
 
   let level = 0;
@@ -53,7 +52,7 @@ export async function CreateSimpleCharacter(
 
     ids.push(entry.id);
     idMap.set(entry.id, classes.get(keys[key])!);
-    level += classes.get(keys[key])!
+    level += classes.get(keys[key])!;
   }
 
   return await prisma.playerCharacter.create({

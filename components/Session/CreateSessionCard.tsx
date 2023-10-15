@@ -69,7 +69,7 @@ export default function CreateSessionCard(props: { date: Date; campaign: Campaig
             duration: form.values.duration,
             campaignID: props.campaign.id,
           });
-       
+
           router.refresh();
         }
       }
@@ -77,7 +77,7 @@ export default function CreateSessionCard(props: { date: Date; campaign: Campaig
   };
 
   return (
-    <Card radius="md" shadow="xs" padding="1rem"maw="45rem" miw="30rem" h="30rem">
+    <Card radius="md" shadow="xs" padding="1rem" maw="45rem" miw="30rem" h="30rem">
       <Card.Section inheritPadding py="1rem">
         <Center>
           <Title order={4}>New Session</Title>
@@ -85,52 +85,50 @@ export default function CreateSessionCard(props: { date: Date; campaign: Campaig
         <Divider />
       </Card.Section>
       <form onSubmit={create}>
-      
-          <Grid grow align="center">
-            <Grid.Col span={12}>
-              <Group grow gap="md">
-                <Textarea required label="Description" {...form.getInputProps('description')} />
-                <Textarea label="Session Notes" {...form.getInputProps('notes')} />
-              </Group>
-            </Grid.Col>
-            <Grid.Col span={6}>
-              <TimeInput
-                label="Session Time"
-                ref={ref}
-                rightSection={pickerControl}
-                {...form.getInputProps('date')}
-              />{' '}
-            </Grid.Col>
-            <Grid.Col span={6}>
-              <Switch
-                label="Private Session"
-                description="Only Accessible by link"
-                {...form.getInputProps('private')}
-              />
-            </Grid.Col>
-            <Grid.Col span={4}>
-              <NumberInput
-                label="Duration "
-                description="in minutes"
-                defaultValue={120}
-                {...form.getInputProps('duration')}
-              />
-            </Grid.Col>
-            <Grid.Col span={4}>
-              <NumberInput
-                label="Max Players "
-                description="in people"
-                defaultValue={4}
-                {...form.getInputProps('maxPlayers')}
-              />
-            </Grid.Col>
-            <Grid.Col span={12}>
-              <Center>
-                <Button type="submit">Schedule Session</Button>
-              </Center>
-            </Grid.Col>
-          </Grid>
-      
+        <Grid grow align="center">
+          <Grid.Col span={12}>
+            <Group grow gap="md">
+              <Textarea required label="Description" {...form.getInputProps('description')} />
+              <Textarea label="Session Notes" {...form.getInputProps('notes')} />
+            </Group>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <TimeInput
+              label="Session Time"
+              ref={ref}
+              rightSection={pickerControl}
+              {...form.getInputProps('date')}
+            />{' '}
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Switch
+              label="Private Session"
+              description="Only Accessible by link"
+              {...form.getInputProps('private')}
+            />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <NumberInput
+              label="Duration "
+              description="in minutes"
+              defaultValue={120}
+              {...form.getInputProps('duration')}
+            />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <NumberInput
+              label="Max Players "
+              description="in people"
+              defaultValue={4}
+              {...form.getInputProps('maxPlayers')}
+            />
+          </Grid.Col>
+          <Grid.Col span={12}>
+            <Center>
+              <Button type="submit">Schedule Session</Button>
+            </Center>
+          </Grid.Col>
+        </Grid>
       </form>
     </Card>
   );

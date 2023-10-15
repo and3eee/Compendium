@@ -25,11 +25,14 @@ export async function GetUserGMProfile(userId: string) {
   return await prisma.gMProfile.findFirst({ where: { userId: userId } });
 }
 export async function GetUserByGMID(gmID: string) {
-  return await prisma.user.findFirst({ where: { gMProfileId: gmID }, include:{gmProfile:true} });
+  return await prisma.user.findFirst({
+    where: { gMProfileId: gmID },
+    include: { gmProfile: true },
+  });
 }
 
 export async function GetUserScopedGMProfile(userId: string) {
-  return await prisma.gMProfile.findFirst({ where: { id: userId } ,include:{User:true}});
+  return await prisma.gMProfile.findFirst({ where: { id: userId }, include: { User: true } });
 }
 export async function GetUserProfile(email: string) {
   return await prisma.user.findFirst({

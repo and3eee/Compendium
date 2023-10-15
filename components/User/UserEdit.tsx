@@ -27,8 +27,8 @@ export default function UserEdit(props: { user: any }) {
 
   const form = useForm({
     initialValues: {
-      name: props.user.fName! + " "+ props.user.lName! ?? '',
-      bio: props.user.bio ,
+      name: props.user.fName! + ' ' + props.user.lName! ?? '',
+      bio: props.user.bio,
       email: props.user.email,
       age: props.user.age,
     },
@@ -45,28 +45,27 @@ export default function UserEdit(props: { user: any }) {
     );
     router.refresh();
   };
-  if(props.user)
-  return (
-    <Card withBorder radius="xl">
+  if (props.user)
+    return (
+      <Card withBorder radius="xl">
+        <form onSubmit={create}>
+          <Grid grow align="center">
+            <Grid.Col span={12}>
+              <Stack gap="md">
+                <TextInput required label=" Name" {...form.getInputProps('name')} />
+                <TextInput label="Email" {...form.getInputProps('email')} />
+                <TextInput label="Bio" {...form.getInputProps('bio')} />
+                <NumberInput label="Age" {...form.getInputProps('age')} />
+              </Stack>
+            </Grid.Col>
 
-      <form onSubmit={create}>
-        <Grid grow align="center">
-          <Grid.Col span={12}>
-            <Stack  gap="md">
-              <TextInput required label=" Name" {...form.getInputProps('name')} />
-              <TextInput label="Email" {...form.getInputProps('email')} />
-              <TextInput label="Bio" {...form.getInputProps('bio')} />
-              <NumberInput label="Age" {...form.getInputProps('age')} />
-            </Stack>
-          </Grid.Col>
-
-          <Grid.Col span={12}>
-            <Center>
-              <Button type="submit">Update User Profile</Button>
-            </Center>
-          </Grid.Col>
-        </Grid>
-      </form>
-    </Card>
-  );
+            <Grid.Col span={12}>
+              <Center>
+                <Button type="submit">Update User Profile</Button>
+              </Center>
+            </Grid.Col>
+          </Grid>
+        </form>
+      </Card>
+    );
 }

@@ -8,8 +8,17 @@ export default function CampaignCard(props: { campaign: any }) {
   const router = useRouter();
 
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder miw="10rem" maw="50rem" mih="10rem" mah="25rem">
-      <Stack gap="xl" align='center' >
+    <Card
+      shadow="sm"
+      padding="lg"
+      radius="md"
+      withBorder
+      miw="10rem"
+      maw="50rem"
+      mih="10rem"
+      mah="25rem"
+    >
+      <Stack gap="xl" align="center">
         <Title>{props.campaign.name}</Title>
 
         {props.campaign.description && <Text size="sm">{props.campaign.description}</Text>}

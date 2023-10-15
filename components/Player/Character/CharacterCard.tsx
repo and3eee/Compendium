@@ -61,7 +61,7 @@ export default function CharacterCard(props: { pc: any }) {
   };
 
   const values = Array.from(classes.keys()).map((key) => (
-    <Pill color="Orange" key={key} >
+    <Pill color="Orange" key={key}>
       {key} - lvl {classes.get(key)}
     </Pill>
   ));
@@ -78,7 +78,7 @@ export default function CharacterCard(props: { pc: any }) {
 
   return (
     <>
-      <Grid justify='space-between' align='flex-start'>
+      <Grid justify="space-between" align="flex-start">
         <Grid.Col span={8}>
           <Text c="dimmed" size="sm">
             Name

@@ -6,7 +6,10 @@ export default async function HomePage() {
     <>
       <Stack align="center">
         <Title>Welcome to Compendium</Title>
-        <Text>A NextJS TTRPG management tool. To get started, click the menu in the top right to select a campaign.</Text>
+        <Text>
+          A NextJS TTRPG management tool. To get started, click the menu in the top right to select
+          a campaign.
+        </Text>
       </Stack>
     </>
   );

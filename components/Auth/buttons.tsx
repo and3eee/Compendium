@@ -8,13 +8,12 @@ import UserCard from '../User/UserCard';
 export function SignInButton() {
   const { data: session, status } = useSession();
 
-
   if (status === 'loading') {
     return <>...</>;
   }
 
   if (status === 'authenticated') {
-    return ;
+    return;
   }
 
   return <button onClick={() => signIn()}>Sign in</button>;

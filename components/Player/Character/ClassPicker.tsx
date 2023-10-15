@@ -35,10 +35,8 @@ export default function ClassPicker(props: { maxLevel: number; maxClasses: numbe
   };
 
   const onClick = (key: string) => {
-
     classes.delete(key);
     setClassList(classes);
-
   };
 
   const values = Array.from(classes.keys()).map((key) => (

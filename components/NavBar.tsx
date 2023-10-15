@@ -1,7 +1,18 @@
 'use client';
 
 import { prisma } from '@/lib/prisma';
-import { Burger, Card, Container, Drawer, Flex, Group, Paper, Stack, Text, Title } from '@mantine/core';
+import {
+  Burger,
+  Card,
+  Container,
+  Drawer,
+  Flex,
+  Group,
+  Paper,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Campaign, User } from '@/prisma/generated/client';
 import CampaignCard from './Campaign/CampaignCard';

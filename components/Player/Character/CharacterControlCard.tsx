@@ -92,7 +92,7 @@ export default function CharacterControlCard(props: {
   const [gold, setGold] = useState<number | string>(props.pc.gold);
 
   return (
-    <Card withBorder shadow="sm" radius={'lg'}  w="50rem" h="50rem" >
+    <Card withBorder shadow="sm" radius={'lg'} w="50rem" h="50rem">
       <Grid grow>
         <Grid.Col span={6}>
           <Card withBorder shadow="sm" radius={'lg'} w="20rem" h="20rem">

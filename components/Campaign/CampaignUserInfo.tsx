@@ -39,7 +39,7 @@ export default function CampaignUserInfo(props: { campaign: any }) {
     <Container fluid h="10rem">
       <Divider label="Players and GMS" />{' '}
       <Group grow justify="center">
-      <Stack h="5rem" align='center'>
+        <Stack h="5rem" align="center">
           <Text c="dimmed">GMs</Text>
           <Avatar.Group>
             {props.campaign.gms.map((gm: any) => (
@@ -49,22 +49,21 @@ export default function CampaignUserInfo(props: { campaign: any }) {
             ))}
           </Avatar.Group>
         </Stack>
-        <Stack h="5rem" align='center'>
+        <Stack h="5rem" align="center">
           <Text c="dimmed">Player Characters</Text>
           <Avatar.Group h="4rem">
             {props.campaign.players.map((pc: any) => (
-              <Tooltip
-                key={pc.id}
-                label={pc.name}
-              >
+              <Tooltip key={pc.id} label={pc.name}>
                 <Avatar src={pc.owner.image} />
               </Tooltip>
             ))}
           </Avatar.Group>
-          {!hasCharacter && <CreateCharacterModal campaign={props.campaign} maxLevel={5} maxClasses={2}/>}
+          {!hasCharacter && (
+            <CreateCharacterModal campaign={props.campaign} maxLevel={5} maxClasses={2} />
+          )}
         </Stack>
         {isMember && (
-           <Stack h="5rem" align='center'>
+          <Stack h="5rem" align="center">
             <Text c="dimmed">Members</Text>
             <Avatar.Group h="4rem">
               {props.campaign.members.map((pc: any) => (

@@ -1,4 +1,3 @@
-
 import '@mantine/core/styles.css';
 import React, { Suspense } from 'react';
 import {
@@ -25,8 +24,8 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Compendium',
   description: '',
-}
- 
+};
+
 export default async function RootLayout({ children }: { children: any }) {
   const campaigns = await prisma.campaign.findMany();
   const session = await getServerSession(authOptions);
@@ -42,14 +41,21 @@ export default async function RootLayout({ children }: { children: any }) {
           <link rel="shortcut icon" href="/favicon.svg" />
         </head>
         <body>
-          <MantineProvider  defaultColorScheme="dark">
+          <MantineProvider defaultColorScheme="dark">
             <Container fluid p={8}>
               <Suspense fallback={<Loader color="orange" type="dots" size="lg" />}>
                 <NavBar campaigns={campaigns} user={user} />
-                
               </Suspense>
-              <Suspense fallback={<Center><Loader color="orange" type="dots" size="lg" /></Center>}>
-                <Container p={4} fluid>{children}</Container>
+              <Suspense
+                fallback={
+                  <Center>
+                    <Loader color="orange" type="dots" size="lg" />
+                  </Center>
+                }
+              >
+                <Container p={4} fluid>
+                  {children}
+                </Container>
               </Suspense>
             </Container>
           </MantineProvider>

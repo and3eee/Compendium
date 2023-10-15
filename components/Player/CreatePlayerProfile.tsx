@@ -10,7 +10,7 @@ export default function CreatePlayerProfile() {
 
   const form = useForm({
     initialValues: {
-      email: session?.user?.email!
+      email: session?.user?.email!,
     },
   });
 
@@ -21,7 +21,7 @@ export default function CreatePlayerProfile() {
 
   return (
     <form onSubmit={create}>
-      <Card w="50rem" shadow="sm" padding="lg" radius="sm" >
+      <Card w="50rem" shadow="sm" padding="lg" radius="sm">
         <Title order={2}>Create Player Profile</Title>
         <Stack>
           <Button type="submit">Create Player Profile</Button>

@@ -68,24 +68,30 @@ export async function EnrollInSessionByUserFirstActiveCharacter(sessionID: strin
   if (playerChar) {
     const out = await prisma.gameSession.update({
       where: { id: sessionID },
-      data: { players: { connect: { id: playerChar?.id } } },include:{players:true}
+      data: { players: { connect: { id: playerChar?.id } } },
+      include: { players: true },
     });
     return out;
   }
-
 }
 
-
-export async function CompleteSession(sessionId:string){
-  return await prisma.gameSession.update({where:{id:sessionId},data:{state:SessionState.COMPLETE}})
+export async function CompleteSession(sessionId: string) {
+  return await prisma.gameSession.update({
+    where: { id: sessionId },
+    data: { state: SessionState.COMPLETE },
+  });
 }
 
-
-export async function ActiveSession(sessionId:string){
-  return await prisma.gameSession.update({where:{id:sessionId},data:{state:SessionState.ACTIVE}})
+export async function ActiveSession(sessionId: string) {
+  return await prisma.gameSession.update({
+    where: { id: sessionId },
+    data: { state: SessionState.ACTIVE },
+  });
 }
 
-
-export async function PlannedSession(sessionId:string){
-  return await prisma.gameSession.update({where:{id:sessionId},data:{state:SessionState.PLANNED}})
+export async function PlannedSession(sessionId: string) {
+  return await prisma.gameSession.update({
+    where: { id: sessionId },
+    data: { state: SessionState.PLANNED },
+  });
 }

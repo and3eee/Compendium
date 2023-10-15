@@ -1,4 +1,4 @@
-"use server"
+'use server';
 import { prisma } from '@/lib/prisma';
 
 export async function UpdateUser(email: string, age: number, name: string, bio: string) {

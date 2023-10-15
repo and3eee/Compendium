@@ -11,8 +11,6 @@ import { GMProfile } from '@/prisma/generated/client';
 
 import { getServerSession } from 'next-auth';
 
-
- 
 export default async function ({ params }: { params: { campaignID: number; sessionId: string } }) {
   const session = await getServerSession(authOptions);
   const campaign: any = await prisma.campaign.findFirst({
@@ -39,12 +37,12 @@ export default async function ({ params }: { params: { campaignID: number; sessi
 
   let isGM: boolean = campaign?.gms.find((gm: GMProfile) => gm.userId == user?.id) != null;
   return (
-    <Stack align='center'>
+    <Stack align="center">
       <Group grow gap={'md'} p={'1rem'} justify="center">
         <SessionSection session={gameSession} admin={isGM} />
         {isGM && <SessionEditor session={gameSession} />}
       </Group>
-   {isGM &&  <SessionCharacterControl session={gameSession}/>}
+      {isGM && <SessionCharacterControl session={gameSession} />}
     </Stack>
   );
 }
