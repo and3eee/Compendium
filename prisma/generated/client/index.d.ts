@@ -19727,18 +19727,21 @@ export namespace Prisma {
     id: number | null
     name: string | null
     data: string | null
+    type: string | null
   }
 
   export type FieldMaxAggregateOutputType = {
     id: number | null
     name: string | null
     data: string | null
+    type: string | null
   }
 
   export type FieldCountAggregateOutputType = {
     id: number
     name: number
     data: number
+    type: number
     _all: number
   }
 
@@ -19755,18 +19758,21 @@ export namespace Prisma {
     id?: true
     name?: true
     data?: true
+    type?: true
   }
 
   export type FieldMaxAggregateInputType = {
     id?: true
     name?: true
     data?: true
+    type?: true
   }
 
   export type FieldCountAggregateInputType = {
     id?: true
     name?: true
     data?: true
+    type?: true
     _all?: true
   }
 
@@ -19860,6 +19866,7 @@ export namespace Prisma {
     id: number
     name: string
     data: string
+    type: string
     _count: FieldCountAggregateOutputType | null
     _avg: FieldAvgAggregateOutputType | null
     _sum: FieldSumAggregateOutputType | null
@@ -19885,12 +19892,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     data?: boolean
+    type?: boolean
   }, ExtArgs["result"]["field"]>
 
   export type FieldSelectScalar = {
     id?: boolean
     name?: boolean
     data?: boolean
+    type?: boolean
   }
 
 
@@ -19901,6 +19910,7 @@ export namespace Prisma {
       id: number
       name: string
       data: string
+      type: string
     }, ExtArgs["result"]["field"]>
     composites: {}
   }
@@ -20298,6 +20308,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Field", 'Int'>
     readonly name: FieldRef<"Field", 'String'>
     readonly data: FieldRef<"Field", 'String'>
+    readonly type: FieldRef<"Field", 'String'>
   }
     
 
@@ -20812,7 +20823,8 @@ export namespace Prisma {
   export const FieldScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    data: 'data'
+    data: 'data',
+    type: 'type'
   };
 
   export type FieldScalarFieldEnum = (typeof FieldScalarFieldEnum)[keyof typeof FieldScalarFieldEnum]
@@ -22144,12 +22156,14 @@ export namespace Prisma {
     id?: IntFilter<"Field"> | number
     name?: StringFilter<"Field"> | string
     data?: StringFilter<"Field"> | string
+    type?: StringFilter<"Field"> | string
   }
 
   export type FieldOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     data?: SortOrder
+    type?: SortOrder
   }
 
   export type FieldWhereUniqueInput = Prisma.AtLeast<{
@@ -22159,12 +22173,14 @@ export namespace Prisma {
     NOT?: FieldWhereInput | FieldWhereInput[]
     name?: StringFilter<"Field"> | string
     data?: StringFilter<"Field"> | string
+    type?: StringFilter<"Field"> | string
   }, "id">
 
   export type FieldOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     data?: SortOrder
+    type?: SortOrder
     _count?: FieldCountOrderByAggregateInput
     _avg?: FieldAvgOrderByAggregateInput
     _max?: FieldMaxOrderByAggregateInput
@@ -22179,6 +22195,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Field"> | number
     name?: StringWithAggregatesFilter<"Field"> | string
     data?: StringWithAggregatesFilter<"Field"> | string
+    type?: StringWithAggregatesFilter<"Field"> | string
   }
 
   export type AccountCreateInput = {
@@ -23355,40 +23372,47 @@ export namespace Prisma {
   export type FieldCreateInput = {
     name: string
     data: string
+    type: string
   }
 
   export type FieldUncheckedCreateInput = {
     id?: number
     name: string
     data: string
+    type: string
   }
 
   export type FieldUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type FieldUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type FieldCreateManyInput = {
     id?: number
     name: string
     data: string
+    type: string
   }
 
   export type FieldUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type FieldUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -24473,6 +24497,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     data?: SortOrder
+    type?: SortOrder
   }
 
   export type FieldAvgOrderByAggregateInput = {
@@ -24483,12 +24508,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     data?: SortOrder
+    type?: SortOrder
   }
 
   export type FieldMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     data?: SortOrder
+    type?: SortOrder
   }
 
   export type FieldSumOrderByAggregateInput = {

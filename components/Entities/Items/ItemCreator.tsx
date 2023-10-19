@@ -1,7 +1,15 @@
 'use client';
-
-import { Button, NumberInput, Stack, Text, TextInput } from '@mantine/core';
-import CreateEntityForceNew from '../EntityControl';
+import {
+  Button,
+  Card,
+  Group,
+  NumberInput,
+  Stack,
+  Text,
+  TextInput,
+  Textarea,
+  Title,
+} from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import { useForm } from '@mantine/form';
 import CreateItem from './ItemControl';
@@ -9,7 +17,10 @@ import { useState } from 'react';
 
 export default function ItemCreator() {
   const router = useRouter();
-  const [actionList, setACtionList] = useState<Map<string, string>>(new Map());
+  const [actionList, setActionList] = useState<Map<string, string>>(new Map());
+  const [action, setAction] = useState<string>('');
+  const [actionDesc, setActionDesc] = useState<string>('');
+
   const form = useForm({
     initialValues: {
       name: '',
@@ -28,29 +39,62 @@ export default function ItemCreator() {
       form.values.cost
     );
 
-    const ActionEditor = () => {
-      <Stack>
-        <TextInput label="Action Name" />
-        <TextInput label="Action Name" />
-      </Stack>;
-    };
-
     console.log(resp);
     if (resp == 'Created') router.refresh();
+  };
+  const handleChange = () => {};
+
+  const ActionListView = () => {
+    return (
+      <Stack>
+        {Array.from(actionList.keys()).map((actionKey) => {
+          return <div>{actionKey}</div>;
+        })}
+      </Stack>
+    );
+  };
+
+  const ActionEditor = () => {
+    return (
+      <Card withBorder padding={'md'}>
+        <Stack>
+          {ActionListView()}
+          <TextInput
+            label="Action Name"
+            value={action}
+            onChange={(event) => setAction(event.currentTarget.value)}
+          />
+          <Textarea
+            label="Action Description"
+            value={actionDesc}
+            onChange={(event) => setActionDesc(event.currentTarget.value)}
+          />
+          <Group grow gap="xl">
+            <Button>Load Action</Button>
+
+            <Button>Submit Action</Button>
+          </Group>
+        </Stack>
+      </Card>
+    );
   };
 
   return (
     <form onSubmit={create}>
-      <TextInput label="Name" {...form.getInputProps('name')} />
-      <TextInput label="Description" {...form.getInputProps('description')} />
-      <TextInput label="Rarity" {...form.getInputProps('rarity')} />
-      <NumberInput label="cost" {...form.getInputProps('cost')} />
-      {Array.from(actionList.keys()).map((key) => (
-        <Stack>
-          <Text fw={400}>{key}</Text>
-        </Stack>
-      ))}
-      <Button type="submit">Create</Button>
+      <Title>Create Item</Title>
+      <Stack gap="md">
+        <TextInput label="Name" {...form.getInputProps('name')} />
+        <TextInput label="Description" {...form.getInputProps('description')} />
+        <TextInput label="Rarity" {...form.getInputProps('rarity')} />
+        <NumberInput label="cost" {...form.getInputProps('cost')} />
+        {ActionEditor()}
+        {Array.from(actionList.keys()).map((key) => (
+          <Stack>
+            <Text fw={400}>{key}</Text>
+          </Stack>
+        ))}
+        <Button type="submit">Create</Button>
+      </Stack>
     </form>
   );
 }

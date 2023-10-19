@@ -269,7 +269,8 @@ exports.Prisma.StatScalarFieldEnum = {
 exports.Prisma.FieldScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  data: 'data'
+  data: 'data',
+  type: 'type'
 };
 
 exports.Prisma.SortOrder = {

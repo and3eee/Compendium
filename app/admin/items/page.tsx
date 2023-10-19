@@ -1,7 +1,7 @@
 'use server';
 
 import ItemCard from '@/components/Entities/Items/ItemCard';
-import ItemCreator from '@/components/Entities/Items/ItemCreator';
+import ItemCreator from '@/components/Entities/Items/ItemCreator.1';
 import ItemCreatorCard from '@/components/Entities/Items/ItemCreatorCard';
 import { prisma } from '@/lib/prisma';
 import { Stack } from '@mantine/core';
