@@ -36,7 +36,7 @@ export default function NavBar(props: { campaigns: Campaign[]; user: any }) {
           {props.campaigns.map((camp) => (
             <CampaignCard key={camp.id} campaign={camp} />
           ))}
-          {props.user.role != 'user' && <CreateCampaignCard />}
+          {props.user && props.user.role != 'user' && <CreateCampaignCard />}
         </Stack>
       </Drawer>
       <Card radius="xl" bg={gradient} w="100%" p="8">

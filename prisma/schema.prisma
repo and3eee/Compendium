@@ -2,13 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "./generated/client"
+  provider      = "prisma-client-js"
+  output        = "./generated/client"
   binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -215,4 +215,36 @@ model Quest {
   questID     Int?          @unique
   gMProfileId String
   GameSession GameSession[]
+}
+
+model GameEntity {
+  id     Int     @id @default(autoincrement())
+  name   String
+  desc   String?
+  tags   Json?
+  stats  Json?
+  fields Json?
+  type   String
+}
+
+model Tag {
+  id      Int      @id @default(autoincrement())
+  name    String
+  strict  Boolean
+  type    String
+  options String[]
+}
+
+model Stat {
+  id   Int     @id @default(autoincrement())
+  name String
+  desc String?
+  min  Int
+  max  Int
+}
+
+model Field {
+  id   Int    @id @default(autoincrement())
+  name String
+  data String
 }

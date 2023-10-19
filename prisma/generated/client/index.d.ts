@@ -83,6 +83,26 @@ export type Story = $Result.DefaultSelection<Prisma.$StoryPayload>
  * 
  */
 export type Quest = $Result.DefaultSelection<Prisma.$QuestPayload>
+/**
+ * Model GameEntity
+ * 
+ */
+export type GameEntity = $Result.DefaultSelection<Prisma.$GameEntityPayload>
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = $Result.DefaultSelection<Prisma.$TagPayload>
+/**
+ * Model Stat
+ * 
+ */
+export type Stat = $Result.DefaultSelection<Prisma.$StatPayload>
+/**
+ * Model Field
+ * 
+ */
+export type Field = $Result.DefaultSelection<Prisma.$FieldPayload>
 
 /**
  * Enums
@@ -389,6 +409,46 @@ export class PrismaClient<
     * ```
     */
   get quest(): Prisma.QuestDelegate<ExtArgs>;
+
+  /**
+   * `prisma.gameEntity`: Exposes CRUD operations for the **GameEntity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GameEntities
+    * const gameEntities = await prisma.gameEntity.findMany()
+    * ```
+    */
+  get gameEntity(): Prisma.GameEntityDelegate<ExtArgs>;
+
+  /**
+   * `prisma.tag`: Exposes CRUD operations for the **Tag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tags
+    * const tags = await prisma.tag.findMany()
+    * ```
+    */
+  get tag(): Prisma.TagDelegate<ExtArgs>;
+
+  /**
+   * `prisma.stat`: Exposes CRUD operations for the **Stat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Stats
+    * const stats = await prisma.stat.findMany()
+    * ```
+    */
+  get stat(): Prisma.StatDelegate<ExtArgs>;
+
+  /**
+   * `prisma.field`: Exposes CRUD operations for the **Field** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Fields
+    * const fields = await prisma.field.findMany()
+    * ```
+    */
+  get field(): Prisma.FieldDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -872,7 +932,11 @@ export namespace Prisma {
     InfoSession: 'InfoSession',
     Campaign: 'Campaign',
     Story: 'Story',
-    Quest: 'Quest'
+    Quest: 'Quest',
+    GameEntity: 'GameEntity',
+    Tag: 'Tag',
+    Stat: 'Stat',
+    Field: 'Field'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -889,7 +953,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'account' | 'session' | 'user' | 'gMProfile' | 'playerProfile' | 'playerCharacter' | 'classedEntity' | 'classConfigs' | 'class' | 'gameSession' | 'infoSession' | 'campaign' | 'story' | 'quest'
+      modelProps: 'account' | 'session' | 'user' | 'gMProfile' | 'playerProfile' | 'playerCharacter' | 'classedEntity' | 'classConfigs' | 'class' | 'gameSession' | 'infoSession' | 'campaign' | 'story' | 'quest' | 'gameEntity' | 'tag' | 'stat' | 'field'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1814,6 +1878,270 @@ export namespace Prisma {
           count: {
             args: Prisma.QuestCountArgs<ExtArgs>,
             result: $Utils.Optional<QuestCountAggregateOutputType> | number
+          }
+        }
+      }
+      GameEntity: {
+        payload: Prisma.$GameEntityPayload<ExtArgs>
+        fields: Prisma.GameEntityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GameEntityFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GameEntityFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload>
+          }
+          findFirst: {
+            args: Prisma.GameEntityFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GameEntityFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload>
+          }
+          findMany: {
+            args: Prisma.GameEntityFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload>[]
+          }
+          create: {
+            args: Prisma.GameEntityCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload>
+          }
+          createMany: {
+            args: Prisma.GameEntityCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GameEntityDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload>
+          }
+          update: {
+            args: Prisma.GameEntityUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload>
+          }
+          deleteMany: {
+            args: Prisma.GameEntityDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GameEntityUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GameEntityUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GameEntityPayload>
+          }
+          aggregate: {
+            args: Prisma.GameEntityAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGameEntity>
+          }
+          groupBy: {
+            args: Prisma.GameEntityGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GameEntityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GameEntityCountArgs<ExtArgs>,
+            result: $Utils.Optional<GameEntityCountAggregateOutputType> | number
+          }
+        }
+      }
+      Tag: {
+        payload: Prisma.$TagPayload<ExtArgs>
+        fields: Prisma.TagFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TagFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TagFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
+          }
+          findFirst: {
+            args: Prisma.TagFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TagFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
+          }
+          findMany: {
+            args: Prisma.TagFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>[]
+          }
+          create: {
+            args: Prisma.TagCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
+          }
+          createMany: {
+            args: Prisma.TagCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.TagDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
+          }
+          update: {
+            args: Prisma.TagUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
+          }
+          deleteMany: {
+            args: Prisma.TagDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TagUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.TagUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
+          }
+          aggregate: {
+            args: Prisma.TagAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateTag>
+          }
+          groupBy: {
+            args: Prisma.TagGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<TagGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TagCountArgs<ExtArgs>,
+            result: $Utils.Optional<TagCountAggregateOutputType> | number
+          }
+        }
+      }
+      Stat: {
+        payload: Prisma.$StatPayload<ExtArgs>
+        fields: Prisma.StatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StatFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StatFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload>
+          }
+          findFirst: {
+            args: Prisma.StatFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StatFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload>
+          }
+          findMany: {
+            args: Prisma.StatFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload>[]
+          }
+          create: {
+            args: Prisma.StatCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload>
+          }
+          createMany: {
+            args: Prisma.StatCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.StatDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload>
+          }
+          update: {
+            args: Prisma.StatUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload>
+          }
+          deleteMany: {
+            args: Prisma.StatDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StatUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.StatUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$StatPayload>
+          }
+          aggregate: {
+            args: Prisma.StatAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateStat>
+          }
+          groupBy: {
+            args: Prisma.StatGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<StatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StatCountArgs<ExtArgs>,
+            result: $Utils.Optional<StatCountAggregateOutputType> | number
+          }
+        }
+      }
+      Field: {
+        payload: Prisma.$FieldPayload<ExtArgs>
+        fields: Prisma.FieldFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FieldFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FieldFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload>
+          }
+          findFirst: {
+            args: Prisma.FieldFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FieldFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload>
+          }
+          findMany: {
+            args: Prisma.FieldFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload>[]
+          }
+          create: {
+            args: Prisma.FieldCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload>
+          }
+          createMany: {
+            args: Prisma.FieldCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.FieldDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload>
+          }
+          update: {
+            args: Prisma.FieldUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload>
+          }
+          deleteMany: {
+            args: Prisma.FieldDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FieldUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.FieldUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FieldPayload>
+          }
+          aggregate: {
+            args: Prisma.FieldAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateField>
+          }
+          groupBy: {
+            args: Prisma.FieldGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<FieldGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FieldCountArgs<ExtArgs>,
+            result: $Utils.Optional<FieldCountAggregateOutputType> | number
           }
         }
       }
@@ -16650,6 +16978,3614 @@ export namespace Prisma {
 
 
   /**
+   * Model GameEntity
+   */
+
+  export type AggregateGameEntity = {
+    _count: GameEntityCountAggregateOutputType | null
+    _avg: GameEntityAvgAggregateOutputType | null
+    _sum: GameEntitySumAggregateOutputType | null
+    _min: GameEntityMinAggregateOutputType | null
+    _max: GameEntityMaxAggregateOutputType | null
+  }
+
+  export type GameEntityAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GameEntitySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GameEntityMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    desc: string | null
+    type: string | null
+  }
+
+  export type GameEntityMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    desc: string | null
+    type: string | null
+  }
+
+  export type GameEntityCountAggregateOutputType = {
+    id: number
+    name: number
+    desc: number
+    tags: number
+    stats: number
+    fields: number
+    type: number
+    _all: number
+  }
+
+
+  export type GameEntityAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type GameEntitySumAggregateInputType = {
+    id?: true
+  }
+
+  export type GameEntityMinAggregateInputType = {
+    id?: true
+    name?: true
+    desc?: true
+    type?: true
+  }
+
+  export type GameEntityMaxAggregateInputType = {
+    id?: true
+    name?: true
+    desc?: true
+    type?: true
+  }
+
+  export type GameEntityCountAggregateInputType = {
+    id?: true
+    name?: true
+    desc?: true
+    tags?: true
+    stats?: true
+    fields?: true
+    type?: true
+    _all?: true
+  }
+
+  export type GameEntityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GameEntity to aggregate.
+     */
+    where?: GameEntityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GameEntities to fetch.
+     */
+    orderBy?: GameEntityOrderByWithRelationInput | GameEntityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GameEntityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GameEntities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GameEntities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GameEntities
+    **/
+    _count?: true | GameEntityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GameEntityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GameEntitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GameEntityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GameEntityMaxAggregateInputType
+  }
+
+  export type GetGameEntityAggregateType<T extends GameEntityAggregateArgs> = {
+        [P in keyof T & keyof AggregateGameEntity]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGameEntity[P]>
+      : GetScalarType<T[P], AggregateGameEntity[P]>
+  }
+
+
+
+
+  export type GameEntityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GameEntityWhereInput
+    orderBy?: GameEntityOrderByWithAggregationInput | GameEntityOrderByWithAggregationInput[]
+    by: GameEntityScalarFieldEnum[] | GameEntityScalarFieldEnum
+    having?: GameEntityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GameEntityCountAggregateInputType | true
+    _avg?: GameEntityAvgAggregateInputType
+    _sum?: GameEntitySumAggregateInputType
+    _min?: GameEntityMinAggregateInputType
+    _max?: GameEntityMaxAggregateInputType
+  }
+
+  export type GameEntityGroupByOutputType = {
+    id: number
+    name: string
+    desc: string | null
+    tags: JsonValue | null
+    stats: JsonValue | null
+    fields: JsonValue | null
+    type: string
+    _count: GameEntityCountAggregateOutputType | null
+    _avg: GameEntityAvgAggregateOutputType | null
+    _sum: GameEntitySumAggregateOutputType | null
+    _min: GameEntityMinAggregateOutputType | null
+    _max: GameEntityMaxAggregateOutputType | null
+  }
+
+  type GetGameEntityGroupByPayload<T extends GameEntityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GameEntityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GameEntityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GameEntityGroupByOutputType[P]>
+            : GetScalarType<T[P], GameEntityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GameEntitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    desc?: boolean
+    tags?: boolean
+    stats?: boolean
+    fields?: boolean
+    type?: boolean
+  }, ExtArgs["result"]["gameEntity"]>
+
+  export type GameEntitySelectScalar = {
+    id?: boolean
+    name?: boolean
+    desc?: boolean
+    tags?: boolean
+    stats?: boolean
+    fields?: boolean
+    type?: boolean
+  }
+
+
+  export type $GameEntityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GameEntity"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      desc: string | null
+      tags: Prisma.JsonValue | null
+      stats: Prisma.JsonValue | null
+      fields: Prisma.JsonValue | null
+      type: string
+    }, ExtArgs["result"]["gameEntity"]>
+    composites: {}
+  }
+
+
+  type GameEntityGetPayload<S extends boolean | null | undefined | GameEntityDefaultArgs> = $Result.GetResult<Prisma.$GameEntityPayload, S>
+
+  type GameEntityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GameEntityFindManyArgs, 'select' | 'include'> & {
+      select?: GameEntityCountAggregateInputType | true
+    }
+
+  export interface GameEntityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GameEntity'], meta: { name: 'GameEntity' } }
+    /**
+     * Find zero or one GameEntity that matches the filter.
+     * @param {GameEntityFindUniqueArgs} args - Arguments to find a GameEntity
+     * @example
+     * // Get one GameEntity
+     * const gameEntity = await prisma.gameEntity.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GameEntityFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GameEntityFindUniqueArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one GameEntity that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GameEntityFindUniqueOrThrowArgs} args - Arguments to find a GameEntity
+     * @example
+     * // Get one GameEntity
+     * const gameEntity = await prisma.gameEntity.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GameEntityFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GameEntityFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first GameEntity that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GameEntityFindFirstArgs} args - Arguments to find a GameEntity
+     * @example
+     * // Get one GameEntity
+     * const gameEntity = await prisma.gameEntity.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GameEntityFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GameEntityFindFirstArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first GameEntity that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GameEntityFindFirstOrThrowArgs} args - Arguments to find a GameEntity
+     * @example
+     * // Get one GameEntity
+     * const gameEntity = await prisma.gameEntity.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GameEntityFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GameEntityFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more GameEntities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GameEntityFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GameEntities
+     * const gameEntities = await prisma.gameEntity.findMany()
+     * 
+     * // Get first 10 GameEntities
+     * const gameEntities = await prisma.gameEntity.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gameEntityWithIdOnly = await prisma.gameEntity.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends GameEntityFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GameEntityFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a GameEntity.
+     * @param {GameEntityCreateArgs} args - Arguments to create a GameEntity.
+     * @example
+     * // Create one GameEntity
+     * const GameEntity = await prisma.gameEntity.create({
+     *   data: {
+     *     // ... data to create a GameEntity
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GameEntityCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GameEntityCreateArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many GameEntities.
+     *     @param {GameEntityCreateManyArgs} args - Arguments to create many GameEntities.
+     *     @example
+     *     // Create many GameEntities
+     *     const gameEntity = await prisma.gameEntity.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GameEntityCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GameEntityCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a GameEntity.
+     * @param {GameEntityDeleteArgs} args - Arguments to delete one GameEntity.
+     * @example
+     * // Delete one GameEntity
+     * const GameEntity = await prisma.gameEntity.delete({
+     *   where: {
+     *     // ... filter to delete one GameEntity
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GameEntityDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GameEntityDeleteArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one GameEntity.
+     * @param {GameEntityUpdateArgs} args - Arguments to update one GameEntity.
+     * @example
+     * // Update one GameEntity
+     * const gameEntity = await prisma.gameEntity.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GameEntityUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GameEntityUpdateArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more GameEntities.
+     * @param {GameEntityDeleteManyArgs} args - Arguments to filter GameEntities to delete.
+     * @example
+     * // Delete a few GameEntities
+     * const { count } = await prisma.gameEntity.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GameEntityDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GameEntityDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GameEntities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GameEntityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GameEntities
+     * const gameEntity = await prisma.gameEntity.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GameEntityUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GameEntityUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one GameEntity.
+     * @param {GameEntityUpsertArgs} args - Arguments to update or create a GameEntity.
+     * @example
+     * // Update or create a GameEntity
+     * const gameEntity = await prisma.gameEntity.upsert({
+     *   create: {
+     *     // ... data to create a GameEntity
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GameEntity we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GameEntityUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GameEntityUpsertArgs<ExtArgs>>
+    ): Prisma__GameEntityClient<$Result.GetResult<Prisma.$GameEntityPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of GameEntities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GameEntityCountArgs} args - Arguments to filter GameEntities to count.
+     * @example
+     * // Count the number of GameEntities
+     * const count = await prisma.gameEntity.count({
+     *   where: {
+     *     // ... the filter for the GameEntities we want to count
+     *   }
+     * })
+    **/
+    count<T extends GameEntityCountArgs>(
+      args?: Subset<T, GameEntityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GameEntityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GameEntity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GameEntityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GameEntityAggregateArgs>(args: Subset<T, GameEntityAggregateArgs>): Prisma.PrismaPromise<GetGameEntityAggregateType<T>>
+
+    /**
+     * Group by GameEntity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GameEntityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GameEntityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GameEntityGroupByArgs['orderBy'] }
+        : { orderBy?: GameEntityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GameEntityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGameEntityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GameEntity model
+   */
+  readonly fields: GameEntityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GameEntity.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GameEntityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the GameEntity model
+   */ 
+  interface GameEntityFieldRefs {
+    readonly id: FieldRef<"GameEntity", 'Int'>
+    readonly name: FieldRef<"GameEntity", 'String'>
+    readonly desc: FieldRef<"GameEntity", 'String'>
+    readonly tags: FieldRef<"GameEntity", 'Json'>
+    readonly stats: FieldRef<"GameEntity", 'Json'>
+    readonly fields: FieldRef<"GameEntity", 'Json'>
+    readonly type: FieldRef<"GameEntity", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * GameEntity findUnique
+   */
+  export type GameEntityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * Filter, which GameEntity to fetch.
+     */
+    where: GameEntityWhereUniqueInput
+  }
+
+
+  /**
+   * GameEntity findUniqueOrThrow
+   */
+  export type GameEntityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * Filter, which GameEntity to fetch.
+     */
+    where: GameEntityWhereUniqueInput
+  }
+
+
+  /**
+   * GameEntity findFirst
+   */
+  export type GameEntityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * Filter, which GameEntity to fetch.
+     */
+    where?: GameEntityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GameEntities to fetch.
+     */
+    orderBy?: GameEntityOrderByWithRelationInput | GameEntityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GameEntities.
+     */
+    cursor?: GameEntityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GameEntities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GameEntities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GameEntities.
+     */
+    distinct?: GameEntityScalarFieldEnum | GameEntityScalarFieldEnum[]
+  }
+
+
+  /**
+   * GameEntity findFirstOrThrow
+   */
+  export type GameEntityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * Filter, which GameEntity to fetch.
+     */
+    where?: GameEntityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GameEntities to fetch.
+     */
+    orderBy?: GameEntityOrderByWithRelationInput | GameEntityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GameEntities.
+     */
+    cursor?: GameEntityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GameEntities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GameEntities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GameEntities.
+     */
+    distinct?: GameEntityScalarFieldEnum | GameEntityScalarFieldEnum[]
+  }
+
+
+  /**
+   * GameEntity findMany
+   */
+  export type GameEntityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * Filter, which GameEntities to fetch.
+     */
+    where?: GameEntityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GameEntities to fetch.
+     */
+    orderBy?: GameEntityOrderByWithRelationInput | GameEntityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GameEntities.
+     */
+    cursor?: GameEntityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GameEntities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GameEntities.
+     */
+    skip?: number
+    distinct?: GameEntityScalarFieldEnum | GameEntityScalarFieldEnum[]
+  }
+
+
+  /**
+   * GameEntity create
+   */
+  export type GameEntityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * The data needed to create a GameEntity.
+     */
+    data: XOR<GameEntityCreateInput, GameEntityUncheckedCreateInput>
+  }
+
+
+  /**
+   * GameEntity createMany
+   */
+  export type GameEntityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GameEntities.
+     */
+    data: GameEntityCreateManyInput | GameEntityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * GameEntity update
+   */
+  export type GameEntityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * The data needed to update a GameEntity.
+     */
+    data: XOR<GameEntityUpdateInput, GameEntityUncheckedUpdateInput>
+    /**
+     * Choose, which GameEntity to update.
+     */
+    where: GameEntityWhereUniqueInput
+  }
+
+
+  /**
+   * GameEntity updateMany
+   */
+  export type GameEntityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GameEntities.
+     */
+    data: XOR<GameEntityUpdateManyMutationInput, GameEntityUncheckedUpdateManyInput>
+    /**
+     * Filter which GameEntities to update
+     */
+    where?: GameEntityWhereInput
+  }
+
+
+  /**
+   * GameEntity upsert
+   */
+  export type GameEntityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * The filter to search for the GameEntity to update in case it exists.
+     */
+    where: GameEntityWhereUniqueInput
+    /**
+     * In case the GameEntity found by the `where` argument doesn't exist, create a new GameEntity with this data.
+     */
+    create: XOR<GameEntityCreateInput, GameEntityUncheckedCreateInput>
+    /**
+     * In case the GameEntity was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GameEntityUpdateInput, GameEntityUncheckedUpdateInput>
+  }
+
+
+  /**
+   * GameEntity delete
+   */
+  export type GameEntityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+    /**
+     * Filter which GameEntity to delete.
+     */
+    where: GameEntityWhereUniqueInput
+  }
+
+
+  /**
+   * GameEntity deleteMany
+   */
+  export type GameEntityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GameEntities to delete
+     */
+    where?: GameEntityWhereInput
+  }
+
+
+  /**
+   * GameEntity without action
+   */
+  export type GameEntityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GameEntity
+     */
+    select?: GameEntitySelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Tag
+   */
+
+  export type AggregateTag = {
+    _count: TagCountAggregateOutputType | null
+    _avg: TagAvgAggregateOutputType | null
+    _sum: TagSumAggregateOutputType | null
+    _min: TagMinAggregateOutputType | null
+    _max: TagMaxAggregateOutputType | null
+  }
+
+  export type TagAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TagSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TagMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    strict: boolean | null
+    type: string | null
+  }
+
+  export type TagMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    strict: boolean | null
+    type: string | null
+  }
+
+  export type TagCountAggregateOutputType = {
+    id: number
+    name: number
+    strict: number
+    type: number
+    options: number
+    _all: number
+  }
+
+
+  export type TagAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type TagSumAggregateInputType = {
+    id?: true
+  }
+
+  export type TagMinAggregateInputType = {
+    id?: true
+    name?: true
+    strict?: true
+    type?: true
+  }
+
+  export type TagMaxAggregateInputType = {
+    id?: true
+    name?: true
+    strict?: true
+    type?: true
+  }
+
+  export type TagCountAggregateInputType = {
+    id?: true
+    name?: true
+    strict?: true
+    type?: true
+    options?: true
+    _all?: true
+  }
+
+  export type TagAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tag to aggregate.
+     */
+    where?: TagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tags
+    **/
+    _count?: true | TagCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TagAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TagSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TagMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TagMaxAggregateInputType
+  }
+
+  export type GetTagAggregateType<T extends TagAggregateArgs> = {
+        [P in keyof T & keyof AggregateTag]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTag[P]>
+      : GetScalarType<T[P], AggregateTag[P]>
+  }
+
+
+
+
+  export type TagGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TagWhereInput
+    orderBy?: TagOrderByWithAggregationInput | TagOrderByWithAggregationInput[]
+    by: TagScalarFieldEnum[] | TagScalarFieldEnum
+    having?: TagScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TagCountAggregateInputType | true
+    _avg?: TagAvgAggregateInputType
+    _sum?: TagSumAggregateInputType
+    _min?: TagMinAggregateInputType
+    _max?: TagMaxAggregateInputType
+  }
+
+  export type TagGroupByOutputType = {
+    id: number
+    name: string
+    strict: boolean
+    type: string
+    options: string[]
+    _count: TagCountAggregateOutputType | null
+    _avg: TagAvgAggregateOutputType | null
+    _sum: TagSumAggregateOutputType | null
+    _min: TagMinAggregateOutputType | null
+    _max: TagMaxAggregateOutputType | null
+  }
+
+  type GetTagGroupByPayload<T extends TagGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TagGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TagGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TagGroupByOutputType[P]>
+            : GetScalarType<T[P], TagGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TagSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    strict?: boolean
+    type?: boolean
+    options?: boolean
+  }, ExtArgs["result"]["tag"]>
+
+  export type TagSelectScalar = {
+    id?: boolean
+    name?: boolean
+    strict?: boolean
+    type?: boolean
+    options?: boolean
+  }
+
+
+  export type $TagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Tag"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      strict: boolean
+      type: string
+      options: string[]
+    }, ExtArgs["result"]["tag"]>
+    composites: {}
+  }
+
+
+  type TagGetPayload<S extends boolean | null | undefined | TagDefaultArgs> = $Result.GetResult<Prisma.$TagPayload, S>
+
+  type TagCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<TagFindManyArgs, 'select' | 'include'> & {
+      select?: TagCountAggregateInputType | true
+    }
+
+  export interface TagDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tag'], meta: { name: 'Tag' } }
+    /**
+     * Find zero or one Tag that matches the filter.
+     * @param {TagFindUniqueArgs} args - Arguments to find a Tag
+     * @example
+     * // Get one Tag
+     * const tag = await prisma.tag.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends TagFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, TagFindUniqueArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Tag that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {TagFindUniqueOrThrowArgs} args - Arguments to find a Tag
+     * @example
+     * // Get one Tag
+     * const tag = await prisma.tag.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends TagFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Tag that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagFindFirstArgs} args - Arguments to find a Tag
+     * @example
+     * // Get one Tag
+     * const tag = await prisma.tag.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends TagFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindFirstArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Tag that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagFindFirstOrThrowArgs} args - Arguments to find a Tag
+     * @example
+     * // Get one Tag
+     * const tag = await prisma.tag.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends TagFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Tags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tags
+     * const tags = await prisma.tag.findMany()
+     * 
+     * // Get first 10 Tags
+     * const tags = await prisma.tag.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tagWithIdOnly = await prisma.tag.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends TagFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Tag.
+     * @param {TagCreateArgs} args - Arguments to create a Tag.
+     * @example
+     * // Create one Tag
+     * const Tag = await prisma.tag.create({
+     *   data: {
+     *     // ... data to create a Tag
+     *   }
+     * })
+     * 
+    **/
+    create<T extends TagCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagCreateArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Tags.
+     *     @param {TagCreateManyArgs} args - Arguments to create many Tags.
+     *     @example
+     *     // Create many Tags
+     *     const tag = await prisma.tag.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends TagCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Tag.
+     * @param {TagDeleteArgs} args - Arguments to delete one Tag.
+     * @example
+     * // Delete one Tag
+     * const Tag = await prisma.tag.delete({
+     *   where: {
+     *     // ... filter to delete one Tag
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends TagDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, TagDeleteArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Tag.
+     * @param {TagUpdateArgs} args - Arguments to update one Tag.
+     * @example
+     * // Update one Tag
+     * const tag = await prisma.tag.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends TagUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagUpdateArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Tags.
+     * @param {TagDeleteManyArgs} args - Arguments to filter Tags to delete.
+     * @example
+     * // Delete a few Tags
+     * const { count } = await prisma.tag.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends TagDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tags
+     * const tag = await prisma.tag.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends TagUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, TagUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Tag.
+     * @param {TagUpsertArgs} args - Arguments to update or create a Tag.
+     * @example
+     * // Update or create a Tag
+     * const tag = await prisma.tag.upsert({
+     *   create: {
+     *     // ... data to create a Tag
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Tag we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends TagUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, TagUpsertArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagCountArgs} args - Arguments to filter Tags to count.
+     * @example
+     * // Count the number of Tags
+     * const count = await prisma.tag.count({
+     *   where: {
+     *     // ... the filter for the Tags we want to count
+     *   }
+     * })
+    **/
+    count<T extends TagCountArgs>(
+      args?: Subset<T, TagCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TagCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Tag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TagAggregateArgs>(args: Subset<T, TagAggregateArgs>): Prisma.PrismaPromise<GetTagAggregateType<T>>
+
+    /**
+     * Group by Tag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TagGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TagGroupByArgs['orderBy'] }
+        : { orderBy?: TagGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TagGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Tag model
+   */
+  readonly fields: TagFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Tag.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Tag model
+   */ 
+  interface TagFieldRefs {
+    readonly id: FieldRef<"Tag", 'Int'>
+    readonly name: FieldRef<"Tag", 'String'>
+    readonly strict: FieldRef<"Tag", 'Boolean'>
+    readonly type: FieldRef<"Tag", 'String'>
+    readonly options: FieldRef<"Tag", 'String[]'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Tag findUnique
+   */
+  export type TagFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where: TagWhereUniqueInput
+  }
+
+
+  /**
+   * Tag findUniqueOrThrow
+   */
+  export type TagFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where: TagWhereUniqueInput
+  }
+
+
+  /**
+   * Tag findFirst
+   */
+  export type TagFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where?: TagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tags.
+     */
+    cursor?: TagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tags.
+     */
+    distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tag findFirstOrThrow
+   */
+  export type TagFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where?: TagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tags.
+     */
+    cursor?: TagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tags.
+     */
+    distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tag findMany
+   */
+  export type TagFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * Filter, which Tags to fetch.
+     */
+    where?: TagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tags.
+     */
+    cursor?: TagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tag create
+   */
+  export type TagCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Tag.
+     */
+    data: XOR<TagCreateInput, TagUncheckedCreateInput>
+  }
+
+
+  /**
+   * Tag createMany
+   */
+  export type TagCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Tags.
+     */
+    data: TagCreateManyInput | TagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Tag update
+   */
+  export type TagUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Tag.
+     */
+    data: XOR<TagUpdateInput, TagUncheckedUpdateInput>
+    /**
+     * Choose, which Tag to update.
+     */
+    where: TagWhereUniqueInput
+  }
+
+
+  /**
+   * Tag updateMany
+   */
+  export type TagUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Tags.
+     */
+    data: XOR<TagUpdateManyMutationInput, TagUncheckedUpdateManyInput>
+    /**
+     * Filter which Tags to update
+     */
+    where?: TagWhereInput
+  }
+
+
+  /**
+   * Tag upsert
+   */
+  export type TagUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Tag to update in case it exists.
+     */
+    where: TagWhereUniqueInput
+    /**
+     * In case the Tag found by the `where` argument doesn't exist, create a new Tag with this data.
+     */
+    create: XOR<TagCreateInput, TagUncheckedCreateInput>
+    /**
+     * In case the Tag was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TagUpdateInput, TagUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Tag delete
+   */
+  export type TagDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * Filter which Tag to delete.
+     */
+    where: TagWhereUniqueInput
+  }
+
+
+  /**
+   * Tag deleteMany
+   */
+  export type TagDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tags to delete
+     */
+    where?: TagWhereInput
+  }
+
+
+  /**
+   * Tag without action
+   */
+  export type TagDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Stat
+   */
+
+  export type AggregateStat = {
+    _count: StatCountAggregateOutputType | null
+    _avg: StatAvgAggregateOutputType | null
+    _sum: StatSumAggregateOutputType | null
+    _min: StatMinAggregateOutputType | null
+    _max: StatMaxAggregateOutputType | null
+  }
+
+  export type StatAvgAggregateOutputType = {
+    id: number | null
+    min: number | null
+    max: number | null
+  }
+
+  export type StatSumAggregateOutputType = {
+    id: number | null
+    min: number | null
+    max: number | null
+  }
+
+  export type StatMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    desc: string | null
+    min: number | null
+    max: number | null
+  }
+
+  export type StatMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    desc: string | null
+    min: number | null
+    max: number | null
+  }
+
+  export type StatCountAggregateOutputType = {
+    id: number
+    name: number
+    desc: number
+    min: number
+    max: number
+    _all: number
+  }
+
+
+  export type StatAvgAggregateInputType = {
+    id?: true
+    min?: true
+    max?: true
+  }
+
+  export type StatSumAggregateInputType = {
+    id?: true
+    min?: true
+    max?: true
+  }
+
+  export type StatMinAggregateInputType = {
+    id?: true
+    name?: true
+    desc?: true
+    min?: true
+    max?: true
+  }
+
+  export type StatMaxAggregateInputType = {
+    id?: true
+    name?: true
+    desc?: true
+    min?: true
+    max?: true
+  }
+
+  export type StatCountAggregateInputType = {
+    id?: true
+    name?: true
+    desc?: true
+    min?: true
+    max?: true
+    _all?: true
+  }
+
+  export type StatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Stat to aggregate.
+     */
+    where?: StatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Stats to fetch.
+     */
+    orderBy?: StatOrderByWithRelationInput | StatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Stats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Stats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Stats
+    **/
+    _count?: true | StatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StatAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StatSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StatMaxAggregateInputType
+  }
+
+  export type GetStatAggregateType<T extends StatAggregateArgs> = {
+        [P in keyof T & keyof AggregateStat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStat[P]>
+      : GetScalarType<T[P], AggregateStat[P]>
+  }
+
+
+
+
+  export type StatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StatWhereInput
+    orderBy?: StatOrderByWithAggregationInput | StatOrderByWithAggregationInput[]
+    by: StatScalarFieldEnum[] | StatScalarFieldEnum
+    having?: StatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StatCountAggregateInputType | true
+    _avg?: StatAvgAggregateInputType
+    _sum?: StatSumAggregateInputType
+    _min?: StatMinAggregateInputType
+    _max?: StatMaxAggregateInputType
+  }
+
+  export type StatGroupByOutputType = {
+    id: number
+    name: string
+    desc: string | null
+    min: number
+    max: number
+    _count: StatCountAggregateOutputType | null
+    _avg: StatAvgAggregateOutputType | null
+    _sum: StatSumAggregateOutputType | null
+    _min: StatMinAggregateOutputType | null
+    _max: StatMaxAggregateOutputType | null
+  }
+
+  type GetStatGroupByPayload<T extends StatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StatGroupByOutputType[P]>
+            : GetScalarType<T[P], StatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    desc?: boolean
+    min?: boolean
+    max?: boolean
+  }, ExtArgs["result"]["stat"]>
+
+  export type StatSelectScalar = {
+    id?: boolean
+    name?: boolean
+    desc?: boolean
+    min?: boolean
+    max?: boolean
+  }
+
+
+  export type $StatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Stat"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      desc: string | null
+      min: number
+      max: number
+    }, ExtArgs["result"]["stat"]>
+    composites: {}
+  }
+
+
+  type StatGetPayload<S extends boolean | null | undefined | StatDefaultArgs> = $Result.GetResult<Prisma.$StatPayload, S>
+
+  type StatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<StatFindManyArgs, 'select' | 'include'> & {
+      select?: StatCountAggregateInputType | true
+    }
+
+  export interface StatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Stat'], meta: { name: 'Stat' } }
+    /**
+     * Find zero or one Stat that matches the filter.
+     * @param {StatFindUniqueArgs} args - Arguments to find a Stat
+     * @example
+     * // Get one Stat
+     * const stat = await prisma.stat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends StatFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, StatFindUniqueArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Stat that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {StatFindUniqueOrThrowArgs} args - Arguments to find a Stat
+     * @example
+     * // Get one Stat
+     * const stat = await prisma.stat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends StatFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, StatFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Stat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatFindFirstArgs} args - Arguments to find a Stat
+     * @example
+     * // Get one Stat
+     * const stat = await prisma.stat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends StatFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, StatFindFirstArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Stat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatFindFirstOrThrowArgs} args - Arguments to find a Stat
+     * @example
+     * // Get one Stat
+     * const stat = await prisma.stat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends StatFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, StatFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Stats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Stats
+     * const stats = await prisma.stat.findMany()
+     * 
+     * // Get first 10 Stats
+     * const stats = await prisma.stat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const statWithIdOnly = await prisma.stat.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends StatFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, StatFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Stat.
+     * @param {StatCreateArgs} args - Arguments to create a Stat.
+     * @example
+     * // Create one Stat
+     * const Stat = await prisma.stat.create({
+     *   data: {
+     *     // ... data to create a Stat
+     *   }
+     * })
+     * 
+    **/
+    create<T extends StatCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, StatCreateArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Stats.
+     *     @param {StatCreateManyArgs} args - Arguments to create many Stats.
+     *     @example
+     *     // Create many Stats
+     *     const stat = await prisma.stat.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends StatCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, StatCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Stat.
+     * @param {StatDeleteArgs} args - Arguments to delete one Stat.
+     * @example
+     * // Delete one Stat
+     * const Stat = await prisma.stat.delete({
+     *   where: {
+     *     // ... filter to delete one Stat
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends StatDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, StatDeleteArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Stat.
+     * @param {StatUpdateArgs} args - Arguments to update one Stat.
+     * @example
+     * // Update one Stat
+     * const stat = await prisma.stat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends StatUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, StatUpdateArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Stats.
+     * @param {StatDeleteManyArgs} args - Arguments to filter Stats to delete.
+     * @example
+     * // Delete a few Stats
+     * const { count } = await prisma.stat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends StatDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, StatDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Stats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Stats
+     * const stat = await prisma.stat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends StatUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, StatUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Stat.
+     * @param {StatUpsertArgs} args - Arguments to update or create a Stat.
+     * @example
+     * // Update or create a Stat
+     * const stat = await prisma.stat.upsert({
+     *   create: {
+     *     // ... data to create a Stat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Stat we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends StatUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, StatUpsertArgs<ExtArgs>>
+    ): Prisma__StatClient<$Result.GetResult<Prisma.$StatPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Stats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatCountArgs} args - Arguments to filter Stats to count.
+     * @example
+     * // Count the number of Stats
+     * const count = await prisma.stat.count({
+     *   where: {
+     *     // ... the filter for the Stats we want to count
+     *   }
+     * })
+    **/
+    count<T extends StatCountArgs>(
+      args?: Subset<T, StatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Stat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StatAggregateArgs>(args: Subset<T, StatAggregateArgs>): Prisma.PrismaPromise<GetStatAggregateType<T>>
+
+    /**
+     * Group by Stat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StatGroupByArgs['orderBy'] }
+        : { orderBy?: StatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Stat model
+   */
+  readonly fields: StatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Stat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Stat model
+   */ 
+  interface StatFieldRefs {
+    readonly id: FieldRef<"Stat", 'Int'>
+    readonly name: FieldRef<"Stat", 'String'>
+    readonly desc: FieldRef<"Stat", 'String'>
+    readonly min: FieldRef<"Stat", 'Int'>
+    readonly max: FieldRef<"Stat", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Stat findUnique
+   */
+  export type StatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * Filter, which Stat to fetch.
+     */
+    where: StatWhereUniqueInput
+  }
+
+
+  /**
+   * Stat findUniqueOrThrow
+   */
+  export type StatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * Filter, which Stat to fetch.
+     */
+    where: StatWhereUniqueInput
+  }
+
+
+  /**
+   * Stat findFirst
+   */
+  export type StatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * Filter, which Stat to fetch.
+     */
+    where?: StatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Stats to fetch.
+     */
+    orderBy?: StatOrderByWithRelationInput | StatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Stats.
+     */
+    cursor?: StatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Stats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Stats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Stats.
+     */
+    distinct?: StatScalarFieldEnum | StatScalarFieldEnum[]
+  }
+
+
+  /**
+   * Stat findFirstOrThrow
+   */
+  export type StatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * Filter, which Stat to fetch.
+     */
+    where?: StatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Stats to fetch.
+     */
+    orderBy?: StatOrderByWithRelationInput | StatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Stats.
+     */
+    cursor?: StatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Stats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Stats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Stats.
+     */
+    distinct?: StatScalarFieldEnum | StatScalarFieldEnum[]
+  }
+
+
+  /**
+   * Stat findMany
+   */
+  export type StatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * Filter, which Stats to fetch.
+     */
+    where?: StatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Stats to fetch.
+     */
+    orderBy?: StatOrderByWithRelationInput | StatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Stats.
+     */
+    cursor?: StatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Stats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Stats.
+     */
+    skip?: number
+    distinct?: StatScalarFieldEnum | StatScalarFieldEnum[]
+  }
+
+
+  /**
+   * Stat create
+   */
+  export type StatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Stat.
+     */
+    data: XOR<StatCreateInput, StatUncheckedCreateInput>
+  }
+
+
+  /**
+   * Stat createMany
+   */
+  export type StatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Stats.
+     */
+    data: StatCreateManyInput | StatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Stat update
+   */
+  export type StatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Stat.
+     */
+    data: XOR<StatUpdateInput, StatUncheckedUpdateInput>
+    /**
+     * Choose, which Stat to update.
+     */
+    where: StatWhereUniqueInput
+  }
+
+
+  /**
+   * Stat updateMany
+   */
+  export type StatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Stats.
+     */
+    data: XOR<StatUpdateManyMutationInput, StatUncheckedUpdateManyInput>
+    /**
+     * Filter which Stats to update
+     */
+    where?: StatWhereInput
+  }
+
+
+  /**
+   * Stat upsert
+   */
+  export type StatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Stat to update in case it exists.
+     */
+    where: StatWhereUniqueInput
+    /**
+     * In case the Stat found by the `where` argument doesn't exist, create a new Stat with this data.
+     */
+    create: XOR<StatCreateInput, StatUncheckedCreateInput>
+    /**
+     * In case the Stat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StatUpdateInput, StatUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Stat delete
+   */
+  export type StatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+    /**
+     * Filter which Stat to delete.
+     */
+    where: StatWhereUniqueInput
+  }
+
+
+  /**
+   * Stat deleteMany
+   */
+  export type StatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Stats to delete
+     */
+    where?: StatWhereInput
+  }
+
+
+  /**
+   * Stat without action
+   */
+  export type StatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stat
+     */
+    select?: StatSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Field
+   */
+
+  export type AggregateField = {
+    _count: FieldCountAggregateOutputType | null
+    _avg: FieldAvgAggregateOutputType | null
+    _sum: FieldSumAggregateOutputType | null
+    _min: FieldMinAggregateOutputType | null
+    _max: FieldMaxAggregateOutputType | null
+  }
+
+  export type FieldAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type FieldSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type FieldMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    data: string | null
+  }
+
+  export type FieldMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    data: string | null
+  }
+
+  export type FieldCountAggregateOutputType = {
+    id: number
+    name: number
+    data: number
+    _all: number
+  }
+
+
+  export type FieldAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type FieldSumAggregateInputType = {
+    id?: true
+  }
+
+  export type FieldMinAggregateInputType = {
+    id?: true
+    name?: true
+    data?: true
+  }
+
+  export type FieldMaxAggregateInputType = {
+    id?: true
+    name?: true
+    data?: true
+  }
+
+  export type FieldCountAggregateInputType = {
+    id?: true
+    name?: true
+    data?: true
+    _all?: true
+  }
+
+  export type FieldAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Field to aggregate.
+     */
+    where?: FieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fields to fetch.
+     */
+    orderBy?: FieldOrderByWithRelationInput | FieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Fields
+    **/
+    _count?: true | FieldCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FieldAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FieldSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FieldMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FieldMaxAggregateInputType
+  }
+
+  export type GetFieldAggregateType<T extends FieldAggregateArgs> = {
+        [P in keyof T & keyof AggregateField]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateField[P]>
+      : GetScalarType<T[P], AggregateField[P]>
+  }
+
+
+
+
+  export type FieldGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FieldWhereInput
+    orderBy?: FieldOrderByWithAggregationInput | FieldOrderByWithAggregationInput[]
+    by: FieldScalarFieldEnum[] | FieldScalarFieldEnum
+    having?: FieldScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FieldCountAggregateInputType | true
+    _avg?: FieldAvgAggregateInputType
+    _sum?: FieldSumAggregateInputType
+    _min?: FieldMinAggregateInputType
+    _max?: FieldMaxAggregateInputType
+  }
+
+  export type FieldGroupByOutputType = {
+    id: number
+    name: string
+    data: string
+    _count: FieldCountAggregateOutputType | null
+    _avg: FieldAvgAggregateOutputType | null
+    _sum: FieldSumAggregateOutputType | null
+    _min: FieldMinAggregateOutputType | null
+    _max: FieldMaxAggregateOutputType | null
+  }
+
+  type GetFieldGroupByPayload<T extends FieldGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FieldGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FieldGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FieldGroupByOutputType[P]>
+            : GetScalarType<T[P], FieldGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FieldSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    data?: boolean
+  }, ExtArgs["result"]["field"]>
+
+  export type FieldSelectScalar = {
+    id?: boolean
+    name?: boolean
+    data?: boolean
+  }
+
+
+  export type $FieldPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Field"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      data: string
+    }, ExtArgs["result"]["field"]>
+    composites: {}
+  }
+
+
+  type FieldGetPayload<S extends boolean | null | undefined | FieldDefaultArgs> = $Result.GetResult<Prisma.$FieldPayload, S>
+
+  type FieldCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<FieldFindManyArgs, 'select' | 'include'> & {
+      select?: FieldCountAggregateInputType | true
+    }
+
+  export interface FieldDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Field'], meta: { name: 'Field' } }
+    /**
+     * Find zero or one Field that matches the filter.
+     * @param {FieldFindUniqueArgs} args - Arguments to find a Field
+     * @example
+     * // Get one Field
+     * const field = await prisma.field.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends FieldFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, FieldFindUniqueArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Field that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {FieldFindUniqueOrThrowArgs} args - Arguments to find a Field
+     * @example
+     * // Get one Field
+     * const field = await prisma.field.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends FieldFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, FieldFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Field that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FieldFindFirstArgs} args - Arguments to find a Field
+     * @example
+     * // Get one Field
+     * const field = await prisma.field.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends FieldFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, FieldFindFirstArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Field that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FieldFindFirstOrThrowArgs} args - Arguments to find a Field
+     * @example
+     * // Get one Field
+     * const field = await prisma.field.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends FieldFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, FieldFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Fields that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FieldFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Fields
+     * const fields = await prisma.field.findMany()
+     * 
+     * // Get first 10 Fields
+     * const fields = await prisma.field.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fieldWithIdOnly = await prisma.field.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends FieldFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FieldFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Field.
+     * @param {FieldCreateArgs} args - Arguments to create a Field.
+     * @example
+     * // Create one Field
+     * const Field = await prisma.field.create({
+     *   data: {
+     *     // ... data to create a Field
+     *   }
+     * })
+     * 
+    **/
+    create<T extends FieldCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, FieldCreateArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Fields.
+     *     @param {FieldCreateManyArgs} args - Arguments to create many Fields.
+     *     @example
+     *     // Create many Fields
+     *     const field = await prisma.field.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends FieldCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FieldCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Field.
+     * @param {FieldDeleteArgs} args - Arguments to delete one Field.
+     * @example
+     * // Delete one Field
+     * const Field = await prisma.field.delete({
+     *   where: {
+     *     // ... filter to delete one Field
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends FieldDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, FieldDeleteArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Field.
+     * @param {FieldUpdateArgs} args - Arguments to update one Field.
+     * @example
+     * // Update one Field
+     * const field = await prisma.field.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends FieldUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, FieldUpdateArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Fields.
+     * @param {FieldDeleteManyArgs} args - Arguments to filter Fields to delete.
+     * @example
+     * // Delete a few Fields
+     * const { count } = await prisma.field.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends FieldDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FieldDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Fields.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FieldUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Fields
+     * const field = await prisma.field.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends FieldUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, FieldUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Field.
+     * @param {FieldUpsertArgs} args - Arguments to update or create a Field.
+     * @example
+     * // Update or create a Field
+     * const field = await prisma.field.upsert({
+     *   create: {
+     *     // ... data to create a Field
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Field we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends FieldUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, FieldUpsertArgs<ExtArgs>>
+    ): Prisma__FieldClient<$Result.GetResult<Prisma.$FieldPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Fields.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FieldCountArgs} args - Arguments to filter Fields to count.
+     * @example
+     * // Count the number of Fields
+     * const count = await prisma.field.count({
+     *   where: {
+     *     // ... the filter for the Fields we want to count
+     *   }
+     * })
+    **/
+    count<T extends FieldCountArgs>(
+      args?: Subset<T, FieldCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FieldCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Field.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FieldAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FieldAggregateArgs>(args: Subset<T, FieldAggregateArgs>): Prisma.PrismaPromise<GetFieldAggregateType<T>>
+
+    /**
+     * Group by Field.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FieldGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FieldGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FieldGroupByArgs['orderBy'] }
+        : { orderBy?: FieldGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FieldGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFieldGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Field model
+   */
+  readonly fields: FieldFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Field.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FieldClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Field model
+   */ 
+  interface FieldFieldRefs {
+    readonly id: FieldRef<"Field", 'Int'>
+    readonly name: FieldRef<"Field", 'String'>
+    readonly data: FieldRef<"Field", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Field findUnique
+   */
+  export type FieldFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * Filter, which Field to fetch.
+     */
+    where: FieldWhereUniqueInput
+  }
+
+
+  /**
+   * Field findUniqueOrThrow
+   */
+  export type FieldFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * Filter, which Field to fetch.
+     */
+    where: FieldWhereUniqueInput
+  }
+
+
+  /**
+   * Field findFirst
+   */
+  export type FieldFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * Filter, which Field to fetch.
+     */
+    where?: FieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fields to fetch.
+     */
+    orderBy?: FieldOrderByWithRelationInput | FieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Fields.
+     */
+    cursor?: FieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Fields.
+     */
+    distinct?: FieldScalarFieldEnum | FieldScalarFieldEnum[]
+  }
+
+
+  /**
+   * Field findFirstOrThrow
+   */
+  export type FieldFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * Filter, which Field to fetch.
+     */
+    where?: FieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fields to fetch.
+     */
+    orderBy?: FieldOrderByWithRelationInput | FieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Fields.
+     */
+    cursor?: FieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fields.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Fields.
+     */
+    distinct?: FieldScalarFieldEnum | FieldScalarFieldEnum[]
+  }
+
+
+  /**
+   * Field findMany
+   */
+  export type FieldFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * Filter, which Fields to fetch.
+     */
+    where?: FieldWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fields to fetch.
+     */
+    orderBy?: FieldOrderByWithRelationInput | FieldOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Fields.
+     */
+    cursor?: FieldWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fields from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fields.
+     */
+    skip?: number
+    distinct?: FieldScalarFieldEnum | FieldScalarFieldEnum[]
+  }
+
+
+  /**
+   * Field create
+   */
+  export type FieldCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Field.
+     */
+    data: XOR<FieldCreateInput, FieldUncheckedCreateInput>
+  }
+
+
+  /**
+   * Field createMany
+   */
+  export type FieldCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Fields.
+     */
+    data: FieldCreateManyInput | FieldCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Field update
+   */
+  export type FieldUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Field.
+     */
+    data: XOR<FieldUpdateInput, FieldUncheckedUpdateInput>
+    /**
+     * Choose, which Field to update.
+     */
+    where: FieldWhereUniqueInput
+  }
+
+
+  /**
+   * Field updateMany
+   */
+  export type FieldUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Fields.
+     */
+    data: XOR<FieldUpdateManyMutationInput, FieldUncheckedUpdateManyInput>
+    /**
+     * Filter which Fields to update
+     */
+    where?: FieldWhereInput
+  }
+
+
+  /**
+   * Field upsert
+   */
+  export type FieldUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Field to update in case it exists.
+     */
+    where: FieldWhereUniqueInput
+    /**
+     * In case the Field found by the `where` argument doesn't exist, create a new Field with this data.
+     */
+    create: XOR<FieldCreateInput, FieldUncheckedCreateInput>
+    /**
+     * In case the Field was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FieldUpdateInput, FieldUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Field delete
+   */
+  export type FieldDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+    /**
+     * Filter which Field to delete.
+     */
+    where: FieldWhereUniqueInput
+  }
+
+
+  /**
+   * Field deleteMany
+   */
+  export type FieldDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Fields to delete
+     */
+    where?: FieldWhereInput
+  }
+
+
+  /**
+   * Field without action
+   */
+  export type FieldDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Field
+     */
+    select?: FieldSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -16838,6 +20774,50 @@ export namespace Prisma {
   export type QuestScalarFieldEnum = (typeof QuestScalarFieldEnum)[keyof typeof QuestScalarFieldEnum]
 
 
+  export const GameEntityScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    desc: 'desc',
+    tags: 'tags',
+    stats: 'stats',
+    fields: 'fields',
+    type: 'type'
+  };
+
+  export type GameEntityScalarFieldEnum = (typeof GameEntityScalarFieldEnum)[keyof typeof GameEntityScalarFieldEnum]
+
+
+  export const TagScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    strict: 'strict',
+    type: 'type',
+    options: 'options'
+  };
+
+  export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+  export const StatScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    desc: 'desc',
+    min: 'min',
+    max: 'max'
+  };
+
+  export type StatScalarFieldEnum = (typeof StatScalarFieldEnum)[keyof typeof StatScalarFieldEnum]
+
+
+  export const FieldScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    data: 'data'
+  };
+
+  export type FieldScalarFieldEnum = (typeof FieldScalarFieldEnum)[keyof typeof FieldScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -16846,12 +20826,37 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
   export const NullsOrder: {
     first: 'first',
     last: 'last'
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -16867,9 +20872,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -16881,6 +20900,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'ROLE'
    */
   export type EnumROLEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ROLE'>
@@ -16888,9 +20914,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ROLE[]'
+   */
+  export type ListEnumROLEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ROLE[]'>
+    
+
+
+  /**
    * Reference to a field of type 'HostType'
    */
   export type EnumHostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HostType'>
+    
+
+
+  /**
+   * Reference to a field of type 'HostType[]'
+   */
+  export type ListEnumHostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HostType[]'>
     
 
 
@@ -16909,9 +20949,30 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'SessionState[]'
+   */
+  export type ListEnumSessionStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SessionState[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -17902,6 +21963,222 @@ export namespace Prisma {
     recLevel?: IntNullableWithAggregatesFilter<"Quest"> | number | null
     questID?: IntNullableWithAggregatesFilter<"Quest"> | number | null
     gMProfileId?: StringWithAggregatesFilter<"Quest"> | string
+  }
+
+  export type GameEntityWhereInput = {
+    AND?: GameEntityWhereInput | GameEntityWhereInput[]
+    OR?: GameEntityWhereInput[]
+    NOT?: GameEntityWhereInput | GameEntityWhereInput[]
+    id?: IntFilter<"GameEntity"> | number
+    name?: StringFilter<"GameEntity"> | string
+    desc?: StringNullableFilter<"GameEntity"> | string | null
+    tags?: JsonNullableFilter<"GameEntity">
+    stats?: JsonNullableFilter<"GameEntity">
+    fields?: JsonNullableFilter<"GameEntity">
+    type?: StringFilter<"GameEntity"> | string
+  }
+
+  export type GameEntityOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrderInput | SortOrder
+    tags?: SortOrderInput | SortOrder
+    stats?: SortOrderInput | SortOrder
+    fields?: SortOrderInput | SortOrder
+    type?: SortOrder
+  }
+
+  export type GameEntityWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GameEntityWhereInput | GameEntityWhereInput[]
+    OR?: GameEntityWhereInput[]
+    NOT?: GameEntityWhereInput | GameEntityWhereInput[]
+    name?: StringFilter<"GameEntity"> | string
+    desc?: StringNullableFilter<"GameEntity"> | string | null
+    tags?: JsonNullableFilter<"GameEntity">
+    stats?: JsonNullableFilter<"GameEntity">
+    fields?: JsonNullableFilter<"GameEntity">
+    type?: StringFilter<"GameEntity"> | string
+  }, "id">
+
+  export type GameEntityOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrderInput | SortOrder
+    tags?: SortOrderInput | SortOrder
+    stats?: SortOrderInput | SortOrder
+    fields?: SortOrderInput | SortOrder
+    type?: SortOrder
+    _count?: GameEntityCountOrderByAggregateInput
+    _avg?: GameEntityAvgOrderByAggregateInput
+    _max?: GameEntityMaxOrderByAggregateInput
+    _min?: GameEntityMinOrderByAggregateInput
+    _sum?: GameEntitySumOrderByAggregateInput
+  }
+
+  export type GameEntityScalarWhereWithAggregatesInput = {
+    AND?: GameEntityScalarWhereWithAggregatesInput | GameEntityScalarWhereWithAggregatesInput[]
+    OR?: GameEntityScalarWhereWithAggregatesInput[]
+    NOT?: GameEntityScalarWhereWithAggregatesInput | GameEntityScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GameEntity"> | number
+    name?: StringWithAggregatesFilter<"GameEntity"> | string
+    desc?: StringNullableWithAggregatesFilter<"GameEntity"> | string | null
+    tags?: JsonNullableWithAggregatesFilter<"GameEntity">
+    stats?: JsonNullableWithAggregatesFilter<"GameEntity">
+    fields?: JsonNullableWithAggregatesFilter<"GameEntity">
+    type?: StringWithAggregatesFilter<"GameEntity"> | string
+  }
+
+  export type TagWhereInput = {
+    AND?: TagWhereInput | TagWhereInput[]
+    OR?: TagWhereInput[]
+    NOT?: TagWhereInput | TagWhereInput[]
+    id?: IntFilter<"Tag"> | number
+    name?: StringFilter<"Tag"> | string
+    strict?: BoolFilter<"Tag"> | boolean
+    type?: StringFilter<"Tag"> | string
+    options?: StringNullableListFilter<"Tag">
+  }
+
+  export type TagOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    strict?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+  }
+
+  export type TagWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TagWhereInput | TagWhereInput[]
+    OR?: TagWhereInput[]
+    NOT?: TagWhereInput | TagWhereInput[]
+    name?: StringFilter<"Tag"> | string
+    strict?: BoolFilter<"Tag"> | boolean
+    type?: StringFilter<"Tag"> | string
+    options?: StringNullableListFilter<"Tag">
+  }, "id">
+
+  export type TagOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    strict?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+    _count?: TagCountOrderByAggregateInput
+    _avg?: TagAvgOrderByAggregateInput
+    _max?: TagMaxOrderByAggregateInput
+    _min?: TagMinOrderByAggregateInput
+    _sum?: TagSumOrderByAggregateInput
+  }
+
+  export type TagScalarWhereWithAggregatesInput = {
+    AND?: TagScalarWhereWithAggregatesInput | TagScalarWhereWithAggregatesInput[]
+    OR?: TagScalarWhereWithAggregatesInput[]
+    NOT?: TagScalarWhereWithAggregatesInput | TagScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Tag"> | number
+    name?: StringWithAggregatesFilter<"Tag"> | string
+    strict?: BoolWithAggregatesFilter<"Tag"> | boolean
+    type?: StringWithAggregatesFilter<"Tag"> | string
+    options?: StringNullableListFilter<"Tag">
+  }
+
+  export type StatWhereInput = {
+    AND?: StatWhereInput | StatWhereInput[]
+    OR?: StatWhereInput[]
+    NOT?: StatWhereInput | StatWhereInput[]
+    id?: IntFilter<"Stat"> | number
+    name?: StringFilter<"Stat"> | string
+    desc?: StringNullableFilter<"Stat"> | string | null
+    min?: IntFilter<"Stat"> | number
+    max?: IntFilter<"Stat"> | number
+  }
+
+  export type StatOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrderInput | SortOrder
+    min?: SortOrder
+    max?: SortOrder
+  }
+
+  export type StatWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: StatWhereInput | StatWhereInput[]
+    OR?: StatWhereInput[]
+    NOT?: StatWhereInput | StatWhereInput[]
+    name?: StringFilter<"Stat"> | string
+    desc?: StringNullableFilter<"Stat"> | string | null
+    min?: IntFilter<"Stat"> | number
+    max?: IntFilter<"Stat"> | number
+  }, "id">
+
+  export type StatOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrderInput | SortOrder
+    min?: SortOrder
+    max?: SortOrder
+    _count?: StatCountOrderByAggregateInput
+    _avg?: StatAvgOrderByAggregateInput
+    _max?: StatMaxOrderByAggregateInput
+    _min?: StatMinOrderByAggregateInput
+    _sum?: StatSumOrderByAggregateInput
+  }
+
+  export type StatScalarWhereWithAggregatesInput = {
+    AND?: StatScalarWhereWithAggregatesInput | StatScalarWhereWithAggregatesInput[]
+    OR?: StatScalarWhereWithAggregatesInput[]
+    NOT?: StatScalarWhereWithAggregatesInput | StatScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Stat"> | number
+    name?: StringWithAggregatesFilter<"Stat"> | string
+    desc?: StringNullableWithAggregatesFilter<"Stat"> | string | null
+    min?: IntWithAggregatesFilter<"Stat"> | number
+    max?: IntWithAggregatesFilter<"Stat"> | number
+  }
+
+  export type FieldWhereInput = {
+    AND?: FieldWhereInput | FieldWhereInput[]
+    OR?: FieldWhereInput[]
+    NOT?: FieldWhereInput | FieldWhereInput[]
+    id?: IntFilter<"Field"> | number
+    name?: StringFilter<"Field"> | string
+    data?: StringFilter<"Field"> | string
+  }
+
+  export type FieldOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    data?: SortOrder
+  }
+
+  export type FieldWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FieldWhereInput | FieldWhereInput[]
+    OR?: FieldWhereInput[]
+    NOT?: FieldWhereInput | FieldWhereInput[]
+    name?: StringFilter<"Field"> | string
+    data?: StringFilter<"Field"> | string
+  }, "id">
+
+  export type FieldOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    data?: SortOrder
+    _count?: FieldCountOrderByAggregateInput
+    _avg?: FieldAvgOrderByAggregateInput
+    _max?: FieldMaxOrderByAggregateInput
+    _min?: FieldMinOrderByAggregateInput
+    _sum?: FieldSumOrderByAggregateInput
+  }
+
+  export type FieldScalarWhereWithAggregatesInput = {
+    AND?: FieldScalarWhereWithAggregatesInput | FieldScalarWhereWithAggregatesInput[]
+    OR?: FieldScalarWhereWithAggregatesInput[]
+    NOT?: FieldScalarWhereWithAggregatesInput | FieldScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Field"> | number
+    name?: StringWithAggregatesFilter<"Field"> | string
+    data?: StringWithAggregatesFilter<"Field"> | string
   }
 
   export type AccountCreateInput = {
@@ -18902,10 +23179,222 @@ export namespace Prisma {
     gMProfileId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type GameEntityCreateInput = {
+    name: string
+    desc?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    stats?: NullableJsonNullValueInput | InputJsonValue
+    fields?: NullableJsonNullValueInput | InputJsonValue
+    type: string
+  }
+
+  export type GameEntityUncheckedCreateInput = {
+    id?: number
+    name: string
+    desc?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    stats?: NullableJsonNullValueInput | InputJsonValue
+    fields?: NullableJsonNullValueInput | InputJsonValue
+    type: string
+  }
+
+  export type GameEntityUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    stats?: NullableJsonNullValueInput | InputJsonValue
+    fields?: NullableJsonNullValueInput | InputJsonValue
+    type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GameEntityUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    stats?: NullableJsonNullValueInput | InputJsonValue
+    fields?: NullableJsonNullValueInput | InputJsonValue
+    type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GameEntityCreateManyInput = {
+    id?: number
+    name: string
+    desc?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    stats?: NullableJsonNullValueInput | InputJsonValue
+    fields?: NullableJsonNullValueInput | InputJsonValue
+    type: string
+  }
+
+  export type GameEntityUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    stats?: NullableJsonNullValueInput | InputJsonValue
+    fields?: NullableJsonNullValueInput | InputJsonValue
+    type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GameEntityUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    stats?: NullableJsonNullValueInput | InputJsonValue
+    fields?: NullableJsonNullValueInput | InputJsonValue
+    type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagCreateInput = {
+    name: string
+    strict: boolean
+    type: string
+    options?: TagCreateoptionsInput | string[]
+  }
+
+  export type TagUncheckedCreateInput = {
+    id?: number
+    name: string
+    strict: boolean
+    type: string
+    options?: TagCreateoptionsInput | string[]
+  }
+
+  export type TagUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    strict?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    options?: TagUpdateoptionsInput | string[]
+  }
+
+  export type TagUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    strict?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    options?: TagUpdateoptionsInput | string[]
+  }
+
+  export type TagCreateManyInput = {
+    id?: number
+    name: string
+    strict: boolean
+    type: string
+    options?: TagCreateoptionsInput | string[]
+  }
+
+  export type TagUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    strict?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    options?: TagUpdateoptionsInput | string[]
+  }
+
+  export type TagUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    strict?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    options?: TagUpdateoptionsInput | string[]
+  }
+
+  export type StatCreateInput = {
+    name: string
+    desc?: string | null
+    min: number
+    max: number
+  }
+
+  export type StatUncheckedCreateInput = {
+    id?: number
+    name: string
+    desc?: string | null
+    min: number
+    max: number
+  }
+
+  export type StatUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    min?: IntFieldUpdateOperationsInput | number
+    max?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StatUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    min?: IntFieldUpdateOperationsInput | number
+    max?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StatCreateManyInput = {
+    id?: number
+    name: string
+    desc?: string | null
+    min: number
+    max: number
+  }
+
+  export type StatUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    min?: IntFieldUpdateOperationsInput | number
+    max?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StatUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    min?: IntFieldUpdateOperationsInput | number
+    max?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FieldCreateInput = {
+    name: string
+    data: string
+  }
+
+  export type FieldUncheckedCreateInput = {
+    id?: number
+    name: string
+    data: string
+  }
+
+  export type FieldUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    data?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FieldUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    data?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FieldCreateManyInput = {
+    id?: number
+    name: string
+    data: string
+  }
+
+  export type FieldUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    data?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FieldUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    data?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -18913,13 +23402,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -18927,13 +23417,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -19016,8 +23507,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -19025,6 +23516,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -19033,8 +23525,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -19042,6 +23534,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -19050,8 +23543,8 @@ export namespace Prisma {
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -19066,8 +23559,8 @@ export namespace Prisma {
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -19098,8 +23591,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -19112,8 +23605,8 @@ export namespace Prisma {
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -19123,8 +23616,8 @@ export namespace Prisma {
 
   export type EnumROLEFilter<$PrismaModel = never> = {
     equals?: $Enums.ROLE | EnumROLEFieldRefInput<$PrismaModel>
-    in?: $Enums.ROLE[]
-    notIn?: $Enums.ROLE[]
+    in?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
     not?: NestedEnumROLEFilter<$PrismaModel> | $Enums.ROLE
   }
 
@@ -19221,8 +23714,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -19235,8 +23728,8 @@ export namespace Prisma {
 
   export type EnumROLEWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.ROLE | EnumROLEFieldRefInput<$PrismaModel>
-    in?: $Enums.ROLE[]
-    notIn?: $Enums.ROLE[]
+    in?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
     not?: NestedEnumROLEWithAggregatesFilter<$PrismaModel> | $Enums.ROLE
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumROLEFilter<$PrismaModel>
@@ -19245,8 +23738,8 @@ export namespace Prisma {
 
   export type EnumHostTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.HostType | EnumHostTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.HostType[]
-    notIn?: $Enums.HostType[]
+    in?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumHostTypeFilter<$PrismaModel> | $Enums.HostType
   }
 
@@ -19310,8 +23803,8 @@ export namespace Prisma {
 
   export type EnumHostTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.HostType | EnumHostTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.HostType[]
-    notIn?: $Enums.HostType[]
+    in?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumHostTypeWithAggregatesFilter<$PrismaModel> | $Enums.HostType
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumHostTypeFilter<$PrismaModel>
@@ -19361,8 +23854,8 @@ export namespace Prisma {
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -19451,8 +23944,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -19551,8 +24044,8 @@ export namespace Prisma {
 
   export type EnumSessionStateFilter<$PrismaModel = never> = {
     equals?: $Enums.SessionState | EnumSessionStateFieldRefInput<$PrismaModel>
-    in?: $Enums.SessionState[]
-    notIn?: $Enums.SessionState[]
+    in?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
     not?: NestedEnumSessionStateFilter<$PrismaModel> | $Enums.SessionState
   }
 
@@ -19648,8 +24141,8 @@ export namespace Prisma {
 
   export type EnumSessionStateWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.SessionState | EnumSessionStateFieldRefInput<$PrismaModel>
-    in?: $Enums.SessionState[]
-    notIn?: $Enums.SessionState[]
+    in?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
     not?: NestedEnumSessionStateWithAggregatesFilter<$PrismaModel> | $Enums.SessionState
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumSessionStateFilter<$PrismaModel>
@@ -19821,6 +24314,185 @@ export namespace Prisma {
     id?: SortOrder
     recLevel?: SortOrder
     questID?: SortOrder
+  }
+  export type JsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type GameEntityCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrder
+    tags?: SortOrder
+    stats?: SortOrder
+    fields?: SortOrder
+    type?: SortOrder
+  }
+
+  export type GameEntityAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type GameEntityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrder
+    type?: SortOrder
+  }
+
+  export type GameEntityMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrder
+    type?: SortOrder
+  }
+
+  export type GameEntitySumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type TagCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    strict?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+  }
+
+  export type TagAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TagMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    strict?: SortOrder
+    type?: SortOrder
+  }
+
+  export type TagMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    strict?: SortOrder
+    type?: SortOrder
+  }
+
+  export type TagSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type StatCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+  }
+
+  export type StatAvgOrderByAggregateInput = {
+    id?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+  }
+
+  export type StatMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+  }
+
+  export type StatMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    desc?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+  }
+
+  export type StatSumOrderByAggregateInput = {
+    id?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+  }
+
+  export type FieldCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    data?: SortOrder
+  }
+
+  export type FieldAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type FieldMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    data?: SortOrder
+  }
+
+  export type FieldMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    data?: SortOrder
+  }
+
+  export type FieldSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -21107,10 +25779,19 @@ export namespace Prisma {
     deleteMany?: GameSessionScalarWhereInput | GameSessionScalarWhereInput[]
   }
 
+  export type TagCreateoptionsInput = {
+    set: string[]
+  }
+
+  export type TagUpdateoptionsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -21123,8 +25804,8 @@ export namespace Prisma {
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -21137,8 +25818,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -21148,8 +25829,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -21165,8 +25846,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -21176,8 +25857,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -21193,8 +25874,8 @@ export namespace Prisma {
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -21209,8 +25890,8 @@ export namespace Prisma {
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -21220,8 +25901,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -21231,8 +25912,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -21245,8 +25926,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -21256,15 +25937,15 @@ export namespace Prisma {
 
   export type NestedEnumROLEFilter<$PrismaModel = never> = {
     equals?: $Enums.ROLE | EnumROLEFieldRefInput<$PrismaModel>
-    in?: $Enums.ROLE[]
-    notIn?: $Enums.ROLE[]
+    in?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
     not?: NestedEnumROLEFilter<$PrismaModel> | $Enums.ROLE
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -21277,8 +25958,8 @@ export namespace Prisma {
 
   export type NestedEnumROLEWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.ROLE | EnumROLEFieldRefInput<$PrismaModel>
-    in?: $Enums.ROLE[]
-    notIn?: $Enums.ROLE[]
+    in?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE[] | ListEnumROLEFieldRefInput<$PrismaModel>
     not?: NestedEnumROLEWithAggregatesFilter<$PrismaModel> | $Enums.ROLE
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumROLEFilter<$PrismaModel>
@@ -21287,15 +25968,15 @@ export namespace Prisma {
 
   export type NestedEnumHostTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.HostType | EnumHostTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.HostType[]
-    notIn?: $Enums.HostType[]
+    in?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumHostTypeFilter<$PrismaModel> | $Enums.HostType
   }
 
   export type NestedEnumHostTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.HostType | EnumHostTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.HostType[]
-    notIn?: $Enums.HostType[]
+    in?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HostType[] | ListEnumHostTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumHostTypeWithAggregatesFilter<$PrismaModel> | $Enums.HostType
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumHostTypeFilter<$PrismaModel>
@@ -21309,8 +25990,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -21325,8 +26006,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -21344,19 +26025,41 @@ export namespace Prisma {
 
   export type NestedEnumSessionStateFilter<$PrismaModel = never> = {
     equals?: $Enums.SessionState | EnumSessionStateFieldRefInput<$PrismaModel>
-    in?: $Enums.SessionState[]
-    notIn?: $Enums.SessionState[]
+    in?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
     not?: NestedEnumSessionStateFilter<$PrismaModel> | $Enums.SessionState
   }
 
   export type NestedEnumSessionStateWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.SessionState | EnumSessionStateFieldRefInput<$PrismaModel>
-    in?: $Enums.SessionState[]
-    notIn?: $Enums.SessionState[]
+    in?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SessionState[] | ListEnumSessionStateFieldRefInput<$PrismaModel>
     not?: NestedEnumSessionStateWithAggregatesFilter<$PrismaModel> | $Enums.SessionState
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumSessionStateFilter<$PrismaModel>
     _max?: NestedEnumSessionStateFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -25000,6 +29703,22 @@ export namespace Prisma {
      * @deprecated Use QuestDefaultArgs instead
      */
     export type QuestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = QuestDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GameEntityDefaultArgs instead
+     */
+    export type GameEntityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GameEntityDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use TagDefaultArgs instead
+     */
+    export type TagArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use StatDefaultArgs instead
+     */
+    export type StatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = StatDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FieldDefaultArgs instead
+     */
+    export type FieldArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FieldDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

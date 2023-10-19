@@ -240,14 +240,62 @@ exports.Prisma.QuestScalarFieldEnum = {
   gMProfileId: 'gMProfileId'
 };
 
+exports.Prisma.GameEntityScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  desc: 'desc',
+  tags: 'tags',
+  stats: 'stats',
+  fields: 'fields',
+  type: 'type'
+};
+
+exports.Prisma.TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  strict: 'strict',
+  type: 'type',
+  options: 'options'
+};
+
+exports.Prisma.StatScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  desc: 'desc',
+  min: 'min',
+  max: 'max'
+};
+
+exports.Prisma.FieldScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  data: 'data'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.ROLE = exports.$Enums.ROLE = {
   USER: 'USER',
@@ -281,7 +329,11 @@ exports.Prisma.ModelName = {
   InfoSession: 'InfoSession',
   Campaign: 'Campaign',
   Story: 'Story',
-  Quest: 'Quest'
+  Quest: 'Quest',
+  GameEntity: 'GameEntity',
+  Tag: 'Tag',
+  Stat: 'Stat',
+  Field: 'Field'
 };
 
 /**
