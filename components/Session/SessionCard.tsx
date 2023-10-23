@@ -25,7 +25,6 @@ export default function SessionCard(props: { session: any; admin: boolean; host?
   const router = useRouter();
   const { data: session } = useSession();
   const { players } = props.session;
-  console.log(props.session.id);
 
   const playerSection = () => {
     if (players.length > 0) {

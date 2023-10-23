@@ -72,7 +72,7 @@ export default function CreateSessionCard(props: { session: GameSession }) {
             platform: form.values.platform ?? '',
             maxPlayers: form.values.maxPlayers,
           });
-          console.log(resp);
+
           if (resp) router.refresh();
         }
       }

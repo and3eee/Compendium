@@ -6,7 +6,6 @@ import TagBadge from '../EntityDataComponents/TagBadge';
 
 export default function ItemCard(props: { item: GameEntity }) {
   const item = props.item;
-  console.log(item);
 
   const tags = new Map(Object.entries(item.tags!));
   const stats = new Map(Object.entries(item.stats!));

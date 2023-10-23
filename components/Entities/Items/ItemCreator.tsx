@@ -39,7 +39,6 @@ export default function ItemCreator() {
       form.values.cost
     );
 
-    console.log(resp);
     if (resp == 'Created') router.refresh();
   };
   const handleChange = () => {};

@@ -263,7 +263,9 @@ exports.Prisma.StatScalarFieldEnum = {
   name: 'name',
   desc: 'desc',
   min: 'min',
-  max: 'max'
+  max: 'max',
+  type: 'type',
+  unit: 'unit'
 };
 
 exports.Prisma.FieldScalarFieldEnum = {

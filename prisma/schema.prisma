@@ -227,25 +227,30 @@ model GameEntity {
   type   String
 }
 
+//Any data type that has multiple options
 model Tag {
   id      Int      @id @default(autoincrement())
   name    String
   strict  Boolean
-  type    String
+  type    String?
   options String[]
 }
 
+//Number info, can conform to a range of min-max
 model Stat {
   id   Int     @id @default(autoincrement())
   name String
   desc String?
   min  Int
   max  Int
+  type String?
+  unit String?
 }
 
+//Text information, often unshared, but in cases of features, and such they can be stored
 model Field {
-  id   Int    @id @default(autoincrement())
+  id   Int     @id @default(autoincrement())
   name String
   data String
-  type String
+  type String?
 }

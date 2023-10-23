@@ -35,8 +35,6 @@ export default async function ({ params }: { params: { campaignID: number; sessi
     },
   });
 
-  console.log(params.sessionID);
-
   let isGM: boolean = campaign?.gms.find((gm: GMProfile) => gm.userId == user?.id) != null;
   return (
     <Stack w="100%" align="center" justify="center">

@@ -18056,7 +18056,7 @@ export namespace Prisma {
     id: number
     name: string
     strict: boolean
-    type: string
+    type: string | null
     options: string[]
     _count: TagCountAggregateOutputType | null
     _avg: TagAvgAggregateOutputType | null
@@ -18103,7 +18103,7 @@ export namespace Prisma {
       id: number
       name: string
       strict: boolean
-      type: string
+      type: string | null
       options: string[]
     }, ExtArgs["result"]["tag"]>
     composites: {}
@@ -18821,6 +18821,8 @@ export namespace Prisma {
     desc: string | null
     min: number | null
     max: number | null
+    type: string | null
+    unit: string | null
   }
 
   export type StatMaxAggregateOutputType = {
@@ -18829,6 +18831,8 @@ export namespace Prisma {
     desc: string | null
     min: number | null
     max: number | null
+    type: string | null
+    unit: string | null
   }
 
   export type StatCountAggregateOutputType = {
@@ -18837,6 +18841,8 @@ export namespace Prisma {
     desc: number
     min: number
     max: number
+    type: number
+    unit: number
     _all: number
   }
 
@@ -18859,6 +18865,8 @@ export namespace Prisma {
     desc?: true
     min?: true
     max?: true
+    type?: true
+    unit?: true
   }
 
   export type StatMaxAggregateInputType = {
@@ -18867,6 +18875,8 @@ export namespace Prisma {
     desc?: true
     min?: true
     max?: true
+    type?: true
+    unit?: true
   }
 
   export type StatCountAggregateInputType = {
@@ -18875,6 +18885,8 @@ export namespace Prisma {
     desc?: true
     min?: true
     max?: true
+    type?: true
+    unit?: true
     _all?: true
   }
 
@@ -18970,6 +18982,8 @@ export namespace Prisma {
     desc: string | null
     min: number
     max: number
+    type: string | null
+    unit: string | null
     _count: StatCountAggregateOutputType | null
     _avg: StatAvgAggregateOutputType | null
     _sum: StatSumAggregateOutputType | null
@@ -18997,6 +19011,8 @@ export namespace Prisma {
     desc?: boolean
     min?: boolean
     max?: boolean
+    type?: boolean
+    unit?: boolean
   }, ExtArgs["result"]["stat"]>
 
   export type StatSelectScalar = {
@@ -19005,6 +19021,8 @@ export namespace Prisma {
     desc?: boolean
     min?: boolean
     max?: boolean
+    type?: boolean
+    unit?: boolean
   }
 
 
@@ -19017,6 +19035,8 @@ export namespace Prisma {
       desc: string | null
       min: number
       max: number
+      type: string | null
+      unit: string | null
     }, ExtArgs["result"]["stat"]>
     composites: {}
   }
@@ -19416,6 +19436,8 @@ export namespace Prisma {
     readonly desc: FieldRef<"Stat", 'String'>
     readonly min: FieldRef<"Stat", 'Int'>
     readonly max: FieldRef<"Stat", 'Int'>
+    readonly type: FieldRef<"Stat", 'String'>
+    readonly unit: FieldRef<"Stat", 'String'>
   }
     
 
@@ -19866,7 +19888,7 @@ export namespace Prisma {
     id: number
     name: string
     data: string
-    type: string
+    type: string | null
     _count: FieldCountAggregateOutputType | null
     _avg: FieldAvgAggregateOutputType | null
     _sum: FieldSumAggregateOutputType | null
@@ -19910,7 +19932,7 @@ export namespace Prisma {
       id: number
       name: string
       data: string
-      type: string
+      type: string | null
     }, ExtArgs["result"]["field"]>
     composites: {}
   }
@@ -20814,7 +20836,9 @@ export namespace Prisma {
     name: 'name',
     desc: 'desc',
     min: 'min',
-    max: 'max'
+    max: 'max',
+    type: 'type',
+    unit: 'unit'
   };
 
   export type StatScalarFieldEnum = (typeof StatScalarFieldEnum)[keyof typeof StatScalarFieldEnum]
@@ -22048,7 +22072,7 @@ export namespace Prisma {
     id?: IntFilter<"Tag"> | number
     name?: StringFilter<"Tag"> | string
     strict?: BoolFilter<"Tag"> | boolean
-    type?: StringFilter<"Tag"> | string
+    type?: StringNullableFilter<"Tag"> | string | null
     options?: StringNullableListFilter<"Tag">
   }
 
@@ -22056,7 +22080,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     strict?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
     options?: SortOrder
   }
 
@@ -22067,7 +22091,7 @@ export namespace Prisma {
     NOT?: TagWhereInput | TagWhereInput[]
     name?: StringFilter<"Tag"> | string
     strict?: BoolFilter<"Tag"> | boolean
-    type?: StringFilter<"Tag"> | string
+    type?: StringNullableFilter<"Tag"> | string | null
     options?: StringNullableListFilter<"Tag">
   }, "id">
 
@@ -22075,7 +22099,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     strict?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
     options?: SortOrder
     _count?: TagCountOrderByAggregateInput
     _avg?: TagAvgOrderByAggregateInput
@@ -22091,7 +22115,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Tag"> | number
     name?: StringWithAggregatesFilter<"Tag"> | string
     strict?: BoolWithAggregatesFilter<"Tag"> | boolean
-    type?: StringWithAggregatesFilter<"Tag"> | string
+    type?: StringNullableWithAggregatesFilter<"Tag"> | string | null
     options?: StringNullableListFilter<"Tag">
   }
 
@@ -22104,6 +22128,8 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Stat"> | string | null
     min?: IntFilter<"Stat"> | number
     max?: IntFilter<"Stat"> | number
+    type?: StringNullableFilter<"Stat"> | string | null
+    unit?: StringNullableFilter<"Stat"> | string | null
   }
 
   export type StatOrderByWithRelationInput = {
@@ -22112,6 +22138,8 @@ export namespace Prisma {
     desc?: SortOrderInput | SortOrder
     min?: SortOrder
     max?: SortOrder
+    type?: SortOrderInput | SortOrder
+    unit?: SortOrderInput | SortOrder
   }
 
   export type StatWhereUniqueInput = Prisma.AtLeast<{
@@ -22123,6 +22151,8 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Stat"> | string | null
     min?: IntFilter<"Stat"> | number
     max?: IntFilter<"Stat"> | number
+    type?: StringNullableFilter<"Stat"> | string | null
+    unit?: StringNullableFilter<"Stat"> | string | null
   }, "id">
 
   export type StatOrderByWithAggregationInput = {
@@ -22131,6 +22161,8 @@ export namespace Prisma {
     desc?: SortOrderInput | SortOrder
     min?: SortOrder
     max?: SortOrder
+    type?: SortOrderInput | SortOrder
+    unit?: SortOrderInput | SortOrder
     _count?: StatCountOrderByAggregateInput
     _avg?: StatAvgOrderByAggregateInput
     _max?: StatMaxOrderByAggregateInput
@@ -22147,6 +22179,8 @@ export namespace Prisma {
     desc?: StringNullableWithAggregatesFilter<"Stat"> | string | null
     min?: IntWithAggregatesFilter<"Stat"> | number
     max?: IntWithAggregatesFilter<"Stat"> | number
+    type?: StringNullableWithAggregatesFilter<"Stat"> | string | null
+    unit?: StringNullableWithAggregatesFilter<"Stat"> | string | null
   }
 
   export type FieldWhereInput = {
@@ -22156,14 +22190,14 @@ export namespace Prisma {
     id?: IntFilter<"Field"> | number
     name?: StringFilter<"Field"> | string
     data?: StringFilter<"Field"> | string
-    type?: StringFilter<"Field"> | string
+    type?: StringNullableFilter<"Field"> | string | null
   }
 
   export type FieldOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     data?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
   }
 
   export type FieldWhereUniqueInput = Prisma.AtLeast<{
@@ -22173,14 +22207,14 @@ export namespace Prisma {
     NOT?: FieldWhereInput | FieldWhereInput[]
     name?: StringFilter<"Field"> | string
     data?: StringFilter<"Field"> | string
-    type?: StringFilter<"Field"> | string
+    type?: StringNullableFilter<"Field"> | string | null
   }, "id">
 
   export type FieldOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     data?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
     _count?: FieldCountOrderByAggregateInput
     _avg?: FieldAvgOrderByAggregateInput
     _max?: FieldMaxOrderByAggregateInput
@@ -22195,7 +22229,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Field"> | number
     name?: StringWithAggregatesFilter<"Field"> | string
     data?: StringWithAggregatesFilter<"Field"> | string
-    type?: StringWithAggregatesFilter<"Field"> | string
+    type?: StringNullableWithAggregatesFilter<"Field"> | string | null
   }
 
   export type AccountCreateInput = {
@@ -23266,7 +23300,7 @@ export namespace Prisma {
   export type TagCreateInput = {
     name: string
     strict: boolean
-    type: string
+    type?: string | null
     options?: TagCreateoptionsInput | string[]
   }
 
@@ -23274,14 +23308,14 @@ export namespace Prisma {
     id?: number
     name: string
     strict: boolean
-    type: string
+    type?: string | null
     options?: TagCreateoptionsInput | string[]
   }
 
   export type TagUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     strict?: BoolFieldUpdateOperationsInput | boolean
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: TagUpdateoptionsInput | string[]
   }
 
@@ -23289,7 +23323,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     strict?: BoolFieldUpdateOperationsInput | boolean
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: TagUpdateoptionsInput | string[]
   }
 
@@ -23297,14 +23331,14 @@ export namespace Prisma {
     id?: number
     name: string
     strict: boolean
-    type: string
+    type?: string | null
     options?: TagCreateoptionsInput | string[]
   }
 
   export type TagUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     strict?: BoolFieldUpdateOperationsInput | boolean
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: TagUpdateoptionsInput | string[]
   }
 
@@ -23312,7 +23346,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     strict?: BoolFieldUpdateOperationsInput | boolean
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: TagUpdateoptionsInput | string[]
   }
 
@@ -23321,6 +23355,8 @@ export namespace Prisma {
     desc?: string | null
     min: number
     max: number
+    type?: string | null
+    unit?: string | null
   }
 
   export type StatUncheckedCreateInput = {
@@ -23329,6 +23365,8 @@ export namespace Prisma {
     desc?: string | null
     min: number
     max: number
+    type?: string | null
+    unit?: string | null
   }
 
   export type StatUpdateInput = {
@@ -23336,6 +23374,8 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     min?: IntFieldUpdateOperationsInput | number
     max?: IntFieldUpdateOperationsInput | number
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StatUncheckedUpdateInput = {
@@ -23344,6 +23384,8 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     min?: IntFieldUpdateOperationsInput | number
     max?: IntFieldUpdateOperationsInput | number
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StatCreateManyInput = {
@@ -23352,6 +23394,8 @@ export namespace Prisma {
     desc?: string | null
     min: number
     max: number
+    type?: string | null
+    unit?: string | null
   }
 
   export type StatUpdateManyMutationInput = {
@@ -23359,6 +23403,8 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     min?: IntFieldUpdateOperationsInput | number
     max?: IntFieldUpdateOperationsInput | number
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StatUncheckedUpdateManyInput = {
@@ -23367,52 +23413,54 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     min?: IntFieldUpdateOperationsInput | number
     max?: IntFieldUpdateOperationsInput | number
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FieldCreateInput = {
     name: string
     data: string
-    type: string
+    type?: string | null
   }
 
   export type FieldUncheckedCreateInput = {
     id?: number
     name: string
     data: string
-    type: string
+    type?: string | null
   }
 
   export type FieldUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FieldUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FieldCreateManyInput = {
     id?: number
     name: string
     data: string
-    type: string
+    type?: string | null
   }
 
   export type FieldUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FieldUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     data?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -24463,6 +24511,8 @@ export namespace Prisma {
     desc?: SortOrder
     min?: SortOrder
     max?: SortOrder
+    type?: SortOrder
+    unit?: SortOrder
   }
 
   export type StatAvgOrderByAggregateInput = {
@@ -24477,6 +24527,8 @@ export namespace Prisma {
     desc?: SortOrder
     min?: SortOrder
     max?: SortOrder
+    type?: SortOrder
+    unit?: SortOrder
   }
 
   export type StatMinOrderByAggregateInput = {
@@ -24485,6 +24537,8 @@ export namespace Prisma {
     desc?: SortOrder
     min?: SortOrder
     max?: SortOrder
+    type?: SortOrder
+    unit?: SortOrder
   }
 
   export type StatSumOrderByAggregateInput = {
